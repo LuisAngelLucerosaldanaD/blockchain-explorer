@@ -14,12 +14,12 @@ export class ExplorerService {
   public GetBlocks(body: any, URL: string): Observable<ResponseGetBlocks> {
     const json = JSON.stringify(body);
     const header = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post<ResponseGetBlocks>(environment.api + URL, json, {headers: header});
+    return this.httpClient.post<ResponseGetBlocks>(environment.API_URL + URL, json, {headers: header});
   }
 
   public GetBlocksById(body: any, URL: string): Observable<ResponseGetBlocks> {
     const json = JSON.stringify(body);
     const header = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post<ResponseGetBlocks>(environment.api + URL + URL, json, {headers: header});
+    return this.httpClient.post<ResponseGetBlocks>(environment.API_URL + URL + URL, json, {headers: header});
   }
 }

@@ -1,0 +1,22 @@
+.g-link {
+  @apply cursor-pointer;
+  @apply no-underline;
+}
+
+.login-container {
+  @apply flex h-full;
+  @apply md:flex-col lg:flex-row sm:flex-col;
+}
+
+.left-container {
+  @apply sm:flex-grow md:w-full;
+  @apply lg:w-1/2 lg:h-full flex;
+  @apply bg-center bg-cover;
+  @apply justify-center;
+}
+
+.right-container {
+  @apply md:px-6 sm:px-6 md:my-5 sm:my-5;
+  @apply md:w-full lg:w-1/2 lg:h-full;
+  @apply mt-12 lg:pr-24 lg:pl-4;
+}

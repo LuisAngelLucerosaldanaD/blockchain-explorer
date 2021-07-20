@@ -1,0 +1,50 @@
+<div class="login-container">
+  <div class="left-container img-background">
+    <div class="self-center">
+      <img src="assets/img/logos/06.png" alt="logo nexum">
+    </div>
+  </div>
+  <div class="right-container">
+    <div class="w-full self-center">
+      <ec-button-tab (isActive)="isChangeBtn = $event; changeTypeInput($event)"
+                     [dataRight]="{icon: 'person', label: 'Usuario'}"
+                     [dataLeft]="{icon: 'mail', label: 'Correo'}"
+                     txtColor="text-white"
+                     brColor="border-container-blue-4"
+                     bgContainerColor="bg-container-blue-4"
+      ></ec-button-tab>
+      <form [formGroup]="form">
+        <div class="w-full mt-4">
+          <ec-input-text *ngIf="isChangeBtn" label="{{ 'EMAIL' | translate}}"
+                         bgContainerColor="bg-container-gray-1" brContainerColor="border-container-gray-3"
+                         txtColor="text-outline-blue-2"
+                         msgError="{{getMessageEmailError()}}"
+                         [error]="!emailFieldIsValid && emailField.touched" formControlName="email"></ec-input-text>
+          <ec-input-text *ngIf="!isChangeBtn" label="{{ 'Username' | translate}}"
+                         bgContainerColor="bg-container-gray-1" brContainerColor="border-container-gray-3"
+                         txtColor="text-outline-blue-2"
+                         msgError="{{getMessageNicknameError()}}"
+                         [error]="!nicknameFieldIsValid && nicknameField.touched"
+                         formControlName="nickname"></ec-input-text>
+        </div>
+        <div class="mt-4">
+          <ec-input-password label="{{ 'PASSWORD' | translate}}"
+                             bgContainerColor="bg-container-gray-1" brContainerColor="border-container-gray-3"
+                             txtColor="text-outline-blue-2"
+                             msgError="{{getMessagePasswordError()}}"
+                             [error]="!passwordFieldIsValid && passwordField.touched"
+                             formControlName="password" (keyup.enter)="login()"></ec-input-password>
+
+        </div>
+        <div class="my-16">
+          <ec-button (click)="login()" label="{{'SIGN_IN'| translate}}" icon="arrow right" bgContainerColor="bg-container-blue-4"
+                     brColor="border-container-blue-4" txtColor="text-white"></ec-button>
+        </div>
+      </form>
+      <div class="flex justify-between">
+        <span routerLink="/auth/recovery-pwd" class="g-link text-outline-gray-3">{{ 'RECOVERY' | translate}}</span>
+        <span routerLink="/auth/register-user" class="g-link text-container-blue-4">{{ 'REGISTER' | translate}}</span>
+      </div>
+    </div>
+  </div>
+</div>

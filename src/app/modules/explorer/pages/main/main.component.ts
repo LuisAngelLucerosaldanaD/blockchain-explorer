@@ -3,6 +3,7 @@ import {onlyNumbers} from "@app/utils/validations/validations";
 import {Subscription} from "rxjs";
 import {PaginationModel} from "@app/modules/explorer/models/explorer/explorer.model";
 import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.service";
+import {FileUploadModel} from "ecapture-ng-ui";
 
 @Component({
   selector: 'app-explorer',
@@ -19,11 +20,76 @@ export class MainComponent implements OnInit, OnDestroy {
   public lastIBlock: any;
   public lastTransactions: any;
   public pagination: PaginationModel;
+  public fileUploadData: FileUploadModel;
 
   constructor(private explorerService: ExplorerService) {
     this.pagination = {
       limit: 0,
       offset: 0
+    }
+    this.fileUploadData = {
+      alert: {
+        info: {
+          font: 'font-rubik',
+          color: 'text-outline-alert-info',
+          label: '',
+          size: 'text-base'
+        },
+        error: {
+          font: 'font-rubik',
+          color: 'text-outline-alert-error',
+          label: '',
+          size: 'text-base'
+        },
+        success: {
+          font: 'font-rubik',
+          color: 'text-outline-alert-success',
+          label: '',
+          size: 'text-base'
+        },
+        warning: {
+          font: 'font-rubik',
+          color: 'text-outline-alert-warning',
+          label: '',
+          size: 'text-base'
+        },
+      },
+      icon: {
+        color: 'text-outline-blue-2',
+        name: 'upload',
+        position: ''
+      },
+      headerLabel: {
+        label: '',
+        color: 'text-outline-blue-2',
+        font: 'font-rubik',
+        size: 'text-base'
+      },
+      placeholder: {
+        label: 'upload document',
+        color: 'text-outline-blue-2',
+        font: 'font-rubik',
+        size: 'text-base'
+      },
+      error: {
+        error: false,
+        color: '',
+        text: {
+          label: '',
+          color: '',
+          font: '',
+          size: ''
+        }
+      },
+      container: {
+        background: 'bg-container-gray-1',
+        border: {
+          color: 'border-container-gray-3',
+          size: 'border-2',
+          round: 'rounded-lg',
+          style: 'border-solid',
+        }
+      }
     }
   }
 
@@ -78,6 +144,10 @@ export class MainComponent implements OnInit, OnDestroy {
         }
       ));
     }
+  }
+
+  test (event: any): void {
+    console.log(event.target.value)
   }
 
 }

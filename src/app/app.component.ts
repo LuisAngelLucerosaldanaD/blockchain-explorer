@@ -21,24 +21,7 @@ export class AppComponent {
         route: ''
       },
       {
-        label: 'App',
-        status: false,
-        route: ''
-      },
-      {
-        label: 'Offers',
-        status: false,
-        route: ''
-      }
-      ,
-      {
         label: 'Contact',
-        status: false,
-        route: ''
-      }
-      ,
-      {
-        label: 'Register',
         status: false,
         route: ''
       },

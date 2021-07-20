@@ -4,7 +4,7 @@ import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.s
 import {MainComponent} from "@app/modules/explorer/pages/main/main.component";
 import {ExplorerRoutingModule} from "@app/modules/explorer/explorer-routing.module";
 import {HttpClientModule} from "@angular/common/http";
-import {HeaderModule} from "ecapture-ng-ui";
+import {FileUploadModule, HeaderModule, InputTextModule} from "ecapture-ng-ui";
 import { ExplorerComponent } from './explorer.component';
 
 
@@ -14,12 +14,14 @@ import { ExplorerComponent } from './explorer.component';
     MainComponent,
     ExplorerComponent,
   ],
-  imports: [
-    CommonModule,
-    ExplorerRoutingModule,
-    HttpClientModule,
-    HeaderModule
-  ],
+    imports: [
+        CommonModule,
+        ExplorerRoutingModule,
+        HttpClientModule,
+        HeaderModule,
+        InputTextModule,
+        FileUploadModule
+    ],
   providers: [
     ExplorerService
   ]
