@@ -13,7 +13,7 @@ export class AppComponent {
       {
         label: 'Home',
         status: false,
-        route: ''
+        route: 'home'
       },
       {
         label: 'Explorer',
@@ -23,13 +23,13 @@ export class AppComponent {
       {
         label: 'Contact',
         status: false,
-        route: ''
+        route: 'contact'
       },
       {
         label: 'Sign In',
         status: false,
-        route: ''
+        route: 'auth/login'
       }
-    ]
+    ];
   }
 }

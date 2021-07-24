@@ -1,12 +1,414 @@
-<div class="text-outline-blue-2 text-xl mb-4">
-  <span>
-    Only One Blockchain Explorer
-  </span>
+<div class="p-12 w-full h-screen overflow-auto">
+  <div class="text-outline-blue-2 text-xl mb-4 font-rubik">
+    <span>
+      LionBlockchain Explorer
+    </span>
+  </div>
+  <div class="w-1/2 mb-4">
+    <ec-input-search [ecStyle]="ecStyle"></ec-input-search>
+  </div>
+  <div class="w-full py-2 px-2 border-b-2 border-outline-gray-3 flex font-rubik">
+    <div class="w-3/12 mr-4 flex flex-col justify-center">
+      <div class="flex">
+        <div>
+          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-white h-6 w-6"></div>
+          </div>
+        </div>
+        <div class="ml-2 text-outline-blue-3">
+          <div>
+            <span>Token Price</span>
+          </div>
+          <div>
+            <span>$4,114.69 @ 0.07524 BTC </span><span class="text-outline-alert-error">(-0.34%)</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex mt-6">
+        <div>
+          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-white h-6 w-6"></div>
+          </div>
+        </div>
+        <div class="ml-2 text-outline-blue-3">
+          <div>
+            <span>Market Cap</span>
+          </div>
+          <div>
+            <span>$476,678,935,648.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-3/12 mr-4 flex flex-col justify-center">
+      <div class="flex">
+        <div>
+          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-white h-6 w-6"></div>
+          </div>
+        </div>
+        <div class="ml-2 text-outline-blue-3">
+          <div>
+            <span>Transactions</span>
+          </div>
+          <div>
+            <span>$4,114.69 (18.2 TPS)</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex mt-6">
+        <div>
+          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-white h-6 w-6"></div>
+          </div>
+        </div>
+        <div class="ml-2 text-outline-blue-3">
+          <div>
+            <span>Difficulty</span>
+          </div>
+          <div>
+            <span>7,750.02 TH</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="chart" class="w-1/2">
+      <apx-chart
+        [series]="series"
+        [chart]="chart"
+        [xaxis]="xaxis"
+        [dataLabels]="dataLabels"
+        [grid]="grid"
+        [stroke]="stroke"
+        [title]="title"
+      ></apx-chart>
+    </div>
+  </div>
+  <div class="w-full flex mt-6">
+    <div class="w-1/2 px-6 font-rubik">
+      <div class="text-outline-gray-3">
+        <span>
+          Latest Blocks
+        </span>
+      </div>
+      <div class="mt-4 p-2">
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                BK
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  12422198
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span class="text-outline-blue-2">267 txns </span><span>in 3 secs</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                BK
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  12422198
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span class="text-outline-blue-2">267 txns </span><span>in 3 secs</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                BK
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  12422198
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span class="text-outline-blue-2">267 txns </span><span>in 3 secs</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                BK
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  12422198
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span class="text-outline-blue-2">267 txns </span><span>in 3 secs</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-1/2 font-rubik">
+      <div class="text-outline-gray-3">
+        <span>
+          Latest Transactions
+        </span>
+      </div>
+      <div class="mt-4 p-2">
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                Tx
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  0xaee4121231231af1...
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span>267 txns </span><span class="text-outline-blue-2 cursor-pointer">0xaee412123123f1...</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                Tx
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  0xaee4121231231af1...
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span>267 txns </span><span class="text-outline-blue-2 cursor-pointer">0xaee412123123f1...</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                Tx
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  0xaee4121231231af1...
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span>267 txns </span><span class="text-outline-blue-2 cursor-pointer">0xaee412123123f1...</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                Tx
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  0xaee4121231231af1...
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span>267 txns </span><span class="text-outline-blue-2 cursor-pointer">0xaee412123123f1...</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mb-4">
+          <div class="flex">
+            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+              <span>
+                Tx
+              </span>
+            </div>
+            <div class="ml-2">
+              <div class="text-outline-blue-2 cursor-pointer">
+                <span>
+                  0xaee4121231231af1...
+                </span>
+              </div>
+              <div class="text-outline-gray-3">
+                <span>
+                  1 min 4 secs ago
+                </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+            </div>
+            <div class="text-outline-gray-3">
+              <span>267 txns </span><span class="text-outline-blue-2 cursor-pointer">0xaee412123123f1...</span>
+            </div>
+          </div>
+          <div>
+            <div class="text-outline-gray-3">
+              <span>8.16521 txns</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="mb-4">
-  <ec-input-text bgContainerColor="bg-container-gray-1" brContainerColor="border-container-gray-3"
-                 txtColor="text-outline-blue-2"></ec-input-text>
-</div>
-
-<ec-file-upload [ecStyle]="fileUploadData"></ec-file-upload>
 

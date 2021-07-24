@@ -1,0 +1,148 @@
+<div class="flex justify-center w-full p-6 overflow-y-auto" style="height: 90vh">
+  <div class="sm:w-4/5 md:w-4/5 lg:w-1/2 flex flex-col items-center">
+    <div class="text-outline-gray-3 text-h3">
+    <span>
+   {{'USER_REGISTER' | translate}}
+    </span>
+    </div>
+    <div class="w-full flex  sm:flex-col md:flex-row mt-4">
+      <div class="flex-grow">
+        <ec-input-text label="{{ 'NAMES' | translate}}"
+                       txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                       brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+      <div class="w-4 h-4">
+      </div>
+      <div class="flex-grow">
+        <ec-input-text label="{{ 'LASTNAMES' | translate}}"
+                       txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                       brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+    </div>
+    <div class="w-full flex  sm:flex-col md:flex-row mt-4">
+      <div class="flex-grow sm:w-full md:w-1/2 lg:w-1/2">
+        <div class="w-full">
+          <div class="font-rubik mb-2 text-outline-gray-3">
+            <label>{{ 'IDENTIFICATION_NUMBER' | translate }}</label>
+          </div>
+          <div class="flex">
+            <div class="w-16 mr-1 flex items-center">
+              <ec-dropdown class="w-full" txtColor="text-outline-gray-3"
+                           bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"
+                           [filter]="false" placeholder="C.C"></ec-dropdown>
+            </div>
+            <div class="ml-1 flex items-center w-full">
+              <ec-input-text class="flex-grow" txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1">
+              </ec-input-text>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-4 h-4">
+      </div>
+      <div class="flex-grow sm:w-full md:w-1/2 lg:w-1/2">
+        <ec-input-text class="flex-grow" label="{{ 'USER' | translate}}"
+                       txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                       brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+    </div>
+    <div class="w-full flex  sm:flex-col md:flex-row mt-4">
+      <div class="flex-grow">
+        <ec-input-text label="{{ 'EMAIL' | translate}}"
+                       txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                       brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+      <div class="w-4 h-4">
+      </div>
+      <div class="flex-grow">
+        <ec-input-text label="{{ 'CONFIRM_EMAIL' | translate}}"
+                       txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                       brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+    </div>
+    <div class="mt-4 w-full flex sm:flex-col md:flex-row">
+      <div class="flex-grow justify-between">
+        <div class="flex-grow justify-between font-rubik">
+          <label class="inp-txt text-outline-gray-3">{{ 'PHONE_NUMBER' | translate }}</label>
+        </div>
+        <div class="flex flex-row flex-grow mt-2">
+          <div class="w-16 mr-1">
+            <ec-dropdown class="mr-2" txtColor="text-outline-gray-3"
+                         bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"
+                         [filter]="false" placeholder="+51"></ec-dropdown>
+          </div>
+          <div class="ml-1 flex-grow">
+            <ec-input-text class="flex-grow" txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                           brContainerColor="bg-container-gray-1">
+            </ec-input-text>
+          </div>
+        </div>
+        <div class="text-alert text-outline-alert-info mt-1">
+        </div>
+      </div>
+      <div class="w-4 h-4">
+      </div>
+      <div class="flex flex-grow flex-col justify-between">
+        <div class="mr-1">
+          <label class="inp-txt text-outline-gray-3">{{ 'CONFIRM_PHONE_NUMBER' | translate }}</label>
+        </div>
+        <div class="flex flex-grow justify-between mt-2">
+          <div class="w-16 mr-1">
+            <ec-dropdown class="w-28 mr-2" txtColor="text-outline-gray-3"
+                         bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"
+                         [filter]="false" placeholder="+51">
+            </ec-dropdown>
+          </div>
+          <div class="ml-1 flex-grow">
+            <ec-input-text
+              txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+              brContainerColor="bg-container-gray-1"></ec-input-text>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full flex  sm:flex-col md:flex-row">
+      <div class="flex-grow">
+        <ec-input-password label="{{ 'PASSWORD' | translate}}"
+                           txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                           brContainerColor="border-outline-gray-4"></ec-input-password>
+      </div>
+      <div class="w-4 h-4">
+      </div>
+      <div class="flex-grow">
+        <ec-input-password label="{{ 'CONFIRM_PASSWORD' | translate}}"
+                           txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                           brContainerColor="border-outline-gray-4"></ec-input-password>
+      </div>
+    </div>
+    <div class="w-full flex sm:flex-col md:flex-row mt-4">
+      <div class="flex-grow sm:w-full md:w-1/2 lg:w-1/2">
+        <ec-input-date class="flex-grow" label="{{ 'DATE_OF_BIRTH' | translate}}"
+                       txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                       brContainerColor="border-outline-gray-4"></ec-input-date>
+      </div>
+    </div>
+    <div class="flex items-center mt-4 w-full">
+      <div>
+        <ec-toggle iconColor="text-outline-gray-3"></ec-toggle>
+      </div>
+      <div class="ml-4">
+      <span>
+        <span class="text-outline-gray-3">Acepto las </span><span class="text-container-blue-3 cursor-pointer">condiciones del servicio</span><span
+        class="text-outline-gray-3"> y </span><span
+        class="text-container-blue-3 cursor-pointer">políticas de privacidad</span><span class="text-outline-gray-3"> de Punto de Pago.</span>
+      </span>
+      </div>
+    </div>
+    <div class="w-full flex mt-16 pb-4">
+      <div class="w-1/2 pr-2">
+        <ec-button label="{{'CANCEL' | translate}}" brColor="border-container-blue-3"
+                   txtColor="text-container-blue-3" routerLink="/auth/login"></ec-button>
+      </div>
+      <div class="w-1/2 pl-2">
+        <ec-button label="{{'REGISTER' | translate}}" bgContainerColor="bg-container-blue-3"
+                   brColor="border-container-blue-3" txtColor="text-white"></ec-button>
+      </div>
+    </div>
+  </div>
+</div>

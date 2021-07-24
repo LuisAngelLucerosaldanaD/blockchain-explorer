@@ -1,0 +1,47 @@
+<div class="right-container">
+  <div class="flex justify-center w-full p-6  overflow-y-auto" style="height: 90vh">
+    <div class="sm:w-4/5 md:w-4/5 lg:w-1/2 flex flex-col items-center">
+      <div class="text-outline-gray-3 text-h3 my-6">
+        <span>
+         {{'ACCOUNT_RECOVERY' | translate}}
+        </span>
+      </div>
+      <div class="w-full flex">
+        <div class="w-full self-center">
+          <ec-button-tab (isActive)="userIdentification=$event" [dataRight]="{icon: 'person', label: 'User'}"
+            [dataLeft]="{icon: 'person-board', label: 'IDENTIFICATION_NUMBER' | translate}" txtColor="text-white"
+            brColor="text-outline-gray-3" bgContainerColor="bg-container-blue-3"></ec-button-tab>
+        </div>
+      </div>
+      <div class="w-full mt-4" *ngIf="userIdentification">
+        <div class="mb-4 text-outline-gray-3 font-rubik">
+          <span class="">{{ 'IDENTIFICATION_NUMBER' | translate}}</span>
+        </div>
+        <div class="flex">
+          <ec-dropdown class="w-28 mr-2" txtColor="text-outline-gray-3"
+                       bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4" [filter]="false" ></ec-dropdown>
+          <ec-input-text class="w-full " txtColor="text-outline-gray-3"
+                          bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"></ec-input-text>
+        </div>
+      </div>
+      <div class="w-full mt-4" *ngIf="!userIdentification">
+        <ec-input-text label="{{ 'USER' | translate}}" txtColor="text-outline-gray-3"
+          bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+      <div class="w-full mt-4">
+        <ec-input-text label="{{ 'EMAIL' | translate}}" txtColor="text-outline-gray-3"
+          bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+      <div class="w-full flex mt-12 pb-4">
+        <div class="w-1/2 pr-2">
+          <ec-button label="{{'CANCEL' | translate}}" brColor="border-container-blue-3"
+            txtColor="text-container-blue-3" routerLink="/auth/login"></ec-button>
+        </div>
+        <div class="w-1/2 pl-2">
+          <ec-button label="{{'Confirm' | translate}}" bgContainerColor="bg-container-blue-3"
+            brColor="border-container-blue-3" txtColor="text-white"></ec-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

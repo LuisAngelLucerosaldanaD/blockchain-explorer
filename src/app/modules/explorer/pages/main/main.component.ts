@@ -3,7 +3,17 @@ import {onlyNumbers} from "@app/utils/validations/validations";
 import {Subscription} from "rxjs";
 import {PaginationModel} from "@app/modules/explorer/models/explorer/explorer.model";
 import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.service";
-import {FileUploadModel} from "ecapture-ng-ui";
+import {InputSearchModel} from "ecapture-ng-ui";
+import {ChartOptions} from "@app/modules/explorer/models/chart/chart";
+import {
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexDataLabels,
+  ApexGrid,
+  ApexStroke,
+  ApexTitleSubtitle,
+  ApexXAxis
+} from "ng-apexcharts";
 
 @Component({
   selector: 'app-explorer',
@@ -20,14 +30,24 @@ export class MainComponent implements OnInit, OnDestroy {
   public lastIBlock: any;
   public lastTransactions: any;
   public pagination: PaginationModel;
-  public fileUploadData: FileUploadModel;
+  public ecStyle: InputSearchModel;
 
-  constructor(private explorerService: ExplorerService) {
+  public series: ApexAxisChartSeries;
+  public chart: ApexChart;
+  public xaxis: ApexXAxis;
+  public dataLabels: ApexDataLabels;
+  public grid: ApexGrid;
+  public stroke: ApexStroke;
+  public title: ApexTitleSubtitle;
+
+  constructor(
+    private explorerService: ExplorerService
+  ) {
     this.pagination = {
       limit: 0,
       offset: 0
     }
-    this.fileUploadData = {
+    this.ecStyle = {
       alert: {
         info: {
           font: 'font-rubik',
@@ -54,19 +74,14 @@ export class MainComponent implements OnInit, OnDestroy {
           size: 'text-base'
         },
       },
-      icon: {
-        color: 'text-outline-blue-2',
-        name: 'upload',
-        position: ''
-      },
       headerLabel: {
         label: '',
         color: 'text-outline-blue-2',
         font: 'font-rubik',
         size: 'text-base'
       },
-      placeholder: {
-        label: 'upload document',
+      placeholder:  {
+        label: 'Search by address / block / token',
         color: 'text-outline-blue-2',
         font: 'font-rubik',
         size: 'text-base'
@@ -77,20 +92,63 @@ export class MainComponent implements OnInit, OnDestroy {
         text: {
           label: '',
           color: '',
-          font: '',
+          font: 'font-rubik',
           size: ''
         }
       },
       container: {
         background: 'bg-container-gray-1',
         border: {
-          color: 'border-container-gray-3',
-          size: 'border-2',
+          color: 'border-container-gray-1',
+          size: 'border-4',
           round: 'rounded-lg',
           style: 'border-solid',
+          hover: 'border-container-gray-3'
         }
       }
     }
+      this.series =  [
+        {
+          name: "Tokens",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        }
+      ];
+      this.chart= {
+        height: 170,
+        type: "line",
+        zoom: {
+          enabled: false
+        }
+      }
+      this.dataLabels = {
+        enabled: false
+      }
+      this.stroke = {
+        curve: "straight"
+      }
+      this.title = {
+        text: "Price Token by Month",
+        align: "left"
+      }
+      this.grid = {
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5
+        }
+      }
+      this.xaxis = {
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep"
+        ]
+      }
   }
 
   ngOnInit(): void {
