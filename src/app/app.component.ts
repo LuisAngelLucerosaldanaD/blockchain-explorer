@@ -18,7 +18,7 @@ export class AppComponent {
       {
         label: 'Explorer',
         status: true,
-        route: ''
+        route: 'explorer'
       },
       {
         label: 'Contact',

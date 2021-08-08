@@ -5,11 +5,15 @@ import {QuicklinkModule, QuicklinkStrategy} from "ngx-quicklink";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'main',
+    path: 'home',
+    loadChildren: ()=> import('@app/modules/home/home.module').then((m) => m.HomeModule)
+  },
+  {
+    path: 'explorer',
     loadChildren: () => import('@app/modules/explorer/explorer.module').then((m) => m.ExplorerModule)
   },
   {

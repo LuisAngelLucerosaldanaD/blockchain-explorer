@@ -4,7 +4,6 @@ import {Subscription} from "rxjs";
 import {PaginationModel} from "@app/modules/explorer/models/explorer/explorer.model";
 import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.service";
 import {InputSearchModel} from "ecapture-ng-ui";
-import {ChartOptions} from "@app/modules/explorer/models/chart/chart";
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -80,7 +79,7 @@ export class MainComponent implements OnInit, OnDestroy {
         font: 'font-rubik',
         size: 'text-base'
       },
-      placeholder:  {
+      placeholder: {
         label: 'Search by address / block / token',
         color: 'text-outline-blue-2',
         font: 'font-rubik',
@@ -107,48 +106,48 @@ export class MainComponent implements OnInit, OnDestroy {
         }
       }
     }
-      this.series =  [
-        {
-          name: "Tokens",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-        }
-      ];
-      this.chart= {
-        height: 170,
-        type: "line",
-        zoom: {
-          enabled: false
-        }
+    this.series = [
+      {
+        name: "Tokens",
+        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
       }
-      this.dataLabels = {
+    ];
+    this.chart = {
+      height: 170,
+      type: "line",
+      zoom: {
         enabled: false
       }
-      this.stroke = {
-        curve: "straight"
+    }
+    this.dataLabels = {
+      enabled: false
+    }
+    this.stroke = {
+      curve: "straight"
+    }
+    this.title = {
+      text: "Price Token by Month",
+      align: "left"
+    }
+    this.grid = {
+      row: {
+        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+        opacity: 0.5
       }
-      this.title = {
-        text: "Price Token by Month",
-        align: "left"
-      }
-      this.grid = {
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5
-        }
-      }
-      this.xaxis = {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep"
-        ]
-      }
+    }
+    this.xaxis = {
+      categories: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep"
+      ]
+    }
   }
 
   ngOnInit(): void {
@@ -204,7 +203,7 @@ export class MainComponent implements OnInit, OnDestroy {
     }
   }
 
-  test (event: any): void {
+  test(event: any): void {
     console.log(event.target.value)
   }
 

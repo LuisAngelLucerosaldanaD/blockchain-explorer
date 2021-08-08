@@ -4,7 +4,7 @@ import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.s
 import {MainComponent} from "@app/modules/explorer/pages/main/main.component";
 import {ExplorerRoutingModule} from "@app/modules/explorer/explorer-routing.module";
 import {HttpClientModule} from "@angular/common/http";
-import {FileUploadModule, HeaderModule, InputSearchModule, InputTextModule} from "ecapture-ng-ui";
+import {DropdownModule, FileUploadModule, HeaderModule, InputSearchModule, InputTextModule} from "ecapture-ng-ui";
 import { ExplorerComponent } from './explorer.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 
@@ -23,7 +23,8 @@ import {NgApexchartsModule} from "ng-apexcharts";
         InputTextModule,
         FileUploadModule,
         InputSearchModule,
-        NgApexchartsModule
+        NgApexchartsModule,
+        DropdownModule
     ],
   providers: [
     ExplorerService
