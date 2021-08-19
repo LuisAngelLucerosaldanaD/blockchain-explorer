@@ -31,5 +31,39 @@ export class AppComponent {
         route: 'auth/login'
       }
     ];
+    this.locateUrl();
+  }
+
+  public goToRute(route: string): void {
+    const findRoutePosition = this.itemMenu.map((item: any) => item.route).indexOf(route);
+    if (findRoutePosition !== -1) {
+      this.itemMenu[findRoutePosition].status = true;
+      this.itemMenu = this.itemMenu.map((item: any) => {
+        if (item.route !== route) {
+          item.status = false;
+          return item;
+        } else {
+          return item;
+        }
+      });
+    }
+  }
+
+  public locateUrl(): void {
+    const url = new URL(document.location.href);
+    const urlPath = url.pathname.replace('/', '');
+    const findRoutePosition = this.itemMenu.map((item: any) => item.route).indexOf(urlPath);
+
+    if (findRoutePosition !== -1) {
+      this.itemMenu[findRoutePosition].status = true;
+      this.itemMenu = this.itemMenu.map((item: any) => {
+        if (item.route !== urlPath) {
+          item.status = false;
+          return item;
+        } else {
+          return item;
+        }
+      });
+    }
   }
 }

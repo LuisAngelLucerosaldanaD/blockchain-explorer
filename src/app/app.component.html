@@ -1,8 +1,23 @@
 <div>
   <div>
-    <ec-header img="assets/img/logos/logo-onlyone.png" brColor="border-outline-blue-4" txtColor="text-outline-blue-4"
+    <!--<ec-header img="assets/img/logos/logo-onlyone.png" brColor="border-outline-blue-4" txtColor="text-outline-blue-4"
                bgContainerColor="bg-container-gray-1"
-               [menuItems]="itemMenu"></ec-header>
+               [menuItems]="itemMenu"></ec-header>-->
+    <div class="header-container bg-container-gray-1">
+      <div>
+        <img src="assets/img/logos/logo-onlyone.png" alt="logo header" class="img">
+      </div>
+      <div class="components-container">
+        <div *ngFor="let item of itemMenu">
+          <div class="item-container text-outline-blue-4" routerLink="{{item.route}}" (click)="goToRute(item.route)">
+            <span class="item {{item.status ? 'border-solid border-b-2 border-outline-blue-4': '' }} hover:border-outline-blue-4}">
+              {{item.label}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="h-screen">
     <router-outlet></router-outlet>

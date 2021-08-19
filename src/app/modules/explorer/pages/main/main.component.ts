@@ -38,6 +38,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public grid: ApexGrid;
   public stroke: ApexStroke;
   public title: ApexTitleSubtitle;
+  public qrInfo: string = 'this is a qr code';
 
   constructor(
     private explorerService: ExplorerService
@@ -108,8 +109,8 @@ export class MainComponent implements OnInit, OnDestroy {
     }
     this.series = [
       {
-        name: "Tokens",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        name: "Açaí",
+        data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 45, 781, 78]
       }
     ];
     this.chart = {
@@ -126,7 +127,7 @@ export class MainComponent implements OnInit, OnDestroy {
       curve: "straight"
     }
     this.title = {
-      text: "Price Token by Month",
+      text: "Price Açaí by Month",
       align: "left"
     }
     this.grid = {
@@ -145,7 +146,10 @@ export class MainComponent implements OnInit, OnDestroy {
         "Jun",
         "Jul",
         "Aug",
-        "Sep"
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
       ]
     }
   }

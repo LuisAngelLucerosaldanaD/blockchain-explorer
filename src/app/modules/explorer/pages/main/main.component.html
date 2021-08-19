@@ -17,7 +17,7 @@
         </div>
         <div class="ml-2 text-outline-blue-3">
           <div>
-            <span>Token Price</span>
+            <span>Açaí Price</span>
           </div>
           <div>
             <span>$4,114.69 @ 0.07524 BTC </span><span class="text-outline-alert-error">(-0.34%)</span>
@@ -411,4 +411,91 @@
     </div>
   </div>
 </div>
+
+<ec-modal [activeModal]="true" bgBoxColor="bg-ui" bgContainerColor="bg-ui"
+          brBoxColor="border-container-blue-4">
+  <div>
+    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold">
+      <div>
+        <span>
+          Resumen
+        </span>
+      </div>
+    </div>
+    <div class="text-outline-gray-3 text-justify mt-4">
+      <p>
+        Esta transacción se transmitió a la red de LionBlockchanin el día agosto 14, 2021 a las 10:48 AM GMT -05:00. La transacción
+        tiene actualmente 0 confirmaciones en la red. En el momento de esta transacción, 0.00194301 Aça se envió con un
+        valor de $91.00. El valor actual de esta transacción ahora es de 91,01 US$.
+      </p>
+    </div>
+    <div class="flex items-center justify-center mt-4">
+      <qr-code [value]="qrInfo" [size]="200"></qr-code>
+    </div>
+    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+      <div>
+        <span>
+          Detalles
+        </span>
+      </div>
+    </div>
+    <div class="mt-4 p-4">
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
+        <div class="text-outline-gray-3 mr-4 w-12">
+          <span>
+            Hash
+          </span>
+        </div>
+        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
+          <span class="">
+            a7584649b66730ff2d637730371011e8d94bd22ee14fd544b61a15b3b493c28e
+          </span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
+        <div class="text-outline-gray-3 mr-4 w-12">
+          <span>
+            Monto
+          </span>
+        </div>
+        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
+          <span class="">
+            91,01 US$ - 0.00045 Aça
+          </span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
+        <div class="text-outline-gray-3 mr-4 w-12">
+          <span>
+            From
+          </span>
+        </div>
+        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
+          <span>
+            0xdb0421b556252a73e5fba37d156ea168d5f7e936
+          </span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
+        <div class="text-outline-gray-3 mr-4 w-12">
+          <span>
+            To
+          </span>
+        </div>
+        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
+          <span>
+            0xdb0421b556252a73e5fba37d156ea168d5f7e936
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+      <div>
+        <span>
+          Data
+        </span>
+      </div>
+    </div>
+  </div>
+</ec-modal>
 

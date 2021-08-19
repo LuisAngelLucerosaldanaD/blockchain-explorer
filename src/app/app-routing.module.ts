@@ -30,7 +30,7 @@ const routes: Routes = [
   imports: [
     QuicklinkModule,
     RouterModule.forRoot(routes, {
-      useHash: true,
+      useHash: false,
       scrollPositionRestoration: 'enabled',
       paramsInheritanceStrategy: 'always',
       preloadingStrategy: QuicklinkStrategy
