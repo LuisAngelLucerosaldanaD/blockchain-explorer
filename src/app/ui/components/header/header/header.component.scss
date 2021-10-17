@@ -1,0 +1,32 @@
+.header-container {
+  height: 3rem;
+  width: 100%;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.components-container {
+  display: flex;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+  cursor: pointer;
+}
+.item:hover {
+  border-bottom: 2px solid;
+}
+
+.img {
+  height: 24px;
+}

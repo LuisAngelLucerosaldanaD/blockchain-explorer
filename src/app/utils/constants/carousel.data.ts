@@ -1,4 +1,5 @@
 import {ICarouselItem} from "@app/modules/home/models/home.model";
+import {MenuModel} from "@app/models/ui.model";
 
 export const CAROUSEL_DATA_ITEMS: ICarouselItem[] = [
   {
@@ -52,3 +53,28 @@ export const CAROUSEL_DATA_ITEMS: ICarouselItem[] = [
     image: 'assets/images/5.jpg'
   }
 ];
+
+export const MENU_DATA_ITEMS: MenuModel[] = [
+  {
+    label: 'Home',
+    status: true,
+    route: 'home'
+  },
+  {
+    label: 'Explorer',
+    status: false,
+    route: 'explorer'
+  },
+  {
+    label: 'Contact',
+    status: false,
+    route: 'contact'
+  },
+  {
+    label: 'Sign In',
+    status: false,
+    route: 'auth/login'
+  }
+];
+
+export const dataCredentialViewer = [];

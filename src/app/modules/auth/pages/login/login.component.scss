@@ -4,7 +4,7 @@
 }
 
 .login-container {
-  @apply flex h-full;
+  @apply flex;
   @apply md:flex-col lg:flex-row sm:flex-col;
 }
 

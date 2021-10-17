@@ -48,5 +48,10 @@
   "PHONE_NUMBER": "Número de teléfono",
   "ACCESS_CODE": "Código de acceso",
   "REQUESTED_ANNEXES": "Anexos solicitados",
-  "CLOSE": "Cerrar"
+  "CLOSE": "Cerrar",
+  "IDENTIFICATION_NUMBER": "Número de Identificación",
+  "USER_REGISTER": "Resgistrar Usuario",
+  "CONFIRM_PHONE_NUMBER": "Confirmar Número de Telefono",
+
+  "ACCOUNT_RECOVERY": "Recuperar Cuenta"
 }

@@ -7,7 +7,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {
   DropdownModule,
   FileUploadModule,
-  HeaderModule,
+  HeaderModule, IconsModule,
   InputSearchModule,
   InputTextModule,
   ModalModule
@@ -15,26 +15,37 @@ import {
 import {ExplorerComponent} from './explorer.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import {QRCodeModule} from 'angular2-qrcode';
+import {TransactionsComponent} from './pages/transactions/transactions.component';
+import {CredentialViewerComponent} from './pages/credential-viewer/credential-viewer.component';
+import {UiModule} from "@app/ui/ui.module";
+import {ComponentsModule} from "@app/components/components.module";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     MainComponent,
     ExplorerComponent,
+    TransactionsComponent,
+    CredentialViewerComponent,
   ],
-  imports: [
-    CommonModule,
-    ExplorerRoutingModule,
-    HttpClientModule,
-    HeaderModule,
-    InputTextModule,
-    FileUploadModule,
-    InputSearchModule,
-    NgApexchartsModule,
-    DropdownModule,
-    ModalModule,
-    QRCodeModule
-  ],
+    imports: [
+        CommonModule,
+        ExplorerRoutingModule,
+        HttpClientModule,
+        HeaderModule,
+        InputTextModule,
+        FileUploadModule,
+        InputSearchModule,
+        NgApexchartsModule,
+        DropdownModule,
+        ModalModule,
+        QRCodeModule,
+        IconsModule,
+        UiModule,
+        ComponentsModule,
+        FormsModule
+    ],
   providers: [
     ExplorerService
   ]

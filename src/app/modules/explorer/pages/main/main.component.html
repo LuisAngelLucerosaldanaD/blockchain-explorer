@@ -1,78 +1,81 @@
+<app-header></app-header>
 <div class="p-12 w-full h-screen overflow-auto">
   <div class="text-outline-blue-2 text-xl mb-4 font-rubik">
     <span>
       LionBlockchain Explorer
     </span>
   </div>
-  <div class="w-1/2 mb-4">
+  <div class="sm:w-full md:w-full lg:w-1/2 mb-4">
     <ec-input-search [ecStyle]="ecStyle"></ec-input-search>
   </div>
-  <div class="w-full py-2 px-2 border-b-2 border-outline-gray-3 flex font-rubik">
-    <div class="w-3/12 mr-4 flex flex-col justify-center">
-      <div class="flex">
-        <div>
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
+  <div class="w-full py-2 px-2 border-b-2 border-outline-gray-3 flex sm:flex-col md:flex-col lg:flex-row font-rubik">
+    <div class="flex sm:w-full md:w-full lg:w-1/2">
+      <div class="sm:w-1/2 md:w-1/2 lg:w-1/2 mr-4 flex flex-col justify-center">
+        <div class="flex">
+          <div>
+            <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+              <div class="rounded-full bg-white h-6 w-6"></div>
+            </div>
+          </div>
+          <div class="ml-2 text-outline-blue-3">
+            <div>
+              <span>Açaí Price</span>
+            </div>
+            <div>
+              <span>$4,114.69 @ 0.07524 BTC </span><span class="text-outline-alert-error">(-0.34%)</span>
+            </div>
           </div>
         </div>
-        <div class="ml-2 text-outline-blue-3">
+        <div class="flex mt-6">
           <div>
-            <span>Açaí Price</span>
+            <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+              <div class="rounded-full bg-white h-6 w-6"></div>
+            </div>
           </div>
-          <div>
-            <span>$4,114.69 @ 0.07524 BTC </span><span class="text-outline-alert-error">(-0.34%)</span>
+          <div class="ml-2 text-outline-blue-3">
+            <div>
+              <span>Market Cap</span>
+            </div>
+            <div>
+              <span>$476,678,935,648.00</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="flex mt-6">
-        <div>
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
+      <div class="sm:w-1/2 md:w-1/2 lg:w-1/2 mr-4 flex flex-col justify-center">
+        <div class="flex">
+          <div>
+            <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+              <div class="rounded-full bg-white h-6 w-6"></div>
+            </div>
+          </div>
+          <div class="ml-2 text-outline-blue-3">
+            <div>
+              <span>Transactions</span>
+            </div>
+            <div>
+              <span>$4,114.69 (18.2 TPS)</span>
+            </div>
           </div>
         </div>
-        <div class="ml-2 text-outline-blue-3">
+        <div class="flex mt-6">
           <div>
-            <span>Market Cap</span>
+            <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
+              <div class="rounded-full bg-white h-6 w-6"></div>
+            </div>
           </div>
-          <div>
-            <span>$476,678,935,648.00</span>
+          <div class="ml-2 text-outline-blue-3">
+            <div>
+              <span>Difficulty</span>
+            </div>
+            <div>
+              <span>7,750.02 TH</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="w-3/12 mr-4 flex flex-col justify-center">
-      <div class="flex">
-        <div>
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
-          </div>
-        </div>
-        <div class="ml-2 text-outline-blue-3">
-          <div>
-            <span>Transactions</span>
-          </div>
-          <div>
-            <span>$4,114.69 (18.2 TPS)</span>
-          </div>
-        </div>
-      </div>
-      <div class="flex mt-6">
-        <div>
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
-          </div>
-        </div>
-        <div class="ml-2 text-outline-blue-3">
-          <div>
-            <span>Difficulty</span>
-          </div>
-          <div>
-            <span>7,750.02 TH</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="chart" class="w-1/2">
+    <div id="chart" class="sm:w-full md:w-full lg:w-1/2 sm:mt-6 md:mt-6 lg:mt-0">
       <apx-chart
         [series]="series"
         [chart]="chart"
@@ -84,9 +87,9 @@
       ></apx-chart>
     </div>
   </div>
-  <div class="w-full flex mt-6">
-    <div class="w-1/2 px-6 font-rubik">
-      <div class="text-outline-gray-3">
+  <div class="w-full flex sm:flex-col md:flex-col lg:flex-row mt-6">
+    <div class="sm:w-full md:w-full lg:w-1/2 px-6 font-rubik">
+      <div class="text-outline-gray-3 font-bold text-xl">
         <span>
           Latest Blocks
         </span>
@@ -230,8 +233,8 @@
         </div>
       </div>
     </div>
-    <div class="w-1/2 font-rubik">
-      <div class="text-outline-gray-3">
+    <div class="sm:w-full md:w-full lg:w-1/2 font-rubik sm:mt-6 md:mt-6 lg:mt-0">
+      <div class="text-outline-gray-3 font-bold text-xl">
         <span>
           Latest Transactions
         </span>
@@ -412,7 +415,7 @@
   </div>
 </div>
 
-<ec-modal [activeModal]="true" bgBoxColor="bg-ui" bgContainerColor="bg-ui"
+<ec-modal [activeModal]="false" bgBoxColor="bg-ui" bgContainerColor="bg-ui"
           brBoxColor="border-container-blue-4">
   <div>
     <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold">

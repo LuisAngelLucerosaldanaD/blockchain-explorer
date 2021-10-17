@@ -1,1 +1,16 @@
-<p>header works!</p>
+<div>
+    <div class="header-container bg-container-gray-1">
+      <div>
+        <img src="assets/img/logos/logo-onlyone.png" alt="logo header" class="img">
+      </div>
+      <div class="components-container">
+        <div *ngFor="let item of itemMenu">
+          <div class="item-container text-outline-blue-4" (click)="goToUrl(item.route)">
+            <span class="item {{item.status ? 'border-solid border-b-2 border-outline-blue-4': '' }} hover:border-outline-blue-4}">
+              {{item.label}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

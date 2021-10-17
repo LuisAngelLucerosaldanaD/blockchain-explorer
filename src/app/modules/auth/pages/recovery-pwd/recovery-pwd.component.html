@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="right-container">
   <div class="flex justify-center w-full p-6  overflow-y-auto" style="height: 90vh">
     <div class="sm:w-4/5 md:w-4/5 lg:w-1/2 flex flex-col items-center">
@@ -18,8 +19,7 @@
           <span class="">{{ 'IDENTIFICATION_NUMBER' | translate}}</span>
         </div>
         <div class="flex">
-          <ec-dropdown class="w-28 mr-2" txtColor="text-outline-gray-3"
-                       bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4" [filter]="false" ></ec-dropdown>
+          <ec-dropdown class="w-28 mr-2" [ecStyle]="ecPhoneCode"></ec-dropdown>
           <ec-input-text class="w-full " txtColor="text-outline-gray-3"
                           bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"></ec-input-text>
         </div>

@@ -39,6 +39,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public stroke: ApexStroke;
   public title: ApexTitleSubtitle;
   public qrInfo: string = 'this is a qr code';
+  public text: any;
 
   constructor(
     private explorerService: ExplorerService
@@ -155,7 +156,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getBlocks();
+    /*this.getBlocks();*/
     this.transactionsBlock = [];
   }
 
@@ -186,7 +187,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public onlyNumbers = (value: string) => onlyNumbers(value);
 
-  public getBlocksByID(): void {
+  public getBlocksByID(): void  {
     const body = {
       id: parseInt(this.dataSearch, 10)
     };
@@ -207,8 +208,5 @@ export class MainComponent implements OnInit, OnDestroy {
     }
   }
 
-  test(event: any): void {
-    console.log(event.target.value)
-  }
 
 }

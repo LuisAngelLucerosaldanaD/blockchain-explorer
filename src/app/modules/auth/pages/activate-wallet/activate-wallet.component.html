@@ -1,0 +1,48 @@
+<div class="right-container">
+  <div class="flex justify-center w-full p-6  overflow-y-auto" style="height: 90vh">
+    <div class="sm:w-4/5 md:w-4/5 lg:w-1/2 flex flex-col items-center">
+      <div class="text-outline-gray-3 text-h3 my-6 font-bold">
+        <span>
+         {{'ACTIVATE_WALLET' | translate}}
+        </span>
+      </div>
+
+      <div class="w-full flex">
+        <div class="h-12 w-5 bg-container-blue-3 ml-0 mr-4">
+        </div>
+        <div class="text-outline-gray-3 flex items-center">
+          <span>
+            Ingresar las palabras semillas que se le envio al correo: l********@e*******o, debe ingresarlo para validarlo.
+          </span>
+        </div>
+      </div>
+
+      <div class="w-full mt-4">
+        <!--<ec-input-text label="{{ 'MNEMONIC' | translate}}" txtColor="text-outline-gray-3"
+                       bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"></ec-input-text>-->
+        <div class="text-outline-gray-3 mb-2">
+          <span>
+            {{ 'MNEMONIC' | translate}}
+          </span>
+        </div>
+        <textarea name="MNEMONIC" rows="10" cols="50"
+                  class="border-4 border-solid border-container-gray-1 bg-container-gray-1 w-full h-20 rounded-lg p-4 resize-none text-outline-gray-3 hover:border-outline-gray-4 focus:outline-none focus:ring-outline-gray-3 "></textarea>
+      </div>
+
+      <div class="w-full mt-4">
+        <ec-input-text label="{{ 'ID_WALLET' | translate}}" txtColor="text-outline-gray-3"
+                       bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"></ec-input-text>
+      </div>
+      <div class="w-full flex mt-12 pb-4">
+        <div class="w-1/2 pr-2">
+          <ec-button label="{{'CANCEL' | translate}}" brColor="border-container-blue-3"
+                     txtColor="text-container-blue-3" routerLink="/auth/login"></ec-button>
+        </div>
+        <div class="w-1/2 pl-2">
+          <ec-button label="{{'CONFIRM' | translate}}" bgContainerColor="bg-container-blue-3"
+                     brColor="border-container-blue-3" txtColor="text-white"></ec-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

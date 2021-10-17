@@ -1,10 +1,11 @@
-<div class="login-container">
+<app-header></app-header>
+<div class="login-container" style="height: 95vh">
   <div class="left-container img-background">
     <div class="self-center">
       <img src="assets/img/logos/imglogin.png" alt="logo onlyone">
     </div>
   </div>
-  <div class="right-container">
+  <div class="right-container flex flex-col justify-center items-center">
     <div class="w-full self-center">
       <ec-button-tab (isActive)="isChangeBtn = $event; changeTypeInput($event)"
                      [dataRight]="{icon: 'person', label: 'Usuario'}"

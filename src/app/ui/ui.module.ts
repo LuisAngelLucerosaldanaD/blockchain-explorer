@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header/header.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FooterComponent} from './components/footer/footer.component';
+import {HeaderComponent} from './components/header/header/header.component';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -11,7 +11,13 @@ import { HeaderComponent } from './components/header/header/header.component';
     HeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
+  ],
+  exports: [
+    FooterComponent,
+    HeaderComponent
   ]
 })
-export class UiModule { }
+export class UiModule {
+}

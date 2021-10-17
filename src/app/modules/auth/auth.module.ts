@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {AuthComponent} from "@app/modules/auth/auth.component";
 import {AuthRoutingModule} from "@app/modules/auth/auth-routing.module";
-import { LoginComponent } from './pages/login/login.component';
+import {LoginComponent} from './pages/login/login.component';
 import {
   ButtonModule,
   ButtonTabModule,
@@ -17,7 +17,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {RegisterUserComponent} from "@app/modules/auth/pages/register-user/register-user.component";
 import {RecoveryPwdComponent} from "@app/modules/auth/pages/recovery-pwd/recovery-pwd.component";
-
+import {ActivateUserComponent} from './pages/activate-user/activate-user.component';
+import {ActivateWalletComponent} from './pages/activate-wallet/activate-wallet.component';
+import {ActivateService} from "@app/modules/auth/services/activate/activate.service";
+import {UiModule} from "@app/ui/ui.module";
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import {RecoveryPwdComponent} from "@app/modules/auth/pages/recovery-pwd/recover
     AuthComponent,
     LoginComponent,
     RegisterUserComponent,
-    RecoveryPwdComponent
+    RecoveryPwdComponent,
+    ActivateUserComponent,
+    ActivateWalletComponent
   ],
   imports: [
     CommonModule,
@@ -39,10 +44,13 @@ import {RecoveryPwdComponent} from "@app/modules/auth/pages/recovery-pwd/recover
     HttpClientModule,
     InputDateModule,
     DropdownModule,
-    ToggleModule
+    ToggleModule,
+    UiModule
   ],
   providers: [
     LoginService,
+    ActivateService
   ]
 })
-export class AuthModule { }
+export class AuthModule {
+}

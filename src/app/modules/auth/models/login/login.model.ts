@@ -34,3 +34,7 @@ export interface UserResponse {
   type: string;
   msg: string;
 }
+
+export interface ActivateAccountModel {
+  code: string;
+}

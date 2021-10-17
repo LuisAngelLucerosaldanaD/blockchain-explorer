@@ -1,0 +1,198 @@
+<div class="h-14 w-full bg-container-gray-1 px-4 flex justify-end items-center">
+  <div class="flex flex-col items-center gap-4">
+    <div
+      class="rounded-lg h-10 w-10 flex items-center justify-center text-white hover:text-container-gray-1 text-2xl bg-ui p-2 cursor-pointer hover:bg-white" (click)="activeMenu = !activeMenu">
+      <i class='bx bx-user'></i>
+    </div>
+  </div>
+  <div *ngIf="activeMenu" class="rounded-lg fixed top-14 py-1 bg-white z-50 flex flex-col gap-2 w-32 menu-items">
+    <div class="flex gap-1 items-center cursor-pointer hover:bg-container-gray-1 hover:text-white px-4 py-2">
+      <i class='bx bx-cog'></i> <span>Setting</span>
+    </div>
+    <div class="flex gap-1 items-center cursor-pointer hover:bg-container-gray-1 hover:text-white px-4 py-2">
+      <i class='bx bx-log-out-circle'></i> <span>Log Out</span>
+    </div>
+  </div>
+</div>
+<div class="flex">
+  <div class="sidebar {{activeSidebar? 'open': ''}}">
+    <div class="logo-details">
+      <div class="logo_name">LionBlockchain</div>
+      <i class='bx bx-menu' id="btn" (click)="activeSidebar = !activeSidebar"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a class="bg-ui cursor-pointer">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Dashboard</span>
+        </a>
+        <span class="tooltip">Dashboard</span>
+      </li>
+      <li>
+        <a class="bg-ui cursor-pointer">
+          <i class='bx bx-user'></i>
+          <span class="links_name">My Wallets</span>
+        </a>
+        <span class="tooltip">My Wallets</span>
+      </li>
+      <li>
+        <a class="bg-ui cursor-pointer">
+          <i class='bx bx-chat'></i>
+          <span class="links_name">Messages</span>
+        </a>
+        <span class="tooltip">Messages</span>
+      </li>
+      <li>
+        <a class="bg-ui cursor-pointer">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="links_name">My transactions</span>
+        </a>
+        <span class="tooltip">My transactions</span>
+      </li>
+      <li>
+        <a class="bg-ui cursor-pointer">
+          <i class='bx bx-folder'></i>
+          <span class="links_name">File Manager</span>
+        </a>
+        <span class="tooltip">Files</span>
+      </li>
+      <li>
+        <a class="bg-ui cursor-pointer">
+          <i class='bx bx-cog'></i>
+          <span class="links_name">Setting</span>
+        </a>
+        <span class="tooltip">Setting</span>
+      </li>
+    </ul>
+  </div>
+  <div class="w-full p-4 overflow-y-auto overflow-x-hidden" style="margin-left: 78px; height: 93vh">
+    <div class="text-outline-gray-3 font-bold text-2xl mb-4">
+      <span>
+        Analytics
+      </span>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4 w-full mb-4">
+      <div class="rounded-lg bg-container-gray-1 p-4 flex gap-4">
+        <div class="text-outline-gray-3 text-4xl">
+          <i class='bx bxl-bitcoin'></i>
+        </div>
+        <div class="text-outline-gray-3">
+          <div class="font-bold text-2xl">
+            <span>
+            20000000
+          </span>
+          </div>
+          <div>
+            Total de Acai.
+          </div>
+        </div>
+      </div>
+      <div class="rounded-lg bg-container-gray-1 p-4 flex gap-4">
+        <div class="text-outline-gray-3 text-4xl">
+          <i class='bx bxl-bitcoin'></i>
+        </div>
+        <div class="text-outline-gray-3">
+          <div class="font-bold text-2xl">
+            <span>
+            20000000
+          </span>
+          </div>
+          <div>
+            Total de Acai enviados.
+          </div>
+        </div>
+      </div>
+      <div class="rounded-lg bg-container-gray-1 p-4 flex gap-4">
+        <div class="text-outline-gray-3 text-4xl">
+          <i class='bx bxl-bitcoin'></i>
+        </div>
+        <div class="text-outline-gray-3">
+          <div class="font-bold text-2xl">
+            <span>
+            20000000
+          </span>
+          </div>
+          <div>
+            Total de Acai recibidos.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-outline-gray-3 font-bold text-2xl mb-4">
+      <span>
+        Reports
+      </span>
+    </div>
+
+    <div class="flex gap-4">
+      <div class="w-3/12">
+        <div class="flex gap-4 flex-col w-full">
+          <div class="rounded  bg-container-gray-1 px-4 py-3">
+            <div class="w-full flex justify-between text-outline-gray-3 font-bold">
+              <div>
+              <span>
+                Transacciones Recividas
+              </span>
+              </div>
+              <div>
+                <i class='bx bxs-right-top-arrow-circle'></i>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="w-full">
+                <apx-chart
+                  [series]="chartOptions.series"
+                  [chart]="chartOptions.chart"
+                  [plotOptions]="chartOptions.plotOptions"
+                  [labels]="chartOptions.labels"
+                ></apx-chart>
+              </div>
+            </div>
+          </div>
+          <div class="rounded  bg-container-gray-1 px-4 py-3">
+            <div class="w-full flex justify-between text-outline-gray-3 font-bold">
+              <div>
+                Transacciones Enviadas
+              </div>
+              <div>
+                <i class='bx bxs-right-top-arrow-circle'></i>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="w-full">
+                <apx-chart
+                  [series]="chartOptions.series"
+                  [chart]="chartOptions.chart"
+                  [plotOptions]="chartOptions.plotOptions"
+                  [labels]="chartOptions.labels"
+                ></apx-chart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-container-gray-1 rounded-lg p-4 text-outline-gray-3 w-9/12 flex items-center flex-col gap-4">
+        <div class="text-outline-gray-3 text-xl font-bold mt-6 mb-4">
+          <span>
+            Report General
+          </span>
+        </div>
+        <div id="chart" class="w-full">
+          <apx-chart
+            [series]="chartOptionsGeneral.series"
+            [chart]="chartOptionsGeneral.chart"
+            [xaxis]="chartOptionsGeneral.xaxis"
+            [yaxis]="chartOptionsGeneral.yaxis"
+            [stroke]="chartOptionsGeneral.stroke"
+            [tooltip]="chartOptionsGeneral.tooltip"
+            [dataLabels]="chartOptionsGeneral.dataLabels"
+            [legend]="chartOptionsGeneral.legend"
+          ></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,4 +1,5 @@
-<div class="flex justify-center w-full p-6 overflow-y-auto" style="height: 90vh">
+<app-header></app-header>
+<div class="flex justify-center w-full p-6 overflow-y-auto" style="height: 95vh">
   <div class="sm:w-4/5 md:w-4/5 lg:w-1/2 flex flex-col items-center">
     <div class="text-outline-gray-3 text-h3">
     <span>
@@ -27,12 +28,11 @@
           </div>
           <div class="flex">
             <div class="w-16 mr-1 flex items-center">
-              <ec-dropdown class="w-full" txtColor="text-outline-gray-3"
-                           bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"
-                           [filter]="false" placeholder="C.C"></ec-dropdown>
+              <ec-dropdown class="w-full" [ecStyle]="ecNumberIdentification"></ec-dropdown>
             </div>
             <div class="ml-1 flex items-center w-full">
-              <ec-input-text class="flex-grow" txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1">
+              <ec-input-text class="flex-grow" txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
+                             brContainerColor="border-outline-gray-4">
               </ec-input-text>
             </div>
           </div>
@@ -67,13 +67,11 @@
         </div>
         <div class="flex flex-row flex-grow mt-2">
           <div class="w-16 mr-1">
-            <ec-dropdown class="mr-2" txtColor="text-outline-gray-3"
-                         bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"
-                         [filter]="false" placeholder="+51"></ec-dropdown>
+            <ec-dropdown class="mr-2" [ecStyle]="ecPhoneCode"></ec-dropdown>
           </div>
           <div class="ml-1 flex-grow">
             <ec-input-text class="flex-grow" txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
-                           brContainerColor="bg-container-gray-1">
+                           brContainerColor="border-outline-gray-4">
             </ec-input-text>
           </div>
         </div>
@@ -88,15 +86,12 @@
         </div>
         <div class="flex flex-grow justify-between mt-2">
           <div class="w-16 mr-1">
-            <ec-dropdown class="w-28 mr-2" txtColor="text-outline-gray-3"
-                         bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"
-                         [filter]="false" placeholder="+51">
-            </ec-dropdown>
+            <ec-dropdown class="w-28 mr-2" [ecStyle]="ecConfirmPhoneCode"></ec-dropdown>
           </div>
           <div class="ml-1 flex-grow">
             <ec-input-text
               txtColor="text-outline-gray-3" bgContainerColor="bg-container-gray-1"
-              brContainerColor="bg-container-gray-1"></ec-input-text>
+              brContainerColor="border-outline-gray-4"></ec-input-text>
           </div>
         </div>
       </div>
@@ -130,7 +125,7 @@
       <span>
         <span class="text-outline-gray-3">Acepto las </span><span class="text-container-blue-3 cursor-pointer">condiciones del servicio</span><span
         class="text-outline-gray-3"> y </span><span
-        class="text-container-blue-3 cursor-pointer">políticas de privacidad</span><span class="text-outline-gray-3"> de Punto de Pago.</span>
+        class="text-container-blue-3 cursor-pointer">políticas de privacidad</span><span class="text-outline-gray-3"> de Bjungle.</span>
       </span>
       </div>
     </div>

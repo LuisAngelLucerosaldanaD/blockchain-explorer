@@ -1,0 +1,39 @@
+<div class="right-container">
+  <div class="flex justify-center w-full p-6  overflow-y-auto" style="height: 90vh">
+    <div class="sm:w-4/5 md:w-4/5 lg:w-1/2 flex flex-col items-center">
+      <div class="text-outline-gray-3 text-h3 my-6 font-bold">
+        <span>
+         {{'ACTIVATE_ACCOUNT' | translate}}
+        </span>
+      </div>
+
+      <div class="w-full flex">
+        <div class="h-12 w-6 bg-container-blue-3 mr-4">
+        </div>
+        <div class="text-outline-gray-3 flex items-center">
+          <span>
+            Le enviamos un código de verificación al correo registrad: l******@e******o, debe ingresarlo para validarlo.
+          </span>
+        </div>
+      </div>
+
+      <div class="w-full mt-4">
+        <form [formGroup]="activateUserForm">
+          <ec-input-text label="{{ 'ACCESS_CODE' | translate}}" txtColor="text-outline-gray-3"
+                         bgContainerColor="bg-container-gray-1" brContainerColor="border-outline-gray-4"
+                         formControlName="access_code" (keypress)="onlyNumber($event)"></ec-input-text>
+        </form>
+      </div>
+      <div class="w-full flex mt-12 pb-4">
+        <div class="w-1/2 pr-2">
+          <ec-button label="{{'CANCEL' | translate}}" brColor="border-container-blue-3"
+                     txtColor="text-container-blue-3" routerLink="/home"></ec-button>
+        </div>
+        <div class="w-1/2 pl-2">
+          <ec-button label="{{'CONFIRM' | translate}}" bgContainerColor="bg-container-blue-3"
+                     brColor="border-container-blue-3" txtColor="text-white" (click)="sendCode()"></ec-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

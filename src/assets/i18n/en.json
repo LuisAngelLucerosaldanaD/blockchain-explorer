@@ -48,5 +48,9 @@
   "PHONE_NUMBER": "Phone number",
   "ACCESS_CODE": "Access code",
   "REQUESTED_ANNEXES": "Requested annexes",
-  "CLOSE": "Close"
+  "CLOSE": "Close",
+  "IDENTIFICATION_NUMBER": "Identification Number",
+  "USER_REGISTER": "User Register",
+  "CONFIRM_PHONE_NUMBER": "Confirm Phone Number",
+  "ACCOUNT_RECOVERY": "Account Recovery"
 }

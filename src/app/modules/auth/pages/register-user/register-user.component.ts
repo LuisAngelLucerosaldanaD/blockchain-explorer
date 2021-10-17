@@ -1,5 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {data} from "autoprefixer";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-register-user',
@@ -18,6 +17,9 @@ export class RegisterUserComponent implements OnInit {
   public dataTemp: any[];
   public optionLabel: string;
   public placeholder: string;
+  public ecNumberIdentification: any;
+  public ecPhoneCode: any;
+  public ecConfirmPhoneCode: any;
 
   constructor() {
     this.isShowBox =  false;
@@ -44,6 +46,228 @@ export class RegisterUserComponent implements OnInit {
         value: 'test 4'
       },
     ];
+    this.ecNumberIdentification = {
+      alert: {
+        info: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        error: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        success: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        warning: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+      },
+      icon: {
+        color: 'text-white',
+        name: 'caret down',
+        position: '',
+        active: false
+      },
+      headerLabel: {
+        label: '',
+        color: 'text-outline-gray-3',
+        font: '',
+        size: ''
+      },
+      placeholder: {
+        label: 'CC.AA',
+        color: 'text-outline-gray-3',
+        font: '',
+        size: ''
+      },
+      error: false,
+      container: {
+        background: 'bg-container-gray-1',
+        border: {
+          color: 'border-container-gray-1',
+          size: 'border-4',
+          round: 'rounded-lg',
+          style: 'border-solid',
+          hover: 'border-outline-gray-4'
+        }
+      },
+      filter: true,
+      data: [
+        {label: 'Cedula de Identidad', value: 'C.A'}
+      ],
+      optional: false,
+      optionLabel: 'value',
+      optionContainer: {
+        background: 'bg-container-gray-1',
+        border: {
+          color: 'border-outline-gray-4',
+          size: 'border-2',
+          round: 'rounded',
+          style: 'border-solid',
+          hover: 'bg-outline-gray-4'
+        }
+      },
+    };
+    this.ecPhoneCode = {
+      alert: {
+        info: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        error: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        success: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        warning: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+      },
+      icon: {
+        color: 'text-white',
+        name: 'caret down',
+        position: '',
+        active: false
+      },
+      headerLabel: {
+        label: '',
+        color: 'text-outline-gray-3',
+        font: '',
+        size: ''
+      },
+      placeholder: {
+        label: '+51',
+        color: 'text-outline-gray-3',
+        font: '',
+        size: ''
+      },
+      error: false,
+      container: {
+        background: 'bg-container-gray-1',
+        border: {
+          color: 'border-container-gray-1',
+          size: 'border-4',
+          round: 'rounded-lg',
+          style: 'border-solid',
+          hover: 'border-outline-gray-4'
+        }
+      },
+      filter: true,
+      data: [
+        {label: '+51 Perú', value: '+51'},
+        {label: '+57 Colombia', value: '+57'},
+      ],
+      optional: false,
+      optionLabel: 'value',
+      optionContainer: {
+        background: 'bg-container-gray-1',
+        border: {
+          color: 'border-outline-gray-4',
+          size: 'border-2',
+          round: 'rounded',
+          style: 'border-solid',
+          hover: 'bg-outline-gray-4'
+        }
+      },
+    };
+    this.ecConfirmPhoneCode = {
+      alert: {
+        info: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        error: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        success: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+        warning: {
+          font: '',
+          color: 'text-white',
+          label: '',
+          size: 'text-base'
+        },
+      },
+      icon: {
+        color: 'text-white',
+        name: 'caret down',
+        position: '',
+        active: false
+      },
+      headerLabel: {
+        label: '',
+        color: 'text-outline-gray-3',
+        font: '',
+        size: ''
+      },
+      placeholder: {
+        label: '+51',
+        color: 'text-outline-gray-3',
+        font: '',
+        size: ''
+      },
+      error: false,
+      container: {
+        background: 'bg-container-gray-1',
+        border: {
+          color: 'border-container-gray-1',
+          size: 'border-4',
+          round: 'rounded-lg',
+          style: 'border-solid',
+          hover: 'border-outline-gray-4'
+        }
+      },
+      filter: true,
+      data: [
+        {label: '+51 Perú', value: '+51'},
+        {label: '+57 Colombia', value: '+57'},
+      ],
+      optional: false,
+      optionLabel: 'value',
+      optionContainer: {
+        background: 'bg-container-gray-1',
+        border: {
+          color: 'border-outline-gray-4',
+          size: 'border-2',
+          round: 'rounded',
+          style: 'border-solid',
+          hover: 'bg-outline-gray-4'
+        }
+      },
+    };
+
   }
 
   ngOnInit(): void {
