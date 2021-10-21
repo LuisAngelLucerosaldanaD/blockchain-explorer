@@ -130,6 +130,98 @@
 
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.t-h1 {
+  font-family: 'Montserrat';
+  font-size: 96px;
+  line-height: 120px;
+  letter-spacing: -1.6px;
+  font-width: 300;
+}
+.t-h2 {
+  font-family: 'Montserrat';
+  font-size: 64px;
+  line-height: 80px;
+  letter-spacing: -0.4px;
+  font-width: 300;
+}
+.t-h3 {
+  font-family: 'Montserrat';
+  font-size: 48px;
+  line-height: 64px;
+  font-width: 400;
+}
+.t-h4 {
+  font-family: 'Montserrat';
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0.24px;
+  font-width: 400;
+}
+.t-h5 {
+  font-family: 'Montserrat';
+  font-size: 24px;
+  line-height: 32px;
+  font-width: 400;
+}
+.t-h6 {
+  font-family: 'Montserrat';
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  font-width: 500;
+}
+
+.t-subtitle-1 {
+  font-family: 'Montserrat';
+  font-size: 16px;
+  line-height: 24px;
+  font-width: 400;
+}
+.t-subtitle-2 {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  line-height: 24px;
+  font-width: 500;
+}
+
+.t-body-1 {
+  font-family: 'Inter';
+  font-size: 16px;
+  line-height: 24px;
+  font-width: 400;
+}
+.t-body-2 {
+  font-family: 'Inter';
+  font-size: 14px;
+  line-height: 24px;
+  font-width: 400;
+}
+
+.t-caption-1 {
+  font-family: 'Inter';
+  font-size: 12px;
+  line-height: 16px;
+  font-width: 400;
+}
+.t-caption-2 {
+  font-family: 'Inter';
+  font-size: 10px;
+  line-height: 16px;
+  font-width: 400;
+}
+
+.t-overline {
+  font-family: 'Inter';
+  font-size: 8px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  font-width: 400;
+  text-transform: uppercase;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -149,4 +241,8 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gray-50);
+}
+
+.ec-container-margin {
+  @apply px-4 md:px-8 xl:px-12 2xl:px-16
 }
