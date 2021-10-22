@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {onlyNumbers} from "@app/utils/validations/validations";
+import {getTokenUser, onlyNumbers} from "@app/utils/validations/validations";
 import {ActivateService} from "@app/modules/auth/services/activate/activate.service";
 import {ActivateAccountModel} from "@app/modules/auth/models/login/login.model";
 
@@ -12,14 +12,19 @@ import {ActivateAccountModel} from "@app/modules/auth/models/login/login.model";
 export class ActivateUserComponent implements OnInit {
 
   public activateUserForm: FormGroup;
+  public isVerified: boolean = false;
+  public tokenUser: any;
+  public isBlock: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
-    private _activateAccount: ActivateService
+    private _activateAccount: ActivateService,
   ) {
     this.activateUserForm = _fb.group({
       access_code: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]]
     });
+    const urlParams = new URL(window.location.href);
+    this.tokenUser = getTokenUser(urlParams.searchParams.get('token') || '').user;
   }
 
   ngOnInit(): void {
@@ -29,15 +34,21 @@ export class ActivateUserComponent implements OnInit {
 
   public sendCode(): void {
     if (this.activateUserForm.valid) {
+      this.isBlock = false;
       const data: ActivateAccountModel = {
         code: this.activateUserForm.get('access_code')?.value.toString()
       }
       this._activateAccount.activateAccount(data).subscribe(
-        () => {
+        (res) => {
+          if (res.error) {
 
+          } else {
+            this.isVerified = true;
+          }
+          this.isBlock = false;
         },
         (err: Error) => {
-
+          this.isBlock = false;
         }
       )
     } else {

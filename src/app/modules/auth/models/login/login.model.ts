@@ -38,3 +38,12 @@ export interface UserResponse {
 export interface ActivateAccountModel {
   code: string;
 }
+
+
+export interface ActivateAccountResponse {
+  data: any;
+  code: number;
+  type: string;
+  error: boolean;
+  msg: string;
+}

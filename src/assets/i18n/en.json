@@ -52,5 +52,7 @@
   "IDENTIFICATION_NUMBER": "Identification Number",
   "USER_REGISTER": "User Register",
   "CONFIRM_PHONE_NUMBER": "Confirm Phone Number",
-  "ACCOUNT_RECOVERY": "Account Recovery"
+  "ACCOUNT_RECOVERY": "Account Recovery",
+  "ACTIVATE_ACCOUNT": "Activate Account",
+  "ACTIVATE_WALLET": "Activate Wallet"
 }

@@ -52,6 +52,7 @@
   "IDENTIFICATION_NUMBER": "Número de Identificación",
   "USER_REGISTER": "Resgistrar Usuario",
   "CONFIRM_PHONE_NUMBER": "Confirmar Número de Telefono",
-
-  "ACCOUNT_RECOVERY": "Recuperar Cuenta"
+  "ACTIVATE_ACCOUNT": "Activar Cuenta",
+  "ACCOUNT_RECOVERY": "Recuperar Cuenta",
+  "ACTIVATE_WALLET": "Activar Billetera"
 }

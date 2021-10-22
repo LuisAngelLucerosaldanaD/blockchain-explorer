@@ -126,6 +126,7 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
       } else {
         this.isValidToken = false;
         this.isError = true;
+        this.isBlockPage =false;
       }
     }
   }
@@ -150,8 +151,10 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
               for (const item of this.credential.files) {
                 this.ecDropFile.data?.push({label: item.name, value: item.file_encode});
               }
-              this.documentSelected = this.credential.files[0].file_encode;
-              this.ecDropFile.placeholder.label = this.credential.files[0].name;
+              if (this.credential.files.length) {
+                this.documentSelected = this.credential.files[0].file_encode;
+                this.ecDropFile.placeholder.label = this.credential.files[0].name;
+              }
             }
           }
           this.isBlockPage = false;

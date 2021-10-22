@@ -4,12 +4,12 @@ import {AuthComponent} from "@app/modules/auth/auth.component";
 import {AuthRoutingModule} from "@app/modules/auth/auth-routing.module";
 import {LoginComponent} from './pages/login/login.component';
 import {
-  ButtonModule,
-  ButtonTabModule,
-  DropdownModule,
-  InputDateModule,
-  InputPasswordModule,
-  InputTextModule, ToggleModule
+    ButtonModule,
+    ButtonTabModule,
+    DropdownModule, IconsModule,
+    InputDateModule,
+    InputPasswordModule,
+    InputTextModule, ToggleModule
 } from "ecapture-ng-ui";
 import {TranslateModule} from "@ngx-translate/core";
 import {LoginService} from "@app/modules/auth/services/login.service";
@@ -32,21 +32,22 @@ import {UiModule} from "@app/ui/ui.module";
     ActivateUserComponent,
     ActivateWalletComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    InputPasswordModule,
-    ButtonModule,
-    InputTextModule,
-    ButtonTabModule,
-    TranslateModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    InputDateModule,
-    DropdownModule,
-    ToggleModule,
-    UiModule
-  ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        InputPasswordModule,
+        ButtonModule,
+        InputTextModule,
+        ButtonTabModule,
+        TranslateModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        InputDateModule,
+        DropdownModule,
+        ToggleModule,
+        UiModule,
+        IconsModule
+    ],
   providers: [
     LoginService,
     ActivateService
