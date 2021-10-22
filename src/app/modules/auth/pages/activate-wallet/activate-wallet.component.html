@@ -35,12 +35,14 @@
 
       <div class="w-full flex mt-12 pb-4">
         <div class="w-1/2 pr-2">
-          <ec-button label="{{'CANCEL' | translate}}" brColor="border-container-blue-3"
-                     txtColor="text-container-blue-3" routerLink="/auth/login"></ec-button>
+          <button class="border-container-blue-3 text-container-blue-3 h-12 w-full" routerLink="/auth/login">
+            {{'CANCEL' | translate}}
+          </button>
         </div>
         <div class="w-1/2 pl-2">
-          <ec-button label="{{'CONFIRM' | translate}}" bgContainerColor="bg-container-blue-3"
-                     brColor="border-container-blue-3" txtColor="text-white" (click)="sendCode()"></ec-button>
+          <button class="border-container-blue-3 bg-container-blue-3 text-white h-12 w-full" (click)="sendCode()">
+            {{'CANCEL' | translate}}
+          </button>
         </div>
       </div>
     </div>

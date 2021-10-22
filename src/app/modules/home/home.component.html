@@ -32,52 +32,6 @@
       </div>
     </div>
   </div>
-
-
-  <!--<div class="ec-combo">
-    <div *ngIf="ecStyle.headerLabel.label != ''"
-         class="tag-container {{ecStyle.headerLabel.color}} {{ecStyle.headerLabel.font}} {{ecStyle.headerLabel.size}}">
-      <label>{{ecStyle.headerLabel.label}}</label>
-      <span *ngIf="ecStyle.optional" style="overflow-wrap: break-word;">Opcional</span>
-    </div>
-    <div class="combo-container {{ecStyle.headerLabel.color}}">
-      <div
-        class="select-container {{ecStyle.container.background}} hover:{{ecStyle.container.border.hover}} {{ecStyle.container.border.round}} {{ecStyle.container.border.style}} {{ecStyle.container.border.size}} {{ecStyle.container.border.color}}"
-        (click)="showBox()">
-        <span class="text-base value-container">{{currentValue === '' ? ecStyle.placeholder.label : placeholderValue}}</span>
-        <div *ngIf="ecStyle.icon.active" style="padding: 0.75rem;" class="{{isShowBox ? 'icon-transform icon-rotate-180' : ''}}">
-          <span appIcon iconName="caret down" [iconColor]="ecStyle.icon.color">
-          </span>
-        </div>
-      </div>
-      <div *ngIf="isShowBox" class="option-container {{ecStyle.optionContainer.background}} {{ecStyle.optionContainer.border.color}} {{ecStyle.optionContainer.border.round}} {{ecStyle.optionContainer.border.style}} {{ecStyle.optionContainer.border.size}}">
-        <div *ngIf="ecStyle.filter" class="search-container">
-          <div
-            class="combo {{ecStyle.headerLabel.color}} {{ecStyle.optionContainer.background}} {{ecStyle.optionContainer.border.size}} {{ecStyle.optionContainer.border.color}} {{ecStyle.optionContainer.border.style}}">
-            <input class="input-search {{ecStyle.placeholder.color}} {{ecStyle.optionContainer.background}}" autofocus (input)="filterValue($event)"
-                   placeholder="Selected Values">
-            <div class="icon-search">
-              <span appIcon iconName="search" [iconColor]="ecStyle.icon.color"></span>
-            </div>
-          </div>
-        </div>
-        <div class="option-group {{ecStyle.headerLabel.color}}">
-          <div *ngFor="let item of ecStyle.data" class="option hover:{{ecStyle.optionContainer.border.hover}}">
-            <span style="overflow-wrap: break-word; width: 100%"
-                  (click)="changeValue(item)">{{item.label}}</span>
-          </div>
-          <div *ngIf="ecStyle.data.length === 0" class="option hover:{{ecStyle.optionContainer.border.hover}}">
-            <span style="overflow-wrap: break-word; width: 100%">No Values</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="alert-container">
-    <span *ngIf="ecStyle.error"
-          class="{{ecStyle.alert.error.color}} {{ecStyle.alert.error.size}} {{ecStyle.alert.error.font}}"
-          style="margin-top: 4px">{{ecStyle.alert.error.label}}</span>
-    </div>
-  </div>-->
 </div>
 
 

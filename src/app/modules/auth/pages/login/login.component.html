@@ -38,8 +38,9 @@
 
         </div>
         <div class="my-16">
-          <ec-button (click)="login()" label="{{'SIGN_IN'| translate}}" icon="arrow right" bgContainerColor="bg-container-blue-4"
-                     brColor="border-container-blue-4" txtColor="text-white"></ec-button>
+          <button (click)="login()" class="border-container-blue-4 bg-container-blue-4 text-white h-12 w-full rounded-lg border-4 border-solid border-container-blue-3 rounded-lg hover:border-outline-gray-4">
+            {{'SIGN_IN'| translate}}
+          </button>
         </div>
       </form>
       <div class="flex justify-between pb-6">

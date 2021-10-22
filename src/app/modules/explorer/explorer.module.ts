@@ -10,7 +10,7 @@ import {
   HeaderModule, IconsModule,
   InputSearchModule,
   InputTextModule,
-  ModalModule
+  ModalModule, ToastModule, ToastService
 } from "ecapture-ng-ui";
 import {ExplorerComponent} from './explorer.component';
 import {NgApexchartsModule} from "ng-apexcharts";
@@ -20,6 +20,7 @@ import {CredentialViewerComponent} from './pages/credential-viewer/credential-vi
 import {UiModule} from "@app/ui/ui.module";
 import {ComponentsModule} from "@app/components/components.module";
 import {FormsModule} from "@angular/forms";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -29,25 +30,28 @@ import {FormsModule} from "@angular/forms";
     TransactionsComponent,
     CredentialViewerComponent,
   ],
-    imports: [
-        CommonModule,
-        ExplorerRoutingModule,
-        HttpClientModule,
-        HeaderModule,
-        InputTextModule,
-        FileUploadModule,
-        InputSearchModule,
-        NgApexchartsModule,
-        DropdownModule,
-        ModalModule,
-        QRCodeModule,
-        IconsModule,
-        UiModule,
-        ComponentsModule,
-        FormsModule
-    ],
+  imports: [
+    CommonModule,
+    ExplorerRoutingModule,
+    HttpClientModule,
+    HeaderModule,
+    InputTextModule,
+    FileUploadModule,
+    InputSearchModule,
+    NgApexchartsModule,
+    DropdownModule,
+    ModalModule,
+    QRCodeModule,
+    IconsModule,
+    UiModule,
+    ComponentsModule,
+    FormsModule,
+    ToastModule,
+    TranslateModule
+  ],
   providers: [
-    ExplorerService
+    ExplorerService,
+    ToastService
   ]
 })
 export class ExplorerModule {

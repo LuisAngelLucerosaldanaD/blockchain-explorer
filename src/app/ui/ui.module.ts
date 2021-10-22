@@ -3,12 +3,14 @@ import {CommonModule} from '@angular/common';
 import {FooterComponent} from './components/footer/footer.component';
 import {HeaderComponent} from './components/header/header/header.component';
 import {RouterModule} from "@angular/router";
+import {BlockUiComponent} from "@app/ui/components/block-ui/block-ui.component";
 
 
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    BlockUiComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +18,8 @@ import {RouterModule} from "@angular/router";
   ],
   exports: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    BlockUiComponent
   ]
 })
 export class UiModule {

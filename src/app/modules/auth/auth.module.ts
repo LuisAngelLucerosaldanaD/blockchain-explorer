@@ -4,7 +4,6 @@ import {AuthComponent} from "@app/modules/auth/auth.component";
 import {AuthRoutingModule} from "@app/modules/auth/auth-routing.module";
 import {LoginComponent} from './pages/login/login.component';
 import {
-    ButtonModule,
     ButtonTabModule,
     DropdownModule, IconsModule,
     InputDateModule,
@@ -14,7 +13,7 @@ import {
 import {TranslateModule} from "@ngx-translate/core";
 import {LoginService} from "@app/modules/auth/services/login.service";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {RegisterUserComponent} from "@app/modules/auth/pages/register-user/register-user.component";
 import {RecoveryPwdComponent} from "@app/modules/auth/pages/recovery-pwd/recovery-pwd.component";
 import {ActivateUserComponent} from './pages/activate-user/activate-user.component';
@@ -36,7 +35,6 @@ import {UiModule} from "@app/ui/ui.module";
         CommonModule,
         AuthRoutingModule,
         InputPasswordModule,
-        ButtonModule,
         InputTextModule,
         ButtonTabModule,
         TranslateModule,

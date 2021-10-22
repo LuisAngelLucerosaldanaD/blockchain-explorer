@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {dataTest} from "@app/utils/constants/test";
 import {Subscription} from "rxjs";
 import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.service";
 import {Credential} from "@app/modules/explorer/models/explorer/explorer.model";
 import {getTokenUser, validToken} from "@app/utils/validations/validations";
 import {decryptText} from "@app/utils/crypto/crypto";
-import {DropdownModel} from "ecapture-ng-ui";
+import {DropdownModel, ToastService} from "ecapture-ng-ui";
+import {ToastStyleModel} from "ecapture-ng-ui/lib/modules/toast/model/toast.model";
+import {toastDataStyle} from "@app/utils/constants/data";
 
 @Component({
   selector: 'app-credential-viewer',
@@ -15,8 +16,6 @@ import {DropdownModel} from "ecapture-ng-ui";
 export class CredentialViewerComponent implements OnInit, OnDestroy {
 
   private _subscription = new Subscription();
-
-  public test: string = dataTest;
   public sec1: boolean = true;
   public documentSelected: string = '';
 
@@ -28,43 +27,14 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
   public ecDropFile: DropdownModel;
   public isError: boolean = false;
   public isValidToken: boolean = true;
+  public filesData: any = [];
+  public readonly toastStyle: ToastStyleModel = toastDataStyle;
 
   constructor(
-    private _explorerService: ExplorerService
+    private _explorerService: ExplorerService,
+    private _messageService: ToastService
   ) {
     this.ecDropFile = {
-      alert: {
-        info: {
-          font: '',
-          color: 'text-white',
-          label: '',
-          size: 'text-base'
-        },
-        error: {
-          font: '',
-          color: 'text-white',
-          label: '',
-          size: 'text-base'
-        },
-        success: {
-          font: '',
-          color: 'text-white',
-          label: '',
-          size: 'text-base'
-        },
-        warning: {
-          font: '',
-          color: 'text-white',
-          label: '',
-          size: 'text-base'
-        },
-      },
-      icon: {
-        color: 'text-white',
-        name: 'caret down',
-        position: '',
-        active: true
-      },
       headerLabel: {
         label: '',
         color: 'text-outline-gray-3',
@@ -77,7 +47,6 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
         font: '',
         size: ''
       },
-      error: false,
       container: {
         background: 'bg-container-gray-1',
         border: {
@@ -88,10 +57,7 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
           hover: 'border-outline-gray-4'
         }
       },
-      filter: false,
-      data: [],
       optional: false,
-      optionLabel: 'label',
       optionContainer: {
         background: 'bg-container-gray-1 z-50',
         border: {
@@ -112,22 +78,30 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
           this._explorerService.getAppId().subscribe(
             (res) => {
               if (res.error) {
-                console.log(res.msg);
+                this._messageService.add({type: 'error', message: res.msg, life: 5000});
               } else {
                 this.key = atob(res.data);
                 this.getTransaction(this.dataToken.credential.transaction_id, this.dataToken.credential.block);
               }
             },
             (err: Error) => {
-              console.log(err.message);
+              console.error(err.message);
+              this.isBlockPage = true;
+              this.isValidToken = false;
+              this.isError = true;
+              this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
             }
           )
         );
       } else {
         this.isValidToken = false;
         this.isError = true;
-        this.isBlockPage =false;
+        this.isBlockPage = false;
       }
+    } else {
+      this.isValidToken = false;
+      this.isError = true;
+      this.isBlockPage = false;
     }
   }
 
@@ -143,13 +117,13 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
       this._explorerService.getTransactionOfCredential(transactionId, blockId).subscribe(
         (res) => {
           if (res.error) {
-            console.log(res.msg);
+            this._messageService.add({type: 'error', message: res.msg, life: 5000});
             this.isError = true;
           } else {
             if (res.data) {
               this.credential = JSON.parse(decryptText(res.data.data, '204812730425442A472D2F423F452847'));
               for (const item of this.credential.files) {
-                this.ecDropFile.data?.push({label: item.name, value: item.file_encode});
+                this.filesData.push({label: item.name, value: item.file_encode});
               }
               if (this.credential.files.length) {
                 this.documentSelected = this.credential.files[0].file_encode;
@@ -160,7 +134,8 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
           this.isBlockPage = false;
         },
         (err: Error) => {
-          console.log(err.message);
+          console.error(err.message);
+          this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
           this.isError = true;
         }
       )
@@ -192,5 +167,11 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
       sessionStorage.setItem('Token', ObjectToken);
     }
     return ObjectToken || '';
+  }
+
+  public changeDocument(value: string): void {
+    for (const file of this.credential.files) {
+      if (file.name === value) this.documentSelected = file.file_encode;
+    }
   }
 }

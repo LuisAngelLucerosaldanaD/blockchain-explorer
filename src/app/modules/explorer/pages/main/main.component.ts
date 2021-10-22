@@ -3,7 +3,7 @@ import {onlyNumbers} from "@app/utils/validations/validations";
 import {Subscription} from "rxjs";
 import {PaginationModel} from "@app/modules/explorer/models/explorer/explorer.model";
 import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.service";
-import {InputSearchModel} from "ecapture-ng-ui";
+import {InputSearchModel, ToastService} from "ecapture-ng-ui";
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -40,14 +40,13 @@ export class MainComponent implements OnInit, OnDestroy {
   public title: ApexTitleSubtitle;
   public qrInfo: string = 'this is a qr code';
   public text: any;
+  public isSelectedTransaction: boolean = false;
 
   constructor(
-    private explorerService: ExplorerService
+    private explorerService: ExplorerService,
+    private _messageService: ToastService
   ) {
-    this.pagination = {
-      limit: 0,
-      offset: 0
-    }
+    this.pagination = {limit: 0, offset: 0}
     this.ecStyle = {
       alert: {
         info: {
@@ -111,7 +110,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.series = [
       {
         name: "Açaí",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 45, 781, 78]
+        data: [10, 41, 200, 51, 100, 62, 69, 400, 148, 45, 781, 78]
       }
     ];
     this.chart = {
@@ -133,7 +132,7 @@ export class MainComponent implements OnInit, OnDestroy {
     }
     this.grid = {
       row: {
-        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+        colors: ["#f3f3f3", "transparent"],
         opacity: 0.5
       }
     }
@@ -156,7 +155,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    /*this.getBlocks();*/
+    this.getBlocks();
     this.transactionsBlock = [];
   }
 
@@ -165,14 +164,21 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public getBlocks(): void {
-    this.subscription.add(this.explorerService.GetBlocks(this.pagination, 'block').subscribe(
+    this.subscription.add(this.explorerService.GetBlocks(this.pagination).subscribe(
       (res) => {
-        this.getTransactionsFromBlock(res.data);
-        this.blocks = res.data;
-        this.lastIBlock = this.blocks[0].id;
+        if (res.error) {
+          this._messageService.add({type: 'error', message: res.msg, life: 5000});
+        } else {
+          if (res.data) {
+            this.getTransactionsFromBlock(res.data);
+            this.blocks = res.data;
+            this.lastIBlock = this.blocks[0].id;
+          }
+        }
       },
-      (err) => {
-        console.log(err);
+      (err: Error) => {
+        console.error(err.message);
+        this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
       }
     ));
   }
@@ -187,24 +193,32 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public onlyNumbers = (value: string) => onlyNumbers(value);
 
-  public getBlocksByID(): void  {
+  public getBlocksByID(): void {
     const body = {
       id: parseInt(this.dataSearch, 10)
     };
     if (this.dataSearch === '' || this.dataSearch === undefined) {
       this.getBlocks();
     } else {
-      this.subscription.add(this.explorerService.GetBlocksById(body, 'block/id').subscribe(
-        (res) => {
-          this.blocks = res.data;
-          console.log(res.data);
-          this.getTransactionsFromBlock(res.data);
-          this.lastIBlock = this.dataSearch;
-        },
-        (err) => {
-          console.log(err);
-        }
-      ));
+      this.subscription.add(
+        this.explorerService.GetBlocksById(body).subscribe(
+          (res) => {
+            if (res.error) {
+              this._messageService.add({type: 'error', message: res.msg, life: 5000});
+            } else {
+              if (res.data) {
+                this.blocks = res.data;
+                this.getTransactionsFromBlock(res.data);
+                this.lastIBlock = this.dataSearch;
+              }
+            }
+          },
+          (err: Error) => {
+            console.error(err.message);
+            this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
+          }
+        )
+      );
     }
   }
 
