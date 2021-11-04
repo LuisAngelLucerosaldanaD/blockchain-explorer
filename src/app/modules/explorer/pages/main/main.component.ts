@@ -46,7 +46,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private explorerService: ExplorerService,
     private _messageService: ToastService
   ) {
-    this.pagination = {limit: 0, offset: 0}
+    this.pagination = {limit: 1, offset: 10}
     this.ecStyle = {
       alert: {
         info: {
@@ -76,13 +76,13 @@ export class MainComponent implements OnInit, OnDestroy {
       },
       headerLabel: {
         label: '',
-        color: 'text-outline-blue-2',
+        color: 'text-white',
         font: 'font-rubik',
         size: 'text-base'
       },
       placeholder: {
         label: 'Search by address / block / token',
-        color: 'text-outline-blue-2',
+        color: 'text-outline-gray-1',
         font: 'font-rubik',
         size: 'text-base'
       },
@@ -164,23 +164,25 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public getBlocks(): void {
-    this.subscription.add(this.explorerService.GetBlocks(this.pagination).subscribe(
-      (res) => {
-        if (res.error) {
-          this._messageService.add({type: 'error', message: res.msg, life: 5000});
-        } else {
-          if (res.data) {
-            this.getTransactionsFromBlock(res.data);
-            this.blocks = res.data;
-            this.lastIBlock = this.blocks[0].id;
+    this.subscription.add(
+      this.explorerService.GetBlocks(this.pagination).subscribe(
+        (res) => {
+          if (res.error) {
+            this._messageService.add({type: 'error', message: res.msg, life: 5000});
+          } else {
+            if (res.data) {
+              this.getTransactionsFromBlock(res.data);
+              this.blocks = res.data;
+              this.lastIBlock = this.blocks[0].id;
+            }
           }
+        },
+        (err: Error) => {
+          console.error(err.message);
+          this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
         }
-      },
-      (err: Error) => {
-        console.error(err.message);
-        this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
-      }
-    ));
+      )
+    );
   }
 
   public getTransactionsFromBlock(blocks: any): void {
@@ -221,6 +223,5 @@ export class MainComponent implements OnInit, OnDestroy {
       );
     }
   }
-
 
 }

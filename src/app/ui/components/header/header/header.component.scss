@@ -5,7 +5,7 @@
   @apply fill-current w-auto h-8 text-outline-gray-1
 }
 .nav {
-  @apply flex flex-row h-full
+  @apply flex-row h-full sm:hidden md:flex lg:flex
 }
 .option {
   @apply flex px-4 hover:bg-container-blue-1 h-full cursor-pointer
@@ -13,38 +13,3 @@
 .option div {
   @apply flex items-center w-full h-full text-outline-blue-4
 }
-
-/*
-.header-container {
-  height: 3rem;
-  width: 100%;
-  padding: 0 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  left: 0;
-  right: 0;
-  top: 0;
-}
-
-.components-container {
-  display: flex;
-}
-
-.item-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0 16px;
-  cursor: pointer;
-}
-.item:hover {
-  border-bottom: 2px solid;
-}
-
-.img {
-  height: 24px;
-}
-*/

@@ -6,6 +6,8 @@ import {RecoveryPwdComponent} from "@app/modules/auth/pages/recovery-pwd/recover
 import {ActivateUserComponent} from "@app/modules/auth/pages/activate-user/activate-user.component";
 import {ActivateWalletComponent} from "@app/modules/auth/pages/activate-wallet/activate-wallet.component";
 import {ActivateGuard} from "@app/modules/auth/guards/activate.guard";
+import {TersmConditionsComponent} from "@app/modules/auth/pages/tersm-conditions/tersm-conditions.component";
+import {SecurityPoliticsComponent} from "@app/modules/auth/pages/security-politics/security-politics.component";
 
 const routes: Routes = [
   {
@@ -24,6 +26,14 @@ const routes: Routes = [
   {
     path: 'recovery-pwd',
     component: RecoveryPwdComponent
+  },
+  {
+    path: 'terms-and-conditions',
+    component: TersmConditionsComponent
+  },
+  {
+    path: 'security-politics',
+    component: SecurityPoliticsComponent
   },
   {
     path: 'activate-account',

@@ -4,11 +4,11 @@ import {AuthComponent} from "@app/modules/auth/auth.component";
 import {AuthRoutingModule} from "@app/modules/auth/auth-routing.module";
 import {LoginComponent} from './pages/login/login.component';
 import {
-    ButtonTabModule,
-    DropdownModule, IconsModule,
-    InputDateModule,
-    InputPasswordModule,
-    InputTextModule, ToggleModule
+  ButtonTabModule,
+  DropdownModule, IconsModule,
+  InputDateModule,
+  InputPasswordModule,
+  InputTextModule, ToastModule, ToggleModule
 } from "ecapture-ng-ui";
 import {TranslateModule} from "@ngx-translate/core";
 import {LoginService} from "@app/modules/auth/services/login.service";
@@ -20,6 +20,9 @@ import {ActivateUserComponent} from './pages/activate-user/activate-user.compone
 import {ActivateWalletComponent} from './pages/activate-wallet/activate-wallet.component';
 import {ActivateService} from "@app/modules/auth/services/activate/activate.service";
 import {UiModule} from "@app/ui/ui.module";
+import {AuthService} from "@app/modules/auth/services/auth/auth.service";
+import { TersmConditionsComponent } from './pages/tersm-conditions/tersm-conditions.component';
+import { SecurityPoliticsComponent } from './pages/security-politics/security-politics.component';
 
 
 @NgModule({
@@ -29,26 +32,30 @@ import {UiModule} from "@app/ui/ui.module";
     RegisterUserComponent,
     RecoveryPwdComponent,
     ActivateUserComponent,
-    ActivateWalletComponent
+    ActivateWalletComponent,
+    TersmConditionsComponent,
+    SecurityPoliticsComponent
   ],
-    imports: [
-        CommonModule,
-        AuthRoutingModule,
-        InputPasswordModule,
-        InputTextModule,
-        ButtonTabModule,
-        TranslateModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        InputDateModule,
-        DropdownModule,
-        ToggleModule,
-        UiModule,
-        IconsModule
-    ],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    InputPasswordModule,
+    InputTextModule,
+    ButtonTabModule,
+    TranslateModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    InputDateModule,
+    DropdownModule,
+    ToggleModule,
+    UiModule,
+    IconsModule,
+    ToastModule
+  ],
   providers: [
     LoginService,
-    ActivateService
+    ActivateService,
+    AuthService
   ]
 })
 export class AuthModule {

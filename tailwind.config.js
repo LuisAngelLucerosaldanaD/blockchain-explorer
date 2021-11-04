@@ -8,7 +8,8 @@ module.exports = {
           gray: {
             1: 'var(--c-container-gray-01)',
             2: 'var(--c-container-gray-02)',
-            3: 'var(--c-container-gray-03)'
+            3: 'var(--c-container-gray-03)',
+            4: 'var(--c-container-gray-04)'
           },
           alert: {
             error: 'var(--c-container-alert-error)',

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, throwError} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -6,6 +6,7 @@ import {Login, LoginResponse} from "@app/modules/auth/models/login/login.model";
 import {environment} from "@env/environment";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {catchError, map} from "rxjs/operators";
+import {Token} from "@app/modules/auth/models/login/login.model";
 
 const helper = new JwtHelperService();
 
@@ -15,6 +16,7 @@ const helper = new JwtHelperService();
 export class LoginService {
 
   private loggedIn = new BehaviorSubject('');
+  private loginUrl = environment.API_URL + '/api/v1/login';
 
   constructor(
     private http: HttpClient,
@@ -23,25 +25,8 @@ export class LoginService {
     this.checkToken();
   }
 
-  get isLogged$(): Observable<any> {
-    return this.loggedIn.asObservable();
-  }
-
-  get loggedInValue(): string {
-    return this.loggedIn.getValue();
-  }
-
-  public login(authData: Login): Observable<LoginResponse | void> {
-    const url = `${environment.API_URL}/api/v1/login`;
-    return this.http
-      .post<LoginResponse>(url, authData)
-      .pipe(map((res: LoginResponse) => {
-          this.saveToken(res.data);
-          this.loggedIn.next(res.data);
-          return res;
-        }),
-        catchError((err) => this.handlerError(err))
-      );
+  public login(authData: Login): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(this.loginUrl, authData).pipe(map((res: LoginResponse) => res));
   }
 
   public logout(): void {
@@ -66,7 +51,7 @@ export class LoginService {
     }
   }
 
-  private saveToken(token: any): void {
+  public saveToken(token: Token): void {
     sessionStorage.setItem('access-token', token.access_token);
     sessionStorage.setItem('refresh-token', token.refresh_token);
   }
@@ -79,9 +64,10 @@ export class LoginService {
     return throwError(errorMessage);
 
   }
-  public getUserByToke(): any{
+
+  public getUserByToke(): any {
     let user: any;
-    const token =  sessionStorage.getItem('access-token');
+    const token = sessionStorage.getItem('access-token');
     if (token) {
       user = helper.decodeToken(token);
     }

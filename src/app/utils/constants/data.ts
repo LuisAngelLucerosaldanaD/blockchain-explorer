@@ -8,7 +8,7 @@ export const toastDataStyle: ToastStyleModel = {
     warning: 'bg-container-alert-warning'
   },
   container: {
-    color: 'bg-container-gray-3',
+    color: 'bg-outline-gray-3',
     border: {
       round: 'rounded',
       color: 'border-outline-gray-4',
@@ -25,8 +25,26 @@ export const toastDataStyle: ToastStyleModel = {
     }
   },
   text: {
-    color: 'text-outline-gray-4',
+    color: 'text-black',
     size: '',
     font: ''
   }
 }
+
+export const phoneCode = [
+  {
+    label: '+51 Peru',
+    value: '+51'
+  },
+  {
+    label: '+57 Colombia',
+    value: '+57'
+  },
+];
+
+export const typeIdentification = [
+  {
+    label: 'Cedula de Ciudadania',
+    value: '1'
+  }
+];

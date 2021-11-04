@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "@env/environment";
 import {
+  PaginationModel,
   ResponseGetAppKey,
   ResponseGetBlocks,
   ResponseGetTransactionByID
@@ -23,11 +24,11 @@ export class ExplorerService {
     this.urlTransactionCredential = environment.API_URL + '/api/v1/transaction/';
     this.urlAppKey = environment.API_URL + '/api/v1/key/';
     this.urlGetBlockById = environment.API_URL + 'block/id';
-    this.urlGetBlocks = environment.API_URL + 'block';
+    this.urlGetBlocks = environment.API_URL + '/api/v1/blocks';
   }
 
-  public GetBlocks(body: any): Observable<ResponseGetBlocks> {
-    return this.httpClient.post<ResponseGetBlocks>(this.urlGetBlocks, body).pipe(map((res) => res));
+  public GetBlocks(pagination: PaginationModel): Observable<ResponseGetBlocks> {
+    return this.httpClient.get<ResponseGetBlocks>(this.urlGetBlocks + `/${pagination.offset}/${pagination.limit}`).pipe(map((res) => res));
   }
 
   public GetBlocksById(body: any): Observable<ResponseGetBlocks> {

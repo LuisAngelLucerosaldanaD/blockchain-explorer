@@ -4,10 +4,16 @@ export interface Login {
 }
 
 export interface LoginResponse {
-  data: any;
+  data: Token;
   code: number;
   type: string;
   msg: string;
+  error: boolean;
+}
+
+export interface Token {
+  access_token: string;
+  refresh_token: string;
 }
 
 export interface User {

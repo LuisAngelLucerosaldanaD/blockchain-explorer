@@ -1,16 +1,16 @@
 <app-header></app-header>
 
 <div class="ec-container-margin py-12 overflow-auto" style="height: calc(100vh - 48px)">
-  <span class="t-h5 text-outline-gray-1">LionBlockchain Explorer</span>
+  <span class="t-h5 text-container-blue-5">LionBlockchain Explorer</span>
   <div class="w-full md:w-1/2 t-body-1 my-6">
     <ec-input-search [ecStyle]="ecStyle"></ec-input-search>
   </div>
   <div class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 lg:space-x-12">
-    <div class="one flex-1">
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="self-center flex-1">
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
         <div class="option space-x-4 flex flex-row items-center t-body-2">
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
+          <div class="rounded-full bg-container-blue-5 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-ui h-6 w-6"></div>
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
             <span class="t-body-1 col-span-2">Açaí Price</span>
@@ -18,8 +18,8 @@
           </div>
         </div>
         <div class="option space-x-4 flex flex-row items-center t-body-2">
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
+          <div class="rounded-full bg-container-blue-5 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-ui h-6 w-6"></div>
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
             <span class="t-body-1 col-span-2">Market Cap</span>
@@ -27,8 +27,8 @@
           </div>
         </div>
         <div class="option space-x-4 flex flex-row items-center t-body-2">
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
+          <div class="rounded-full bg-container-blue-5 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-ui h-6 w-6"></div>
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
             <span class="t-body-1 col-span-2">Transactions</span>
@@ -36,8 +36,8 @@
           </div>
         </div>
         <div class="option space-x-4 flex flex-row items-center t-body-2">
-          <div class="rounded-full bg-container-blue-3 h-12 w-12 flex justify-center items-center">
-            <div class="rounded-full bg-white h-6 w-6"></div>
+          <div class="rounded-full bg-container-blue-5 h-12 w-12 flex justify-center items-center">
+            <div class="rounded-full bg-ui h-6 w-6"></div>
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
             <span class="t-body-1 col-span-2">Difficulty</span>
@@ -61,7 +61,7 @@
     </div>
   </div>
   <div
-    class="mt-12 pt-4 border-t border-outline-gray-4 flex flex-col lg:flex-row space-y-12 lg:space-y-0 lg:space-x-12">
+    class="mt-12 pt-4 border-t border-outline-gray-3 flex flex-col lg:flex-row space-y-12 lg:space-y-0 lg:space-x-12">
     <div class="one flex-1">
       <div class="text-outline-gray-3 font-bold text-xl">
         <span>Latest Blocks</span>
@@ -69,11 +69,11 @@
       <div class="mt-4 p-2">
         <div class="flex justify-between mb-4">
           <div class="flex">
-            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+            <div class="w-12 h-12 flex justify-center bg-container-gray-1 items-center font-rubik rounded-md text-outline-gray-3">
               <span>BK</span>
             </div>
             <div class="ml-2">
-              <div class="text-outline-blue-2 cursor-pointer">
+              <div class="text-container-blue-5 cursor-pointer">
                 <span>12422198</span>
               </div>
               <div class="text-outline-gray-3">
@@ -83,10 +83,10 @@
           </div>
           <div>
             <div class="text-outline-gray-3">
-              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+              <span>Miner </span><span class="text-container-blue-5 cursor-pointer">0xaee4121231231af1...</span>
             </div>
             <div class="text-outline-gray-3">
-              <span class="text-outline-blue-2">267 txns </span><span>in 3 secs</span>
+              <span class="text-container-blue-5">267 txns </span><span>in 3 secs</span>
             </div>
           </div>
           <div>
@@ -104,11 +104,11 @@
       <div class="mt-4 p-2">
         <div class="flex justify-between mb-4">
           <div class="flex">
-            <div class="w-12 h-12 flex justify-center bg-outline-gray-3 items-center font-rubik rounded-lg">
+            <div class="w-12 h-12 flex justify-center bg-container-gray-1 items-center font-rubik rounded-md text-outline-gray-3">
               <span>Tx</span>
             </div>
             <div class="ml-2">
-              <div class="text-outline-blue-2 cursor-pointer">
+              <div class="text-container-blue-5 cursor-pointer">
                 <span (click)="isSelectedTransaction = true">0xaee4121231231af1...</span>
               </div>
               <div class="text-outline-gray-3">
@@ -118,10 +118,10 @@
           </div>
           <div>
             <div class="text-outline-gray-3">
-              <span>Miner </span><span class="text-outline-blue-2 cursor-pointer">0xaee4121231231af1...</span>
+              <span>Miner </span><span class="text-container-blue-5 cursor-pointer">0xaee4121231231af1...</span>
             </div>
             <div class="text-outline-gray-3">
-              <span>267 txns </span><span class="text-outline-blue-2 cursor-pointer">0xaee412123123f1...</span>
+              <span>267 txns </span><span class="text-container-blue-5 cursor-pointer">0xaee412123123f1...</span>
             </div>
           </div>
           <div>

@@ -35,10 +35,9 @@
                              msgError="{{getMessagePasswordError()}}"
                              [error]="!passwordFieldIsValid && passwordField.touched"
                              formControlName="password" (keyup.enter)="login()"></ec-input-password>
-
         </div>
         <div class="my-16">
-          <button (click)="login()" class="border-container-blue-4 bg-container-blue-4 text-white h-12 w-full rounded-lg border-4 border-solid border-container-blue-3 rounded-lg hover:border-outline-gray-4">
+          <button (click)="login()" class="border-container-blue-4 bg-container-blue-4 text-white h-12 w-full rounded-lg border-4 border-solid border-container-blue-3 rounded-lg hover:border-outline-gray-4 focus:outline-none">
             {{'SIGN_IN'| translate}}
           </button>
         </div>
@@ -50,3 +49,6 @@
     </div>
   </div>
 </div>
+
+<ec-toast [toastStyle]="toastStyle"></ec-toast>
+<app-block-ui [isBlock]="isBlockPage"></app-block-ui>

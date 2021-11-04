@@ -3,6 +3,9 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {LoginService} from "@app/modules/auth/services/login.service";
+import {ToastStyleModel} from "ecapture-ng-ui/lib/modules/toast/model/toast.model";
+import {toastDataStyle} from "@app/utils/constants/data";
+import {ToastService} from "ecapture-ng-ui";
 
 @Component({
   selector: 'app-login',
@@ -14,51 +17,21 @@ export class LoginComponent implements OnInit {
   private subscription: Subscription = new Subscription();
   public form: FormGroup;
   public isChangeBtn: boolean;
-  public messageToast: any;
-  public successToast: any;
-  public errorToast: any;
-  public warningToast: any;
-
-  public appStore$: any;
-  public token: string;
-  public user: any;
-  public isLogged: boolean;
+  public readonly toastStyle: ToastStyleModel = toastDataStyle;
+  public isBlockPage: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     private router: Router,
-    // private appStore: Store<{ app: any }>
+    private _messageService: ToastService,
   ) {
-    this.token = '';
-    this.isLogged = false;
     this.form = this.fb.group({
       email: ['', [Validators.minLength(4), Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       nickname: ['']
     });
     this.isChangeBtn = true;
-    this.successToast = {
-      type: 'success',
-      message: 'Atenticado Exisotsamente.',
-      life: 5000,
-      summary: 'Success'
-    };
-    this.warningToast = {
-      type: 'warning',
-      message: 'Rellene todos los campos por favor!',
-      life: 5000,
-      summary: 'Alerta'
-    };
-    this.errorToast = {
-      type: 'error',
-      message: 'Se ha producido un error, contactese con el administrador.',
-      life: 5000,
-      summary: 'Error'
-    };
-    /*this.subscription.add(appStore.select('app').subscribe(state => {
-      this.appStore$ = state;
-    }));*/
   }
 
   ngOnInit(): void {
@@ -66,83 +39,63 @@ export class LoginComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.isBlockPage = false;
   }
 
   public login(): void {
     if (this.form.valid) {
+      this.isBlockPage = true;
       this.subscription.add(
-        this.loginService.login(this.form.value).subscribe(async (resp: any) => {
-            if (!resp.error) {
-              await this.router.navigate(['dashboard']);
-              this.messageToast = this.successToast;
-              this.isLogged = true;
-              this.token = resp.data.access_token;
-              this.user = this.loginService.getUserByToke();
-              const data = {
-                isLogged: this.isLogged,
-                token: this.token,
-                user: this.user
-              };
-              // this.appStore.dispatch(updateSession({dataValue: data}));
+        this.loginService.login(this.form.value).subscribe(async (resp) => {
+            if (resp.error) {
+              this._messageService.add({type: 'error', message: resp.msg, life: 5000});
             } else {
-              this.messageToast = this.errorToast;
+              await this.router.navigate(['dashboard']);
+              this.loginService.saveToken(resp.data);
             }
+            this.isBlockPage = false;
           },
           () => {
-            this.messageToast = this.errorToast;
+            this.isBlockPage = false;
+            this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
           })
       );
     } else {
-      this.messageToast = this.warningToast;
+      this._messageService.add({type: 'warning', message: 'Complete correctamente todos los campos', life: 5000});
     }
   }
 
   public getMessageEmailError(): string {
-    let message: string;
-    // @ts-ignore
-    if (this.form.get('email').hasError('minlength')) {
-      message = 'El email no cuenta con la cantidad de caracteres minimos requeridos.';
-      // @ts-ignore
-    } else if (this.form.get('email').hasError('required')) {
-      message = 'El email es requerido.';
-      // @ts-ignore
-    } else if (this.form.get('email').hasError('email')) {
-      message = 'El dato ingresado no es un correo electrónico.';
+    if (this.form.get('email')?.hasError('minlength')) {
+      return  'El email no cuenta con la cantidad de caracteres minimos requeridos.';
+    } else if (this.form.get('email')?.hasError('required')) {
+      return  'El email es requerido.';
+    } else if (this.form.get('email')?.hasError('email')) {
+      return  'El dato ingresado no es un correo electrónico.';
     }
-    // @ts-ignore
-    return message;
+    return '';
   }
 
   public getMessagePasswordError(): string {
-    let message: string;
-    // @ts-ignore
-    if (this.form.get('password').hasError('minLength')) {
-      message = 'La contraseña no cuenta con la cantidad de caracteres minimos requeridos.';
-      // @ts-ignore
-    } else if (this.form.get('password').hasError('required')) {
-      message = 'La contraseña es requerida.';
-      // @ts-ignore
-    } else if (this.form.get('password').hasError('maxLength')) {
-      message = 'La contraseña no cuenta con la cantidad de caracteres maximos requeridos.';
+    if (this.form.get('password')?.hasError('minLength')) {
+      return  'La contraseña no cuenta con la cantidad de caracteres minimos requeridos.';
+    } else if (this.form.get('password')?.hasError('required')) {
+      return  'La contraseña es requerida.';
+    } else if (this.form.get('password')?.hasError('maxLength')) {
+      return  'La contraseña no cuenta con la cantidad de caracteres maximos requeridos.';
     }
-    // @ts-ignore
-    return message;
+    return '';
   }
 
   public getMessageNicknameError(): string {
-    let message: string;
-    // @ts-ignore
-    if (this.form.get('nickname').hasError('minLength')) {
-      message = 'El nombre de usuario no cuenta con la cantidad de caracteres minimos requeridos.';
-      // @ts-ignore
-    } else if (this.form.get('nickname').hasError('required')) {
-      message = 'El nombre de usuario es requerido.';
-      // @ts-ignore
-    } else if (this.form.get('nickname').hasError('maxLength')) {
-      message = 'El nombre de usuarioa no cuenta con la cantidad de caracteres maximos requeridos.';
+    if (this.form.get('nickname')?.hasError('minLength')) {
+      return  'El nombre de usuario no cuenta con la cantidad de caracteres minimos requeridos.';
+    } else if (this.form.get('nickname')?.hasError('required')) {
+      return 'El nombre de usuario es requerido.';
+    } else if (this.form.get('nickname')?.hasError('maxLength')) {
+      return 'El nombre de usuarioa no cuenta con la cantidad de caracteres maximos requeridos.';
     }
-    // @ts-ignore
-    return message;
+    return '';
   }
 
   get nicknameField(): AbstractControl {
@@ -158,8 +111,7 @@ export class LoginComponent implements OnInit {
   }
 
   get formValid(): AbstractControl {
-    // @ts-ignore
-    return this.form.get('password');
+    return <AbstractControl>this.form.get('password');
   }
 
   get nicknameFieldIsValid(): boolean {
@@ -176,15 +128,13 @@ export class LoginComponent implements OnInit {
 
   public changeTypeInput(value: boolean): void {
     if (value) {
-      // @ts-ignore
-      this.form.get('nickname').setValue('');
+      this.form.get('nickname')?.setValue('');
       this.form.controls.email.setValidators([Validators.minLength(4), Validators.required, Validators.email]);
       this.form.controls.email.updateValueAndValidity();
       this.form.controls.nickname.clearValidators();
       this.form.controls.nickname.updateValueAndValidity();
     } else {
-      // @ts-ignore
-      this.form.get('email').setValue('');
+      this.form.get('email')?.setValue('');
       this.form.controls.nickname.setValidators([Validators.required, Validators.maxLength(10), Validators.minLength(4)]);
       this.form.controls.nickname.updateValueAndValidity();
       this.form.controls.email.clearValidators();

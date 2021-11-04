@@ -54,5 +54,7 @@
   "CONFIRM_PHONE_NUMBER": "Confirmar Número de Telefono",
   "ACTIVATE_ACCOUNT": "Activar Cuenta",
   "ACCOUNT_RECOVERY": "Recuperar Cuenta",
-  "ACTIVATE_WALLET": "Activar Billetera"
+  "ACTIVATE_WALLET": "Activar Billetera",
+  "TERMS_AND_CONDITIONS": "Terminos y Condiciones",
+  "SECURITY_POLITICS": "Politicas de Seguridad"
 }

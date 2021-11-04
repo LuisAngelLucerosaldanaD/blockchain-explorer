@@ -56,13 +56,8 @@ export const CAROUSEL_DATA_ITEMS: ICarouselItem[] = [
 
 export const MENU_DATA_ITEMS: MenuModel[] = [
   {
-    label: 'Home',
-    status: true,
-    route: 'home'
-  },
-  {
     label: 'Explorer',
-    status: false,
+    status: true,
     route: 'explorer'
   },
   {
