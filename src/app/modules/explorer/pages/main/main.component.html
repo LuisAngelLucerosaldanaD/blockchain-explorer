@@ -1,12 +1,15 @@
-<app-header></app-header>
-
-<div class="ec-container-margin py-12 overflow-auto" style="height: calc(100vh - 48px)">
+<app-header *ngIf="token === ''"></app-header>
+<div class="ec-container-margin py-12 overflow-auto" style="height: calc(100vh - 3rem)">
   <span class="t-h5 text-container-blue-5">LionBlockchain Explorer</span>
   <div class="w-full md:w-1/2 t-body-1 my-6">
-    <ec-input-search [ecStyle]="ecStyle"></ec-input-search>
+    <ec-input-search [ecStyle]="ecStyle" [(ngModel)]="dataSearch" (keydown.enter)="getBlocksByID()"></ec-input-search>
+    <div class="text-outline-alert-info text-sm mt-2 px-4 flex gap-1">
+      <span>Press enter to search</span>
+      <span appIcon iconName="search" iconColor="text-outline-alert-info w-5 h-5"></span>
+    </div>
   </div>
   <div class="flex flex-col lg:flex-row space-y-12 lg:space-y-0 lg:space-x-12">
-    <div class="self-center flex-1">
+    <div class="self-center flex-1 w-full">
       <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
         <div class="option space-x-4 flex flex-row items-center t-body-2">
           <div class="rounded-full bg-container-blue-5 h-12 w-12 flex justify-center items-center">
@@ -14,7 +17,7 @@
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
             <span class="t-body-1 col-span-2">Açaí Price</span>
-            <span>$4,114.69 @ 0.07524 BTC <span class="text-outline-alert-error">(-0.34%)</span></span>
+            <span>$1 Aç</span>
           </div>
         </div>
         <div class="option space-x-4 flex flex-row items-center t-body-2">
@@ -22,8 +25,8 @@
             <div class="rounded-full bg-ui h-6 w-6"></div>
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
-            <span class="t-body-1 col-span-2">Market Cap</span>
-            <span>$476,678,935,648.00</span>
+            <span class="t-body-1 col-span-2">Total blocks</span>
+            <span>{{blocks.length}} BK</span>
           </div>
         </div>
         <div class="option space-x-4 flex flex-row items-center t-body-2">
@@ -32,7 +35,7 @@
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
             <span class="t-body-1 col-span-2">Transactions</span>
-            <span>$4,114.69 (18.2 TPS)</span>
+            <span>10 TS</span>
           </div>
         </div>
         <div class="option space-x-4 flex flex-row items-center t-body-2">
@@ -41,7 +44,7 @@
           </div>
           <div class="info text-outline-gray-1 flex flex-col">
             <span class="t-body-1 col-span-2">Difficulty</span>
-            <span>7,750.02 TH</span>
+            <span>{{lastIBlock.difficulty}} MT</span>
           </div>
         </div>
       </div>
@@ -67,31 +70,30 @@
         <span>Latest Blocks</span>
       </div>
       <div class="mt-4 p-2">
-        <div class="flex justify-between mb-4">
+        <div class="flex justify-between mb-4 items-center" *ngFor="let block of blocks; let position = index">
           <div class="flex">
-            <div class="w-12 h-12 flex justify-center bg-container-gray-1 items-center font-rubik rounded-md text-outline-gray-3">
+            <div
+              class="w-12 h-12 flex justify-center bg-container-gray-1 items-center font-rubik rounded-md text-outline-gray-3">
               <span>BK</span>
             </div>
             <div class="ml-2">
-              <div class="text-container-blue-5 cursor-pointer">
-                <span>12422198</span>
+              <div class="text-container-blue-5 cursor-pointer" (click)="selectBlock(position)">
+                <span>{{block.id}}</span>
               </div>
               <div class="text-outline-gray-3">
-                <span>1 min 4 secs ago</span>
+                <span>{{block.created_at | date: 'medium':'UTC' }}</span>
               </div>
             </div>
           </div>
           <div>
             <div class="text-outline-gray-3">
-              <span>Miner </span><span class="text-container-blue-5 cursor-pointer">0xaee4121231231af1...</span>
-            </div>
-            <div class="text-outline-gray-3">
-              <span class="text-container-blue-5">267 txns </span><span>in 3 secs</span>
+              <span>Miner </span><span class="text-container-blue-5 cursor-pointer"
+                                       (click)="selectMiner()">{{block.mined_by}}</span>
             </div>
           </div>
           <div>
             <div class="text-outline-gray-3">
-              <span>8.16521 txns</span>
+              <span>{{getTotalTransactionFormBlock(block.data)}} TS</span>
             </div>
           </div>
         </div>
@@ -102,31 +104,25 @@
         <span>Latest Transactions</span>
       </div>
       <div class="mt-4 p-2">
-        <div class="flex justify-between mb-4">
+        <div class="flex justify-between mb-4" *ngFor="let transaction of transactions; let position = index">
           <div class="flex">
-            <div class="w-12 h-12 flex justify-center bg-container-gray-1 items-center font-rubik rounded-md text-outline-gray-3">
+            <div
+              class="w-12 h-12 flex justify-center bg-container-gray-1 items-center font-rubik rounded-md text-outline-gray-3">
               <span>Tx</span>
             </div>
             <div class="ml-2">
-              <div class="text-container-blue-5 cursor-pointer">
-                <span (click)="isSelectedTransaction = true">0xaee4121231231af1...</span>
+              <div class="text-container-blue-5 cursor-pointer overflow-ellipsis overflow-hidden">
+                <span (click)="selectTransactions(position)">{{transaction.id}}</span>
               </div>
               <div class="text-outline-gray-3">
-                <span>1 min 4 secs ago</span>
+                <span>{{transaction.created_at | date:'medium':'UTC' }}</span>
               </div>
             </div>
           </div>
           <div>
-            <div class="text-outline-gray-3">
-              <span>Miner </span><span class="text-container-blue-5 cursor-pointer">0xaee4121231231af1...</span>
-            </div>
-            <div class="text-outline-gray-3">
-              <span>267 txns </span><span class="text-container-blue-5 cursor-pointer">0xaee412123123f1...</span>
-            </div>
-          </div>
-          <div>
-            <div class="text-outline-gray-3">
-              <span>8.16521 txns</span>
+            <div class="text-outline-gray-3 overflow-ellipsis overflow-hidden">
+              <span>Miner </span><span class="text-container-blue-5 cursor-pointer"
+                                       (click)="selectMiner()">{{lastIBlock.mined_by}}</span>
             </div>
           </div>
         </div>
@@ -143,10 +139,12 @@
     </div>
     <div class="text-outline-gray-3 text-justify mt-4">
       <p>
-        Esta transacción se transmitió a la red de LionBlockchanin el día agosto 14, 2021 a las 10:48 AM GMT -05:00. La
+        Esta transacción se transmitió a la red de LionBlockchanin
+        en {{selectedTransaction.created_at | date: 'medium':'UTC' }}. La
         transacción
         tiene actualmente 0 confirmaciones en la red. En el momento de esta transacción, 0.00194301 Aça se envió con un
-        valor de $91.00. El valor actual de esta transacción ahora es de 91,01 US$.
+        valor de {{selectedTransaction.amount}}-US$. El valor actual de esta transacción ahora es
+        de {{selectedTransaction.amount}}-US$.
       </p>
     </div>
     <div class="flex items-center justify-center mt-4">
@@ -156,47 +154,294 @@
       <div><span>Detalles</span></div>
     </div>
     <div class="mt-4 p-4">
-      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
-        <div class="text-outline-gray-3 mr-4 w-12">
-          <span>Hash</span>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Block Hash</span>
         </div>
-        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
-          <span class="">a7584649b66730ff2d637730371011e8d94bd22ee14fd544b61a15b3b493c28e</span>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span class="">{{lastIBlock.hash}}</span>
         </div>
       </div>
-      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
-        <div class="text-outline-gray-3 mr-4 w-12">
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
           <span>Monto</span>
         </div>
-        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
-          <span class="">91,01 US$ - 0.00045 Aça</span>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span class="">{{selectedTransaction.amount}}-US$</span>
         </div>
       </div>
-      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
-        <div class="text-outline-gray-3 mr-4 w-12">
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
           <span>From</span>
         </div>
-        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
-          <span>0xdb0421b556252a73e5fba37d156ea168d5f7e936</span>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span>{{selectedTransaction.from}}</span>
         </div>
       </div>
-      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1">
-        <div class="text-outline-gray-3 mr-4 w-12">
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width:15%">
           <span>To</span>
         </div>
-        <div class="text-outline-gray-3 mr-4 overflow-ellipsis w-full overflow-hidden font-bold">
-          <span>0xdb0421b556252a73e5fba37d156ea168d5f7e936</span>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span>{{selectedTransaction.to}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width:15%">
+          <span>Miner</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span>{{lastIBlock.mined_by}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width:15%">
+          <span>Created At</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span>{{selectedTransaction.created_at | date: 'medium': 'UTC'}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width:15%">
+          <span>Last Validation</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span>{{lastIBlock.last_validation_date | date: 'medium': 'UTC'}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width:15%">
+          <span>Mined At</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width:85%">
+          <span>{{lastIBlock.mined_at | date: 'medium': 'UTC'}}</span>
         </div>
       </div>
     </div>
-    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+    <div class="text-outline-gray-3 flex text-2xl font-rubik font-bold mt-4">
       <div><span>Data</span></div>
     </div>
+    <div class="p-4">
+      <div class="text-outline-alert-warning text-xl" *ngIf="token === ''">
+        <span>Información disponible solo para los involucrados en la transacción!</span>
+      </div>
+      <div *ngIf="token !== ''">
+        <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+          <div class="text-outline-gray-3" style="width: 15%">
+            <span>Name</span>
+          </div>
+          <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+            <span class="">{{dataTransaction.name}}</span>
+          </div>
+        </div>
+        <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+          <div class="text-outline-gray-3" style="width: 15%">
+            <span>Description</span>
+          </div>
+          <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+            <span class="">{{dataTransaction.description}}</span>
+          </div>
+        </div>
+        <div class="mt-4">
+          <div class="font-bold text-outline-gray-3 text-base"><span>Entities</span></div>
+          <div class="p-4">
+            <div class="flex flex-col mb-1 pb-1 gap-4" *ngFor="let entity of dataTransaction.entities; let position = index">
+              <div class="text-outline-gray-3 font-bold">
+                <span>{{entity.name}}</span>
+              </div>
+              <div class="flex border-b-2 border-outline-gray-3 text-outline-gray-3 mb-1 ml-4 pb-1 gap-4" style="width:85%" *ngFor="let attribute of entity.attributes">
+                <div class="text-outline-gray-3">
+                  <span>{{attribute.name}}</span>
+                </div>
+                <div class="overflow-ellipsis overflow-hidden">
+                  <span>{{attribute.value}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4" *ngIf="dataTransaction.file">
+          <div class="font-bold text-outline-gray-3 text-base"><span>Files</span></div>
+          <div class="p-4">
+            <div class="flex flex-col mb-1 pb-1 gap-4" *ngFor="let file of dataTransaction.file; let position = index">
+              <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+                <div class="text-outline-gray-3" style="width: 15%">
+                  <span>Name</span>
+                </div>
+                <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+                  <span class="">{{file.name}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="mt-6">
-      <button class="w-full h-12 rounded-lg border-solid border-4 text-white border-container-blue-3 bg-container-blue-3 hover:border-outline-gray-4" (click)="isSelectedTransaction = false">
+      <button
+        class="w-full h-12 rounded-lg border-solid border-4 text-white border-container-blue-3 bg-container-blue-3 hover:border-outline-gray-4 focus:outline-none"
+        (click)="isSelectedTransaction = false">
         {{'CANCEL' | translate}}
       </button>
     </div>
   </div>
 </ec-modal>
+
+<ec-modal [activeModal]="isSelectedMiner" bgBoxColor="bg-ui" bgContainerColor="bg-ui"
+          brBoxColor="border-container-blue-4">
+  <div>
+    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold">
+      <div><span>Miner</span></div>
+    </div>
+    <div class="text-outline-gray-3 text-justify mt-4">
+      <p>
+        Este Minero fue creado en la red de LionBlockchain en {{selectedBlock.created_at | date: 'medium':'UTC' }} y cuenta con certificación por parte de la misma.
+      </p>
+    </div>
+    <div class="flex items-center justify-center mt-4">
+      <qr-code [value]="qrInfo" [size]="200"></qr-code>
+    </div>
+    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+      <div><span>Detalles</span></div>
+    </div>
+    <div class="mt-4 p-4">
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Names</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span class="">{{miner.name}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Lastname</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span class="">{{miner.lastname}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>NickName</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{miner.nickname}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Email</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{miner.email}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Register In</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{miner.created_at | date: 'medium': 'UTC'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6">
+      <button
+        class="w-full h-12 rounded-lg border-solid border-4 text-white border-container-blue-3 bg-container-blue-3 hover:border-outline-gray-4 focus:outline-none"
+        (click)="isSelectedMiner = false">
+        {{'CANCEL' | translate}}
+      </button>
+    </div>
+  </div>
+</ec-modal>
+
+<ec-modal [activeModal]="isSelectedBlock" bgBoxColor="bg-ui" bgContainerColor="bg-ui"
+          brBoxColor="border-container-blue-4">
+  <div>
+    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold">
+      <div><span>Block</span></div>
+    </div>
+    <div class="text-outline-gray-3 text-justify mt-4">
+      <p>
+        Este bloque fue creado en la red de LionBlockchain en {{selectedBlock.created_at | date: 'medium':'UTC' }}. El
+        bloque tiene actualmente {{lengthTransactionBlockSelected}} transacciones confirmadas.
+      </p>
+    </div>
+    <div class="flex items-center justify-center mt-4">
+      <qr-code [value]="qrInfo" [size]="200"></qr-code>
+    </div>
+    <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+      <div><span>Detalles</span></div>
+    </div>
+    <div class="mt-4 p-4">
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Hash</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span class="">{{selectedBlock.hash}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Previous Hash</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span class="">{{selectedBlock.prev_hash}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Difficulty</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{selectedBlock.difficulty}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Miner</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{selectedBlock.mined_by}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Mined At</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{selectedBlock.mined_at | date: 'medium': 'UTC'}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Last Validation</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{selectedBlock.last_validation_date | date: 'medium': 'UTC'}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Total Transaction</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span>{{lengthTransactionBlockSelected}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6">
+      <button
+        class="w-full h-12 rounded-lg border-solid border-4 text-white border-container-blue-3 bg-container-blue-3 hover:border-outline-gray-4 focus:outline-none"
+        (click)="isSelectedBlock = false">
+        {{'CANCEL' | translate}}
+      </button>
+    </div>
+  </div>
+</ec-modal>
+
+<app-block-ui [isBlock]="isBlockPage"></app-block-ui>
 

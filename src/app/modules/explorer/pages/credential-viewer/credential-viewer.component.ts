@@ -86,7 +86,7 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
             },
             (err: Error) => {
               console.error(err.message);
-              this.isBlockPage = true;
+              this.isBlockPage = false;
               this.isValidToken = false;
               this.isError = true;
               this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});

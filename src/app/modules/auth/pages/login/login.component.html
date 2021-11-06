@@ -2,7 +2,7 @@
 <div class="login-container" style="height: 95vh">
   <div class="left-container img-background">
     <div class="self-center">
-      <img src="assets/img/logos/imglogin.png" alt="logo onlyone">
+      <img src="assets/img/logos/imglogin.png" alt="logo BLion">
     </div>
   </div>
   <div class="right-container flex flex-col justify-center items-center">
@@ -18,12 +18,12 @@
         <div class="w-full mt-4">
           <ec-input-text *ngIf="isChangeBtn" label="{{ 'EMAIL' | translate}}"
                          bgContainerColor="bg-container-gray-1" brContainerColor="border-container-gray-3"
-                         txtColor="text-outline-blue-2"
+                         txtColor="text-outline-gray-1"
                          msgError="{{getMessageEmailError()}}"
                          [error]="!emailFieldIsValid && emailField.touched" formControlName="email"></ec-input-text>
           <ec-input-text *ngIf="!isChangeBtn" label="{{ 'Username' | translate}}"
                          bgContainerColor="bg-container-gray-1" brContainerColor="border-container-gray-3"
-                         txtColor="text-outline-blue-2"
+                         txtColor="text-outline-gray-1"
                          msgError="{{getMessageNicknameError()}}"
                          [error]="!nicknameFieldIsValid && nicknameField.touched"
                          formControlName="nickname"></ec-input-text>
@@ -31,10 +31,10 @@
         <div class="mt-4">
           <ec-input-password label="{{ 'PASSWORD' | translate}}"
                              bgContainerColor="bg-container-gray-1" brContainerColor="border-container-gray-3"
-                             txtColor="text-outline-blue-2"
+                             txtColor="text-outline-gray-1"
                              msgError="{{getMessagePasswordError()}}"
                              [error]="!passwordFieldIsValid && passwordField.touched"
-                             formControlName="password" (keyup.enter)="login()"></ec-input-password>
+                             formControlName="password"></ec-input-password>
         </div>
         <div class="my-16">
           <button (click)="login()" class="border-container-blue-4 bg-container-blue-4 text-white h-12 w-full rounded-lg border-4 border-solid border-container-blue-3 rounded-lg hover:border-outline-gray-4 focus:outline-none">

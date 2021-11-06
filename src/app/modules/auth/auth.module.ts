@@ -21,8 +21,8 @@ import {ActivateWalletComponent} from './pages/activate-wallet/activate-wallet.c
 import {ActivateService} from "@app/modules/auth/services/activate/activate.service";
 import {UiModule} from "@app/ui/ui.module";
 import {AuthService} from "@app/modules/auth/services/auth/auth.service";
-import { TersmConditionsComponent } from './pages/tersm-conditions/tersm-conditions.component';
-import { SecurityPoliticsComponent } from './pages/security-politics/security-politics.component';
+import {TersmConditionsComponent} from './pages/tersm-conditions/tersm-conditions.component';
+import {SecurityPoliticsComponent} from './pages/security-politics/security-politics.component';
 
 
 @NgModule({

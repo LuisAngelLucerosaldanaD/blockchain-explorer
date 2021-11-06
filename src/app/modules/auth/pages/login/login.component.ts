@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
             if (resp.error) {
               this._messageService.add({type: 'error', message: resp.msg, life: 5000});
             } else {
-              await this.router.navigate(['dashboard']);
               this.loginService.saveToken(resp.data);
+              await this.router.navigate(['dashboard']);
             }
             this.isBlockPage = false;
           },

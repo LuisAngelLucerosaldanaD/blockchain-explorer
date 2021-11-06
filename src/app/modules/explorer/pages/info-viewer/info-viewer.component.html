@@ -1,0 +1,291 @@
+<app-header></app-header>
+<div *ngIf="typeInfo === 'transaction'" class="font-bold text-outline-gray-3 text-2xl text-center mt-4">
+  <span>{{'TRANSACTION' | translate}}</span>
+</div>
+<div *ngIf="typeInfo === 'miner'" class="font-bold text-outline-gray-3 text-2xl text-center mt-4">
+  <span>{{'MINER' | translate}}</span>
+</div>
+<div *ngIf="typeInfo === 'block'" class="font-bold text-outline-gray-3 text-2xl text-center mt-4">
+  <span>{{'BLOCK' | translate}}</span>
+</div>
+
+<div class="p-6" *ngIf="typeInfo === 'transaction'">
+  <div class="text-outline-gray-3 text-justify mt-4">
+    <p>
+      Esta transacción se transmitió a la red de LionBlockchanin
+      en {{transaction.created_at | date: 'medium':'UTC' }}. La
+      transacción
+      tiene actualmente 0 confirmaciones en la red. En el momento de esta transacción, 0.00194301 Aça se envió con un
+      valor de {{transaction.amount}}-US$. El valor actual de esta transacción ahora es
+      de {{transaction.amount}}-US$.
+    </p>
+  </div>
+  <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+    <div><span>Detalles</span></div>
+  </div>
+  <div class="mt-4 p-4">
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>Block Hash</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span class="">{{block.hash}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>Monto</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span class="">{{transaction.amount}}-US$</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>From</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span>{{transaction.from}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>To</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span>{{transaction.to}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>Miner</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span>{{block.mined_by}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>Created At</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span>{{transaction.created_at | date: 'medium': 'UTC'}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>Last Validation</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span>{{block.last_validation_date | date: 'medium': 'UTC'}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 5%">
+        <span>Mined At</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 95%">
+        <span>{{block.mined_at | date: 'medium': 'UTC'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-outline-gray-3 flex text-2xl font-rubik font-bold mt-4">
+    <div><span>Data</span></div>
+  </div>
+  <div class="mt-4 p-4">
+    <div class="text-outline-alert-warning text-xl" *ngIf="token === ''">
+      <span>Información disponible solo para los involucrados en la transacción!</span>
+    </div>
+    <div *ngIf="token !== ''">
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Name</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span class="">{{dataTransaction.name}}</span>
+        </div>
+      </div>
+      <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+        <div class="text-outline-gray-3" style="width: 15%">
+          <span>Description</span>
+        </div>
+        <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+          <span class="">{{dataTransaction.description}}</span>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div class="font-bold text-outline-gray-3 text-base"><span>Entities</span></div>
+        <div class="p-4">
+          <div class="flex flex-col mb-1 pb-1 gap-4" *ngFor="let entity of dataTransaction.entities; let position = index">
+            <div class="text-outline-gray-3 font-bold">
+              <span>{{entity.name}}</span>
+            </div>
+            <div class="flex border-b-2 border-outline-gray-3 text-outline-gray-3 mb-1 ml-4 pb-1 gap-4" style="width:85%" *ngFor="let attribute of entity.attributes">
+              <div class="text-outline-gray-3">
+                <span>{{attribute.name}}</span>
+              </div>
+              <div class="overflow-ellipsis overflow-hidden">
+                <span>{{attribute.value}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4" *ngIf="dataTransaction.file">
+        <div class="font-bold text-outline-gray-3 text-base"><span>Files</span></div>
+        <div class="p-4">
+          <div class="flex flex-col mb-1 pb-1 gap-4" *ngFor="let file of dataTransaction.file; let position = index">
+            <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+              <div class="text-outline-gray-3" style="width: 15%">
+                <span>Name</span>
+              </div>
+              <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+                <span class="">{{file.name}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="p-6" *ngIf="typeInfo === 'block'">
+  <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold">
+    <div><span>Block</span></div>
+  </div>
+  <div class="text-outline-gray-3 text-justify mt-4">
+    <p>
+      Este bloque fue creado en la red de LionBlockchain en {{block.created_at | date: 'medium':'UTC' }}. El
+      bloque tiene actualmente {{lengthTransactionBlockSelected}} transacciones confirmadas.
+    </p>
+  </div>
+  <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+    <div><span>Detalles</span></div>
+  </div>
+  <div class="mt-4 p-4">
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 10%">
+        <span>Hash</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 90%">
+        <span class="">{{block.hash}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 10%">
+        <span>Previous Hash</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 90%">
+        <span class="">{{block.prev_hash}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 10%">
+        <span>Difficulty</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 90%">
+        <span>{{block.difficulty}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 10%">
+        <span>Miner</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 90%">
+        <span>{{block.mined_by}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 10%">
+        <span>Mined At</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 90%">
+        <span>{{block.mined_at | date: 'medium': 'UTC'}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 10%">
+        <span>Last Validation</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 90%">
+        <span>{{block.last_validation_date | date: 'medium': 'UTC'}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 10%">
+        <span>Total Transaction</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 90%">
+        <span>{{lengthTransactionBlockSelected}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+    <div><span>Transacciones</span></div>
+  </div>
+  <div *ngFor="let transaction of transactions; let position = index">
+    <div>
+      <span>{{transaction.from}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="p-6" *ngIf="typeInfo === 'miner'">
+  <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold">
+    <div><span>Miner</span></div>
+  </div>
+  <div class="text-outline-gray-3 text-justify mt-4">
+    <p>
+      Este Minero fue creado en la red de LionBlockchain en {{miner.created_at | date: 'medium':'UTC' }} y cuenta con certificación por parte de la misma.
+    </p>
+  </div>
+  <div class="text-outline-gray-3 flex items-center text-center text-2xl font-rubik font-bold mt-4">
+    <div><span>Detalles</span></div>
+  </div>
+  <div class="mt-4 p-4">
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 15%">
+        <span>Names</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+        <span class="">{{miner.name}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 15%">
+        <span>Lastname</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+        <span class="">{{miner.lastname}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 15%">
+        <span>NickName</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+        <span>{{miner.nickname}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 15%">
+        <span>Email</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+        <span>{{miner.email}}</span>
+      </div>
+    </div>
+    <div class="flex border-b-2 border-outline-gray-3 mb-1 pb-1 gap-4">
+      <div class="text-outline-gray-3" style="width: 15%">
+        <span>Register In</span>
+      </div>
+      <div class="text-outline-gray-3 overflow-ellipsis w-full overflow-hidden font-bold" style="width: 85%">
+        <span>{{miner.created_at | date: 'medium': 'UTC'}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-block-ui [isBlock]="isBlockPage"></app-block-ui>

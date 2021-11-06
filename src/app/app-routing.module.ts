@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {QuicklinkModule, QuicklinkStrategy} from "ngx-quicklink";
+import {ActivateGuard} from "@app/modules/auth/guards/activate.guard";
+import {AuthenticationGuard} from "@app/modules/auth/guards/authentication/authentication.guard";
 
 const routes: Routes = [
   {
@@ -22,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('@app/modules/dashboard/dashboard.module').then((m) => m.DashboardModule)
+    loadChildren: () => import('@app/modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'contact',

@@ -21,6 +21,7 @@ import {UiModule} from "@app/ui/ui.module";
 import {ComponentsModule} from "@app/components/components.module";
 import {FormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
+import { InfoViewerComponent } from './pages/info-viewer/info-viewer.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {TranslateModule} from "@ngx-translate/core";
     ExplorerComponent,
     TransactionsComponent,
     CredentialViewerComponent,
+    InfoViewerComponent,
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ import {TranslateModule} from "@ngx-translate/core";
   providers: [
     ExplorerService,
     ToastService
-  ]
+  ],
+  exports: [MainComponent]
 })
 export class ExplorerModule {
 }

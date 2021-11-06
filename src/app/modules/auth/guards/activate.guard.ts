@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Route, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
-import {validToken} from "@app/utils/validations/validations";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,7 @@ export class ActivateGuard implements CanActivate {
     if (token) {
       return true;
     } else {
-      this._router.navigate(['/home'])
+      this._router.navigate(['/explorer'])
       return false;
     }
   }

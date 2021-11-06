@@ -28,10 +28,6 @@ const routes: Routes = [
     component: RecoveryPwdComponent
   },
   {
-    path: 'terms-and-conditions',
-    component: TersmConditionsComponent
-  },
-  {
     path: 'security-politics',
     component: SecurityPoliticsComponent
   },

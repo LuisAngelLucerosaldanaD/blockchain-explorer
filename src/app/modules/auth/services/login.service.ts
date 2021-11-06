@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {Login, LoginResponse} from "@app/modules/auth/models/login/login.model";
 import {environment} from "@env/environment";
 import {JwtHelperService} from '@auth0/angular-jwt';
-import {catchError, map} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {Token} from "@app/modules/auth/models/login/login.model";
 
 const helper = new JwtHelperService();
@@ -33,7 +33,7 @@ export class LoginService {
     sessionStorage.removeItem('access-token');
     sessionStorage.removeItem('refresh-token');
     this.loggedIn.next('');
-    this.router.navigate(['auth/login']);
+    this.router.navigate(['explorer']);
   }
 
   public checkToken(): void {

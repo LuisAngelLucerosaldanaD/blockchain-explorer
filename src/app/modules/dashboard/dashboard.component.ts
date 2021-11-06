@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartComponent} from "ng-apexcharts";
+import {LoginService} from "@app/modules/auth/services/login.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,9 @@ export class DashboardComponent implements OnInit {
   public activeSidebar: boolean = false;
   public activeMenu: boolean = false;
 
-  constructor() {
+  constructor(
+    private _loginService: LoginService,
+  ) {
     this.chartOptions = {
       series: [44, 55, 67, 83],
       chart: {
@@ -108,6 +111,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  public logout() {
+    this._loginService.logout();
   }
 
 }
