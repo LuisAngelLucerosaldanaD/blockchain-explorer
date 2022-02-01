@@ -9,6 +9,7 @@ import {
   ResponseGetTransactionByID
 } from "@app/modules/explorer/models/explorer/explorer.model";
 import {map} from "rxjs/operators";
+import {EnvServiceProvider} from "@app/env/env.service.provider";
 
 @Injectable({
   providedIn: 'root'
@@ -23,12 +24,12 @@ export class ExplorerService {
   private urlGetBlocks: string;
 
   constructor(private httpClient: HttpClient) {
-    this.urlTransactionCredential = environment.API_URL + '/api/v1/transaction/';
-    this.urlAppKey = environment.API_URL + '/api/v1/key/';
-    this.urlGetBlockById = environment.API_URL + '/api/v1/blocks';
-    this.urlTransactionById = environment.API_URL + '/api/v1/transaction';
-    this.urlMinerById = environment.API_URL + '/api/v1/user';
-    this.urlGetBlocks = environment.API_URL + '/api/v1/blocks';
+    this.urlTransactionCredential = EnvServiceProvider.useFactory().REST_API + '/api/v1/transaction/';
+    this.urlAppKey = EnvServiceProvider.useFactory().REST_API + '/api/v1/key/';
+    this.urlGetBlockById = EnvServiceProvider.useFactory().REST_API + '/api/v1/blocks';
+    this.urlTransactionById = EnvServiceProvider.useFactory().REST_API + '/api/v1/transaction';
+    this.urlMinerById = EnvServiceProvider.useFactory().REST_API + '/api/v1/user';
+    this.urlGetBlocks = EnvServiceProvider.useFactory().REST_API + '/api/v1/blocks';
   }
 
   public GetBlocks(pagination: PaginationModel): Observable<ResponseGetBlocks> {

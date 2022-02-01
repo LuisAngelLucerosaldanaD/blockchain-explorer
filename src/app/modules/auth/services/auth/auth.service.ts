@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "@env/environment";
 import {Account, ResponseCreateAccount, ResponseCreateWallet} from "@app/modules/auth/models/register/register";
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {EnvServiceProvider} from "@app/env/env.service.provider";
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class AuthService {
   private readonly token: string;
 
   constructor(private _http: HttpClient) {
-    this.createAccountUrl = environment.API_URL + '/api/v1/user/create';
-    this.createWalletUrl = environment.API_URL + '/api/v1/wallet/create';
+    this.createAccountUrl = EnvServiceProvider.useFactory().REST_API + '/api/v1/user/create';
+    this.createWalletUrl = EnvServiceProvider.useFactory().REST_API + '/api/v1/wallet/create';
     this.token = '';
   }
 

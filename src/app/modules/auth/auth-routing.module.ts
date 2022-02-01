@@ -32,12 +32,12 @@ const routes: Routes = [
     component: SecurityPoliticsComponent
   },
   {
-    path: 'activate-account',
+    path: 'validate/user',
     component: ActivateUserComponent,
     canActivate: [ActivateGuard]
   },
   {
-    path: 'activate-wallet',
+    path: 'validate/wallet',
     component: ActivateWalletComponent,
     canActivate: [ActivateGuard]
   }

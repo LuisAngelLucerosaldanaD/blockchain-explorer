@@ -4,6 +4,7 @@ import {ActivateAccountModel, ActivateAccountResponse, LoginResponse} from "@app
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
+import {EnvServiceProvider} from "@app/env/env.service.provider";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class ActivateService {
   ) {
     const routeParam = new URL(document.location.href);
     this.token = routeParam.searchParams.get('token') || '';
-    this.activateAccountUrl = environment.API_URL + '/api/v1/user/activate';
-    this.activateWalletUrl = environment.API_URL + '/api/v1/wallet/activate';
+    this.activateAccountUrl = EnvServiceProvider.useFactory().REST_API + '/api/v1/user/activate';
+    this.activateWalletUrl = EnvServiceProvider.useFactory().REST_API + '/api/v1/wallet/activate';
   }
 
   public activateAccount(data: ActivateAccountModel): Observable<ActivateAccountResponse> {

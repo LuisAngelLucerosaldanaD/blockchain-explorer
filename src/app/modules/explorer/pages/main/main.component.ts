@@ -19,6 +19,7 @@ import {
   ApexXAxis
 } from "ng-apexcharts";
 import {styleInpSearch} from "@app/utils/constants/data";
+import {EnvServiceProvider} from "@app/env/env.service.provider";
 
 @Component({
   selector: 'app-explorer',
@@ -255,7 +256,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public selectTransactions(position: number): void {
     this.selectedTransaction = this.transactions[position];
     this.isSelectedTransaction = true;
-    this.qrInfo = `https://lion.scan.com.co/explorer/viewer?info=transaction&id=${this.selectedTransaction.id}&id-ex=${this.lastIBlock.id}`;
+    this.qrInfo = `${EnvServiceProvider.useFactory().URL_PAGE}/explorer/viewer?info=transaction&id=${this.selectedTransaction.id}&id-ex=${this.lastIBlock.id}`;
     this.getDataFromTransaction(this.selectedTransaction.data);
   }
 
@@ -269,7 +270,7 @@ export class MainComponent implements OnInit, OnDestroy {
             if (res.data) {
               this.miner = res.data;
               this.isSelectedMiner = true;
-              this.qrInfo = 'https://lion.scan.com.co/explorer/miner?info=miner&id=' + this.lastIBlock.mined_by;
+              this.qrInfo = EnvServiceProvider.useFactory().URL_PAGE + '/explorer/miner?info=miner&id=' + this.lastIBlock.mined_by;
             }
           }
         },
@@ -285,7 +286,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.selectedBlock = this.blocks[position];
     this.isSelectedBlock = true;
     this.lengthTransactionBlockSelected = JSON.parse(this.selectedBlock.data).length;
-    this.qrInfo = 'https://lion.scan.com.co/explorer/viewer?info=block&id=' + this.selectedBlock.id;
+    this.qrInfo = EnvServiceProvider.useFactory().URL_PAGE + '/explorer/viewer?info=block&id=' + this.selectedBlock.id;
   }
 
   public getTotalTransactionFormBlock(transactions: string): number {

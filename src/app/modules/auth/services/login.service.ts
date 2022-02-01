@@ -7,6 +7,7 @@ import {environment} from "@env/environment";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {map} from "rxjs/operators";
 import {Token} from "@app/modules/auth/models/login/login.model";
+import {EnvServiceProvider} from "@app/env/env.service.provider";
 
 const helper = new JwtHelperService();
 
@@ -16,7 +17,7 @@ const helper = new JwtHelperService();
 export class LoginService {
 
   private loggedIn = new BehaviorSubject('');
-  private loginUrl = environment.API_URL + '/api/v1/login';
+  private loginUrl = EnvServiceProvider.useFactory().REST_API + '/api/v1/login';
 
   constructor(
     private http: HttpClient,

@@ -7,7 +7,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {
   DropdownModule,
   FileUploadModule,
-  HeaderModule, IconsModule,
+  HeaderModule, IconsModule, InputPasswordModule,
   InputSearchModule,
   InputTextModule,
   ModalModule, ToastModule, ToastService
@@ -49,7 +49,8 @@ import { InfoViewerComponent } from './pages/info-viewer/info-viewer.component';
     ComponentsModule,
     FormsModule,
     ToastModule,
-    TranslateModule
+    TranslateModule,
+    InputPasswordModule
   ],
   providers: [
     ExplorerService,

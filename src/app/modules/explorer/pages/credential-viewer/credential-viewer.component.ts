@@ -1,17 +1,27 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
+import {Subscription, timer} from "rxjs";
 import {ExplorerService} from "@app/modules/explorer/service/explorer/explorer.service";
 import {Credential} from "@app/modules/explorer/models/explorer/explorer.model";
-import {getTokenUser, validToken} from "@app/utils/validations/validations";
+import {getTokenExpirationDate, getTokenUser, isTokenExpired} from "@app/utils/validations/validations";
 import {decryptText} from "@app/utils/crypto/crypto";
 import {DropdownModel, ToastService} from "ecapture-ng-ui";
 import {ToastStyleModel} from "ecapture-ng-ui/lib/modules/toast/model/toast.model";
 import {toastDataStyle} from "@app/utils/constants/data";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {CredentialInterceptor} from "@app/modules/explorer/service/interceptor/credential.interceptor";
 
 @Component({
   selector: 'app-credential-viewer',
   templateUrl: './credential-viewer.component.html',
-  styleUrls: ['./credential-viewer.component.scss']
+  styleUrls: ['./credential-viewer.component.scss'],
+  providers: [
+    ExplorerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CredentialInterceptor,
+      multi: true
+    }
+  ]
 })
 export class CredentialViewerComponent implements OnInit, OnDestroy {
 
@@ -21,14 +31,34 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
 
   public credential: Credential = {description: "", files: [], identifiers: [], name: ""};
   private readonly token: string;
-  private readonly dataToken: any;
+  private dataToken: any;
   private key: string = '';
-  public isBlockPage: boolean;
+  public isBlockPage: boolean = false;
   public ecDropFile: DropdownModel;
   public isError: boolean = false;
   public isValidToken: boolean = true;
   public filesData: any = [];
   public readonly toastStyle: ToastStyleModel = toastDataStyle;
+  public isloggedIn: boolean = true;
+
+  public password: string = '';
+
+  private _second = 1000;
+  private _minute = this._second * 60;
+  private _hour = this._minute * 60;
+  private _day = this._hour * 24;
+  private end: any;
+  private now: any;
+  public day: any;
+  public hours: any;
+  public minutes: any;
+  public seconds: any;
+  private source = timer(0, 1000);
+
+  public isTokenExpired: boolean = false;
+
+  public msmToken: string = '';
+
 
   constructor(
     private _explorerService: ExplorerService,
@@ -69,33 +99,15 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
         }
       },
     };
-    this.isBlockPage = true;
     this.token = this.getUrlParams();
     if (this.token !== '') {
-      if (!validToken(this.token)) {
+      if (!isTokenExpired(this.token)) {
         this.dataToken = getTokenUser(this.token);
-        this._subscription.add(
-          this._explorerService.getAppId().subscribe(
-            (res) => {
-              if (res.error) {
-                this._messageService.add({type: 'error', message: res.msg, life: 5000});
-              } else {
-                this.key = atob(res.data);
-                this.getTransaction(this.dataToken.credential.transaction_id, this.dataToken.credential.block);
-              }
-            },
-            (err: Error) => {
-              console.error(err.message);
-              this.isBlockPage = false;
-              this.isValidToken = false;
-              this.isError = true;
-              this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
-            }
-          )
-        );
+        this.initClock();
+        this.isloggedIn = false;
       } else {
-        this.isValidToken = false;
-        this.isError = true;
+        this.msmToken = 'La credencial ha expirado!';
+        this.isTokenExpired = true;
         this.isBlockPage = false;
       }
     } else {
@@ -164,7 +176,7 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
     const urlData = new URL(document.location.toString());
     const ObjectToken = urlData.searchParams.get('token');
     if (ObjectToken !== '' && ObjectToken) {
-      sessionStorage.setItem('Token', ObjectToken);
+      sessionStorage.setItem('credential-token', ObjectToken);
     }
     return ObjectToken || '';
   }
@@ -172,6 +184,72 @@ export class CredentialViewerComponent implements OnInit, OnDestroy {
   public changeDocument(value: string): void {
     for (const file of this.credential.files) {
       if (file.name === value) this.documentSelected = file.file_encode;
+    }
+  }
+
+  private getCrendential(): void {
+    this.isBlockPage = true;
+    this._subscription.add(
+      this._explorerService.getAppId().subscribe(
+        (res) => {
+          if (res.error) {
+            this._messageService.add({type: 'error', message: res.msg, life: 5000});
+          } else {
+            this.key = atob(res.data);
+            this.getTransaction(this.dataToken.credential.transaction_id, this.dataToken.credential.block);
+          }
+        },
+        (err: Error) => {
+          console.error(err.message);
+          this.isBlockPage = false;
+          this.isValidToken = false;
+          this.isError = true;
+          this._messageService.add({type: 'error', message: 'Conexión perdida con el servidor!', life: 5000});
+        }
+      )
+    );
+  }
+
+  public showCredential(): void {
+    if (this.password !== '') {
+      if (this.password === decryptText(this.dataToken.credential.verify, '204812730425442A472D2F423F452847')) {
+        this.isloggedIn = true;
+        this.getCrendential();
+      } else {
+        this._messageService.add({type: 'warning', message: 'Contraseña incorrecta!', life: 5000});
+      }
+    } else {
+      this._messageService.add({type: 'error', message: 'Debe ingresar la contraseña!', life: 5000});
+    }
+  }
+
+  private initClock(): void {
+    const ttl = getTokenExpirationDate(this.token);
+    this._subscription.add(
+      this.source.subscribe(() => {
+        this.now = new Date();
+        this.end = new Date(ttl);
+        this.showDate();
+      })
+    );
+
+  }
+
+  private showDate(): void {
+    let distance = this.end - this.now;
+    this.day = Math.floor(distance / this._day);
+    this.hours = Math.floor((distance % this._day) / this._hour);
+    this.minutes = Math.floor((distance % this._hour) / this._minute);
+    this.seconds = Math.floor((distance % this._minute) / this._second);
+
+    if (this.seconds === 0 && this.minutes === 0 && this.hours === 0 && this.day === 0) {
+      this.msmToken = 'El Tiempo para ver la credencial ha expirado!';
+      this.isloggedIn = true;
+      this.isValidToken = true;
+      this.isBlockPage = false;
+      this.isError = false;
+      this.isTokenExpired = true;
+      this._messageService.add({type: 'error', message: 'El token ha expirado!', life: 5000});
     }
   }
 }

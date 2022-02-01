@@ -14,7 +14,15 @@ export const getTokenUser = (token: string) => {
   return user;
 }
 
-export const validToken = (token: string) => {
+export const getTokenExpirationDate = (token: string) => {
+  let expirationDate: any;
+  if (token) {
+    expirationDate = helper.getTokenExpirationDate(token);
+  }
+  return expirationDate;
+}
+
+export const isTokenExpired = (token: string) => {
   if (token) {
       return helper.isTokenExpired(token);
   } else {
