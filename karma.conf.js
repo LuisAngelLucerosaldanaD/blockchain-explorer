@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/blockchain-main'),
+      dir: require('path').join(__dirname, './coverage/blockchain-explorer'),
       subdir: '.',
       reporters: [
         { type: 'html' },
