@@ -1,4 +1,152 @@
-<h1 class="text-3xl font-bold underline bg-c text-l-3">
-  Hello TailwindCSS!
-</h1>
+<div class="dark:bg-slate-900">
 
+  <div class="left flex flex-row space-x-4 items-center bg-slate-200 dark:bg-slate-800 justify-between p-4 border-2">
+    <div class="flex items-center space-x-4">
+    <div >
+<img src="./assets/img/Union.png" >
+    </div>
+    <div class="navbar  lg:block space-x-4 font-normal text-sm text-slate-900 dark:text-slate-50">
+      <a href="">Home</a>
+      <a href="">Explorer</a>
+      <a href="">App</a>
+      <a href="">Oferts</a>
+      <a href="">Contact</a>
+    </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button  class=" space-x-2 items-center justify-between bg-slate-200 border-2 border-c  text-slate-900 text-center p-1 rounded dark:text-slate-50 dark:bg-slate-800">Register</button>
+      <button  class=" space-x-2 items-center justify-between text-center bg-c text-slate-50  p-2 rounded dark:text-slate-900">Sign in</button>
+    </div>
+
+  </div>
+
+  <div class="left flex flex-row justify-between pt-12 pr-12 pl-12">
+
+    <div>
+
+      <div>
+        <h1 class="dark:text-slate-50">BLion Blockchain Explorer</h1>
+        <form class="flex flex-row items-center justify-between">
+
+        <input type="text" value="search" class="border-slate-500 border-2 rounded w-96 m-1 p-1 text-slate-500" >
+          <button  class="flex flex-row lg:space-x-2 items-center justify-center bg-c text-slate-50 h-8 p-4 rounded dark:text-slate-900">Buscar</button>
+        </form>
+      </div>
+
+      <div class="p-2" >
+
+
+        <div class="flex flex-row items-center justify-between p-1" >
+          <div class="bg-c h-8 w-8 rounded-full m-2" ></div>
+          <div class="flex flex-col"><span class="text-slate-600 text-sm dark:text-slate-400">Ether Price</span>  <span class="text-slate-50">$4,114.69 @ 0.07524 BTC (-0.34%)</span></div>
+          <div class="bg-c h-8 w-8 rounded-full m-2" ></div>
+          <div class="flex flex-col"><span class="text-slate-600 text-sm dark:text-slate-400">Transactions Med Gas Price</span> <span class="text-slate-50" >$4,114.69 (18.2 TPS)162 Gwei ($14.00)</span></div>
+        </div>
+
+        <div class="flex flex-row items-center justify-between p-2" >
+          <div class="bg-c h-8 w-8 rounded-full m-2" ></div>
+          <div class="flex flex-col text-left"><span class="text-slate-600 text-sm dark:text-slate-400">Market Cap</span>  <span class="text-slate-50">$476,678,935,648.00</span></div>
+          <div class="bg-c h-8 w-8 rounded-full m-2" ></div>
+          <div class="flex flex-col text-left"><span class="text-slate-600 text-sm dark:text-slate-400">Difficulty Hash Rate</span> <span class="text-slate-50">7,750.02 TH 592,930.92 GH/s</span></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div>
+
+      <div >
+        <h1>Nodes on the World</h1>
+        <div class="flex flex-row items-center justify-between flex flex-row dark:bg-slate-800">
+        <div class="bg-slate-200 p-2 m-1 h-16 w-56 rounded flex flex-col">
+          <span class="text-slate-600 dark:text-slate-400">Number of Nodes <br> </span> <span class="dark:text-slate-400">21</span>
+        </div>
+        <div class="bg-slate-200 p-2 m-1 h-16 w-56 rounded flex flex-col ">
+          <span class="text-slate-600 dark:text-slate-400">Nodes Actives<br> </span> <span class="dark:text-slate-400">7</span>
+        </div>
+        <div class="bg-slate-200 p-2 m-1 h-16 w-56 rounded flex flex-col dark:text-slate-800">
+          <span class="text-slate-600 dark:text-slate-400">Nodes Disables</span> <span class="dark:text-slate-400">14</span>
+        </div>
+        </div>
+      </div>
+
+      <div><img src="./assets/img/mapamundi.png" class="h-80 p-2 m-3"></div>
+
+    </div>
+
+  </div>
+
+  <div class="flex flex-row items-center  w-full  space-x-4 my-4">
+
+    <div class="w-1/2 p-12">
+
+      <div class="pb-4">
+
+        <h1 class="dark:text-slate-50">Last Operations</h1>
+
+        <div class="bg-slate-200 flex flex-row items-center rounded w-60 dark:bg-slate-800" >
+        <button  class="lg:flex lg:flex-row lg:space-x-2 lg:items-center justify-center bg-c text-slate-50 h-8 p-4 m-2 rounded dark:text-slate-900">Blocks</button>
+        <button  class="lg:flex lg:flex-row lg:space-x-2 lg:items-center justify-center bg-slate-50 text-slate-900 h-8 p-4 m-2 rounded dark:text-slate-50 dark:bg-slate-900">Transactions</button>
+        </div>
+
+      </div>
+
+      <div class="bg-slate-200 h-72 rounded flex flex-col left dark:bg-slate-800 " >
+
+
+        <div class="bg-slate-200 flex flex-row items-center justify-between p-2 space-x-4 dark:bg-slate-800" >
+          <div class="bg-c h-12 w-12 rounded m-2" ></div>
+          <div class="flex flex-col dark:text-slate-50 "><span>124421412521</span>  <span class="text-slate-600 text-sm dark:text-slate-400">1 min 4 secs ago</span></div>
+          <div class="flex flex-col dark:text-slate-50"><span>Miner 0xaee21412512512421 </span> <span class="text-slate-600 text-sm dark:text-slate-400">267 txns in 3 secs</span></div>
+        </div>
+
+        <div class="bg-slate-200 flex flex-row items-center justify-between p-2 space-x-4 dark:bg-slate-800" >
+          <div class="bg-c h-12 w-12 rounded m-2" ></div>
+          <div class="flex flex-col dark:text-slate-50"><span>124421412521</span>  <span class="text-slate-600 text-sm dark:text-slate-400">1 min 4 secs ago</span></div>
+          <div class="flex flex-col dark:text-slate-50"><span>Miner 0xaee21412512512421 </span> <span class="text-slate-600 text-sm dark:text-slate-400">267 txns in 3 secs</span></div>
+        </div>
+
+        <div class="bg-slate-200 flex flex-row items-center justify-between p-2 space-x-4 dark:bg-slate-800" >
+          <div class="bg-c h-12 w-12 rounded m-2" ></div>
+          <div class="flex flex-col dark:text-slate-50"><span>124421412521</span>  <span class="text-slate-600 text-sm dark:text-slate-400">1 min 4 secs ago</span></div>
+          <div class="flex flex-col dark:text-slate-50"><span>Miner 0xaee21412512512421 </span> <span class="text-slate-600 text-sm dark:text-slate-400">267 txns in 3 secs</span></div>
+        </div>
+
+        <div class="bg-slate-200 flex flex-row items-center justify-between p-2 space-x-4 dark:bg-slate-800" >
+          <div class="bg-c h-12 w-12 rounded m-2" ></div>
+          <div class="flex flex-col dark:text-slate-50"><span>124421412521</span>  <span class="text-slate-600 text-sm dark:text-slate-400">1 min 4 secs ago</span></div>
+          <div class="flex flex-col dark:text-slate-50"><span>Miner 0xaee21412512512421 </span> <span class="text-slate-600 text-sm dark:text-slate-400">267 txns in 3 secs</span></div>
+        </div>
+
+        <div class="bg-slate-200 flex flex-row items-center justify-between p-2 space-x-4 dark:bg-slate-800" >
+          <div class="bg-c h-12 w-12 rounded m-2" ></div>
+          <div class="flex flex-col dark:text-slate-50"><span>124421412521</span>  <span class="text-slate-600 text-sm dark:text-slate-400">1 min 4 secs ago</span></div>
+          <div class="flex flex-col dark:text-slate-50"><span>Miner 0xaee21412512512421 </span> <span class="text-slate-600 text-sm dark:text-slate-400">267 txns in 3 secs</span></div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="w-1/2">
+
+
+
+        <h1 class="dark:text-slate-50">History</h1>
+        <samp class="dark:text-slate-50">Acai Transactions in 14 days</samp>
+
+
+
+      <div class="h-80 p-2 m-3">
+
+        <highcharts-chart  [Highcharts]="Highcharts" [options]="chartOptions"
+                           style="width: 100%; height: 400px; display: block;"></highcharts-chart>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
