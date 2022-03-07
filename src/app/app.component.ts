@@ -20,10 +20,10 @@ export class AppComponent implements OnInit{
         type: 'area'
       },
       xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        categories: ['4:04 AM', '7:04 AM', '10:04 AM', '1:04 PM', '4:04 PM', '10:00 PM', '10:04 PM'],
         lineWidth: 0,
         minorGridLineWidth: 0,
-        lineColor: 'transparent',
+        lineColor: 'transparent ',
       },
 
       plotOptions: {
@@ -31,16 +31,16 @@ export class AppComponent implements OnInit{
           fillColor: {
             linearGradient: [0, 0, 0, 300],
             stops: [
-              [0, '#EE6A14'],
-              [1, ('#ffffff')]
+              [0, '#EE6A14 '],
+              [1, ('#ffffff ')]
             ]
           }
         }
       },
 
       series: [{
-        color: '#EE6A14',
-        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+        color: '#EE6A14 ',
+        data: [50.5,90.9, 40.9, 90.0, 144.0, 99.0, 110.6]
       }]
 
     };
