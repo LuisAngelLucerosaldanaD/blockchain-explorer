@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
   title = 'blockchain-explorer';
   public  chartOptions: any;
 
-
+  public isMenuBurger: boolean = false;
 
   Highcharts = Highcharts;
 
