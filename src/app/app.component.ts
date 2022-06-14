@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_exporting from 'highcharts/modules/exporting';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit{
   title = 'blockchain-explorer';
+  private time: any;
   public  chartOptions: any;
 
   public isMenuBurger: boolean = false;
@@ -47,28 +49,10 @@ export class AppComponent implements OnInit{
 
     HC_exporting(Highcharts);
 
-    setTimeout(() => {
+    this.time = setTimeout(() => {
       window.dispatchEvent(
         new Event('resize')
       );
     }, 300);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
