@@ -5,15 +5,18 @@ import { AppComponent } from './app.component';
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HighchartsChartModule} from "highcharts-angular";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
     HighchartsChartModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

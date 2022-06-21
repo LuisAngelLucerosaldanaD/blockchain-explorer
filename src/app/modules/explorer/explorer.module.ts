@@ -1,12 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ExplorerComponent} from "./explorer.component";
+import {ExplorerRoutingModule} from "./explorer-routing.module";
+import {HighchartsChartModule} from "highcharts-angular";
+
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ExplorerComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    ExplorerRoutingModule,
+    HighchartsChartModule,
   ]
 })
-export class ExplorerModule { }
+export class ExplorerModule {
+
+}
+
+
+
+
