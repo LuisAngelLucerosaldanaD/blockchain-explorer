@@ -8,7 +8,7 @@ import {HighchartsChartModule} from "highcharts-angular";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
