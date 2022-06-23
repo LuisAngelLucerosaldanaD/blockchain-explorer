@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HighchartsChartModule} from "highcharts-angular";
+import {AppRoutingModule} from "./app-routing.module";
+import { AuthComponent } from './modules/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import {HighchartsChartModule} from "highcharts-angular";
     BrowserModule,
     HighchartsChartModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
