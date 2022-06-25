@@ -4,6 +4,17 @@ module.exports ={
   theme:{
     extend:{
       colors:{
+        'white-fx': 'var(--c-fx-white)',
+        'black-fx': 'var(--c-fx-black)',
+        st: {
+          5: 'var(--c-fl-slate-5)',
+          20: 'var(--c-fl-slate-20)',
+          40: 'var(--c-fl-slate-40)',
+          50: 'var(--c-fl-slate-50)',
+          60: 'var(--c-fl-slate-60)',
+          80: 'var(--c-fl-slate-80)',
+          90: 'var(--c-fl-slate-90)',
+        },
         d:{
           1: 'var(--c-fl-brand-d-1)',
           2: 'var(--c-fl-brand-d-2)',

@@ -13,7 +13,10 @@ export class ExplorerComponent implements OnInit {
   public  chartOptions: any;
 
   public isMenuBurger: boolean = false;
-  public blocks: Block[]=[]
+  public blocks: Block[]=[];
+  public transactions: Block[]=[]
+  public tab: string = 'blocks';
+
   Highcharts = Highcharts;
   constructor (private _explorerservice: ExplorerService){
     this.getAllBlocks()
@@ -58,14 +61,15 @@ export class ExplorerComponent implements OnInit {
       );
     }, 300);
   }
-  
+
   private getAllBlocks():void{
     this._explorerservice.getBlocks().subscribe({
       next:(res) => {
         if (res.error){
           console.log(res.msg)
         }else {
-          this.blocks=res.data
+          this.blocks = res.data;
+          this.transactions = res.data;
         }
 
       }

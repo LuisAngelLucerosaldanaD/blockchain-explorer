@@ -12,6 +12,15 @@
     --c-brand-l-1: #FF9447;
     --c-brand-l-2: #FFAC70;
     --c-brand-l-3: #FFDBC2;
+
+    --c-slate-5: #F8FAFC;
+    --c-slate-20: #E2E8F0;
+    --c-slate-40: #94A3B8;
+    --c-slate-50: #64748B;
+    --c-slate-60: #475569;
+    --c-slate-80: #1E293B;
+    --c-slate-90: #0F172A;
+
     --c-alert-error-l: #FF666E;
     --c-alert-success-l: #2ABB54;
     --c-alert-info-l: #4C8AFF;
@@ -29,6 +38,21 @@
     --c-fl-brand-l-1: var(--c-brand-l-1);
     --c-fl-brand-l-2: var(--c-brand-l-2);
     --c-fl-brand-l-3: var(--c-brand-l-3);
+
+    --c-fl-black: var(--c-slate-90);
+    --c-fl-white: var(--c-slate-5);
+
+    --c-fx-black: var(--c-slate-90);
+    --c-fx-white: var(--c-slate-5);
+
+    --c-fl-slate-5: var(--c-slate-5);
+    --c-fl-slate-20: var(--c-slate-20);
+    --c-fl-slate-40: var(--c-slate-40);
+    --c-fl-slate-50: var(--c-slate-50);
+    --c-fl-slate-60: var(--c-slate-60);
+    --c-fl-slate-80: var(--c-slate-80);
+    --c-fl-slate-90: var(--c-slate-90);
+
     --c-fl-alert-error: var(--c-alert-error-d);
     --c-fl-alert-success: var(--c-alert-success-d);
     --c-fl-alert-info: var(--c-alert-info-d);
@@ -44,43 +68,168 @@
     --c-fl-brand-l-1: var(--c-brand-d-1);
     --c-fl-brand-l-2: var(--c-brand-d-2);
     --c-fl-brand-l-3: var(--c-brand-d-3);
+
+    --c-fl-black: var(--c-slate-5);
+    --c-fl-white: var(--c-slate-90);
+
+    --c-fx-black: var(--c-slate-90);
+    --c-fx-white: var(--c-slate-5);
+
+    --c-fl-slate-5: var(--c-slate-90);
+    --c-fl-slate-20: var(--c-slate-80);
+    --c-fl-slate-40: var(--c-slate-60);
+    --c-fl-slate-50: var(--c-slate-50);
+    --c-fl-slate-60: var(--c-slate-40);
+    --c-fl-slate-80: var(--c-slate-20);
+    --c-fl-slate-90: var(--c-slate-5);
+
     --c-fl-alert-error: var(--c-alert-error-l);
     --c-fl-alert-success: var(--c-alert-success-l);
     --c-fl-alert-info: var(--c-alert-info-l);
     --c-fl-alert-warning: var(--c-alert-warning-l);
   }
 }
-.ec-container {
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.t-title {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.t-subtitle {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.t-body {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.t-body-b {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.t-label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.t-label-b {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.bj-header {
+  @apply fixed top-0 z-50 backdrop-blur-xl flex flex-row items-center justify-between w-full h-16 space-x-4 bj-container bg-white/50 dark:bg-black/50 border-b border-st-20;
+  .brand {
+    @apply text-st-90;
+  }
+  .navbar {
+    @apply hidden space-x-4 t-body md:block text-st-90;
+    a:hover {
+      @apply t-body-b;
+    }
+  }
+  .left {
+    @apply flex items-center space-x-4;
+  }
+  .right {
+    @apply flex items-center space-x-2;
+  }
+  .b-menu-burger {
+    @apply flex items-center justify-center w-10 h-10 rounded text-st-90 hover:bg-st-5;
+  }
+}
+
+.bj-menu-burger {
+  @apply fixed z-50 flex flex-col w-full t-body drop-shadow-lg text-st-90 top-16 bg-st-5;
+}
+
+.bj-container {
   @apply px-6 md:px-12 lg:px-16 2xl:px-24;
 }
 
+button {
+  @apply h-10;
+}
+
 .b-solid, .b-outline, .b-ghost {
-  @apply h-10 text-sm rounded px-4 hover:bg-d-1 hover:text-slate-50 dark:hover:text-slate-900 active:bg-d-2 focus:outline-none focus:ring-2 focus:ring-d-1
+  @apply t-body-b hover:bg-st-20 hover:text-st-90 hover:border hover:border-st-40 rounded px-4 active:bg-c focus:outline-none focus:ring-2 focus:ring-d-1 disabled:bg-st-20 disabled:text-st-40 disabled:border-none;
 }
 
 .b-solid {
-  @apply bg-c text-slate-50 dark:text-slate-900
-}
-.b-solid:disabled {
-  @apply bg-slate-200 text-slate-400 dark:bg-slate-800 dark:text-slate-600
+  @apply bg-c text-white-fx
 }
 .b-outline {
-  @apply border border-c text-slate-900 dark:text-slate-50
-}
-.b-outline:disabled {
-  @apply bg-transparent border-slate-200 text-slate-400 dark:border-slate-800 dark:text-slate-600
+  @apply border border-c text-st-90
 }
 .b-ghost {
-  @apply text-slate-900 dark:text-slate-50
-}
-.b-ghost:disabled {
-  @apply bg-transparent text-slate-400 dark:text-slate-600
+  @apply text-st-90
 }
 
-.bl-input {
-  @apply h-10 border rounded px-2 text-sm border-slate-500 text-slate-900 dark:text-slate-50 bg-slate-50 dark:bg-slate-900
+.bj-input {
+  @apply h-10 border rounded px-2 t-body border-st-50 text-st-90 bg-st-5 placeholder-st-50;
 }
 
 svg {
   @apply fill-current
 }
+
+*:disabled {
+  pointer-events:none;
+}
+
+::-webkit-scrollbar {
+  @apply w-4 h-4
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-transparent
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-st-20
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-st-40
+}
+
+/* STYLES EXPLORER */
+
+.list-operations {
+  @apply p-2 space-y-2 overflow-hidden rounded t-body text-st-90 bg-st-20;
+  .item-operation {
+    @apply flex flex-row items-center space-x-2 rounded cursor-pointer hover:bg-st-5 p-2 active:bg-st-40;
+    .cuadrado {
+      @apply w-10 h-10 rounded bg-c text-white-fx flex items-center justify-center;
+    }
+  }
+}
+
+/* END STYLES EXPLORER */
