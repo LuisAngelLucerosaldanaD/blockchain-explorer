@@ -156,7 +156,7 @@
     @apply flex items-center space-x-4;
   }
   .right {
-    @apply flex items-center space-x-2;
+    @apply items-center space-x-2 hidden md:flex;
   }
   .b-menu-burger {
     @apply flex items-center justify-center w-10 h-10 rounded text-st-90 hover:bg-st-5;
@@ -164,7 +164,7 @@
 }
 
 .bj-menu-burger {
-  @apply fixed z-50 flex flex-col w-full t-body drop-shadow-lg text-st-90 top-16 bg-st-5;
+  @apply fixed z-50 flex flex-col w-full t-body drop-shadow-lg text-st-90 top-16 backdrop-blur-xl bg-white/50 dark:bg-black/50 border-b border-st-40;
 }
 
 .bj-container {
@@ -228,6 +228,9 @@ svg {
     @apply flex flex-row items-center space-x-2 rounded cursor-pointer hover:bg-st-5 p-2 active:bg-st-40;
     .cuadrado {
       @apply w-10 h-10 rounded bg-c text-white-fx flex items-center justify-center;
+    }
+    .circulo {
+      @apply w-10 h-10 rounded-full bg-c text-white-fx flex items-center justify-center;
     }
   }
 }
