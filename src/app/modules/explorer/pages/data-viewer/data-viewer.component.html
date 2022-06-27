@@ -1,52 +1,50 @@
-<div class="bj-container space-y-12 py-12">
-  <div class="header flex flex-col md:flex-row items-end md:items-center gap-6">
-    <div class="title w-full md:w-auto md:flex-1 flex flex-col text-st-90">
+<div class="data-viewer-container">
+  <div class="header">
+    <div class="title">
       <span class="t-title">Póliza de Seguros Estudiantil</span>
       <span class="t-body">Carnet Digital de la Póliza de Seguros Estudiantil</span>
     </div>
     <div class="firm">
-      <div class="flex items-center rounded space-x-4 p-3 bg-alert-success text-st-5">
-        <span class="t-subtitle">Firma Verificada</span>
-        <div>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15.0003 19.5089L11.7463 16.2549L12.2553 15.7459L15.0003 18.4909L20.7453 12.7449L21.2553 13.2539L15.0003 19.5089ZM23.3143 28.3599H31.0003C31.1193 28.3599 31.2313 28.2999 31.2983 28.2019C31.3653 28.1019 31.3793 27.9769 31.3343 27.8659L30.3883 25.4999L31.3343 23.1339C31.3793 23.0229 31.3653 22.8979 31.2983 22.7979C31.2313 22.6989 31.1193 22.6399 31.0003 22.6399H28.7353C29.8003 20.6009 30.3603 18.3169 30.3603 15.9999C30.3603 8.08189 23.9183 1.63989 16.0003 1.63989C8.0823 1.63989 1.6403 8.08189 1.6403 15.9999C1.6403 18.3169 2.2003 20.6009 3.2653 22.6399H1.0003C0.880297 22.6399 0.769297 22.6999 0.702297 22.7979C0.635297 22.8979 0.622297 23.0229 0.666297 23.1339L1.6123 25.4999L0.665297 27.8659C0.621297 27.9769 0.634297 28.1019 0.701297 28.2019C0.769297 28.3009 0.880297 28.3599 1.0003 28.3599H8.6863C10.8943 29.6689 13.4203 30.3599 16.0003 30.3599C18.5803 30.3599 21.1063 29.6689 23.3143 28.3599ZM21.7753 28.3599C18.1773 30.0399 13.8223 30.0399 10.2253 28.3599H21.7753ZM2.3343 25.6339C2.3683 25.5479 2.3683 25.4519 2.3343 25.3659L1.5323 23.3599H30.4693L29.6663 25.3659C29.6323 25.4519 29.6323 25.5479 29.6663 25.6339L30.4693 27.6399H1.5323L2.3343 25.6339ZM27.3603 15.9999C27.3603 9.73589 22.2633 4.63989 16.0003 4.63989C9.7363 4.63989 4.6403 9.73589 4.6403 15.9999C4.6403 18.3849 5.3963 20.7149 6.7823 22.6399H4.0823C2.9553 20.6199 2.3603 18.3279 2.3603 15.9999C2.3603 8.47889 8.4793 2.35989 16.0003 2.35989C23.5213 2.35989 29.6403 8.47889 29.6403 15.9999C29.6403 18.3279 29.0453 20.6199 27.9173 22.6399H25.2183C26.6043 20.7159 27.3603 18.3849 27.3603 15.9999ZM5.3603 15.9999C5.3603 10.1329 10.1333 5.35989 16.0003 5.35989C21.8673 5.35989 26.6403 10.1329 26.6403 15.9999C26.6403 18.4109 25.8163 20.7619 24.3153 22.6399H7.6863C6.1853 20.7619 5.3603 18.4099 5.3603 15.9999Z"/>
-          </svg>
-        </div>
+      <span class="t-subtitle">Firma Verificada</span>
+      <div>
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.0003 19.5089L11.7463 16.2549L12.2553 15.7459L15.0003 18.4909L20.7453 12.7449L21.2553 13.2539L15.0003 19.5089ZM23.3143 28.3599H31.0003C31.1193 28.3599 31.2313 28.2999 31.2983 28.2019C31.3653 28.1019 31.3793 27.9769 31.3343 27.8659L30.3883 25.4999L31.3343 23.1339C31.3793 23.0229 31.3653 22.8979 31.2983 22.7979C31.2313 22.6989 31.1193 22.6399 31.0003 22.6399H28.7353C29.8003 20.6009 30.3603 18.3169 30.3603 15.9999C30.3603 8.08189 23.9183 1.63989 16.0003 1.63989C8.0823 1.63989 1.6403 8.08189 1.6403 15.9999C1.6403 18.3169 2.2003 20.6009 3.2653 22.6399H1.0003C0.880297 22.6399 0.769297 22.6999 0.702297 22.7979C0.635297 22.8979 0.622297 23.0229 0.666297 23.1339L1.6123 25.4999L0.665297 27.8659C0.621297 27.9769 0.634297 28.1019 0.701297 28.2019C0.769297 28.3009 0.880297 28.3599 1.0003 28.3599H8.6863C10.8943 29.6689 13.4203 30.3599 16.0003 30.3599C18.5803 30.3599 21.1063 29.6689 23.3143 28.3599ZM21.7753 28.3599C18.1773 30.0399 13.8223 30.0399 10.2253 28.3599H21.7753ZM2.3343 25.6339C2.3683 25.5479 2.3683 25.4519 2.3343 25.3659L1.5323 23.3599H30.4693L29.6663 25.3659C29.6323 25.4519 29.6323 25.5479 29.6663 25.6339L30.4693 27.6399H1.5323L2.3343 25.6339ZM27.3603 15.9999C27.3603 9.73589 22.2633 4.63989 16.0003 4.63989C9.7363 4.63989 4.6403 9.73589 4.6403 15.9999C4.6403 18.3849 5.3963 20.7149 6.7823 22.6399H4.0823C2.9553 20.6199 2.3603 18.3279 2.3603 15.9999C2.3603 8.47889 8.4793 2.35989 16.0003 2.35989C23.5213 2.35989 29.6403 8.47889 29.6403 15.9999C29.6403 18.3279 29.0453 20.6199 27.9173 22.6399H25.2183C26.6043 20.7159 27.3603 18.3849 27.3603 15.9999ZM5.3603 15.9999C5.3603 10.1329 10.1333 5.35989 16.0003 5.35989C21.8673 5.35989 26.6403 10.1329 26.6403 15.9999C26.6403 18.4109 25.8163 20.7619 24.3153 22.6399H7.6863C6.1853 20.7619 5.3603 18.4099 5.3603 15.9999Z"/>
+        </svg>
       </div>
     </div>
   </div>
-
-  <div class="body gap-12 flex flex-col lg:flex-row-reverse">
-    <div class="w-full lg:w-2/3 space-y-12">
-      <div class="top flex w-full flex-col space-y-6">
-        <div class="title flex flex-col space-y-2">
+  <div class="top-divider"></div>
+  <div class="body">
+    <div class="section-a">
+      <div class="timer-container">
+        <div class="title">
           <span class="t-subtitle text-st-90">Tiempo de vida de la información compartida</span>
           <span class="t-body text-st-60">Una vez terminado el tiempo, la información compartida de la credencial no podrá vizualizarce por este medio hasta que se genere un nuevo enlace desde la aplicación de OnlyOne.</span>
         </div>
-        <div class="timer w-full flex space-x-8">
-          <div class="flex w-full justify-center md:w-auto items-center space-x-2">
-            <span class="t-title text-c">01</span>
-            <span class="t-subtitle text-st-60">D</span>
+        <div class="timers">
+          <div class="timer">
+            <span>01</span>
+            <span>D</span>
           </div>
-          <div class="flex w-full justify-center md:w-auto items-center space-x-2">
-            <span class="t-title text-c">04</span>
-            <span class="t-subtitle text-st-60">H</span>
+          <div class="timer">
+            <span>04</span>
+            <span>H</span>
           </div>
-          <div class="flex w-full justify-center md:w-auto items-center space-x-2">
-            <span class="t-title text-c">12</span>
-            <span class="t-subtitle text-st-60">H</span>
+          <div class="timer">
+            <span>12</span>
+            <span>H</span>
           </div>
-          <div class="flex w-full justify-center md:w-auto items-center space-x-2">
-            <span class="t-title text-c">47</span>
-            <span class="t-subtitle text-st-60">S</span>
+          <div class="timer">
+            <span>47</span>
+            <span>S</span>
           </div>
         </div>
       </div>
-      <div class="bottom flex flex-col space-y-2">
-        <div class="title flex items-center justify-between">
+      <div class="credential-container">
+        <div class="title">
           <span class="t-subtitle text-st-90">Información de la Credencial</span>
-          <div class="flex items-center text-st-90 space-x-2">
-            <span class="t-body">Copiar Todo</span>
+          <div class="copy-action">
+            <span>Copiar Todo</span>
             <div>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8.99854 3C7.89397 3 6.99854 3.89543 6.99854 5V13C6.99854 14.1046 7.89397 15 8.99854 15L14 15C15.1046 15 16 14.1046 16 13V7.5H15.9985V6.41421C15.9985 6.01639 15.8405 5.63486 15.5592 5.35355L13.645 3.43934C13.3637 3.15804 12.9821 3 12.5843 3H8.99854ZM14 14L8.99854 14C8.44625 14 7.99854 13.5523 7.99854 13V5C7.99854 4.44772 8.44625 4 8.99854 4H11.9985V5.5C11.9985 6.32843 12.6701 7 13.4985 7H14.9985V8.06135L15 8.06102V13C15 13.5523 14.5523 14 14 14ZM14.7914 6H13.4985C13.2224 6 12.9985 5.77614 12.9985 5.5V4.20711L14.7914 6ZM5 6C5 5.44772 5.44772 5 6 5V13C6 14.6569 7.34315 16 9 16L14 16C14 16.5523 13.5523 17 13 17H8.78947C6.6966 17 5 15.3034 5 13.2105V6Z"/>
@@ -54,51 +52,51 @@
             </div>
           </div>
         </div>
-        <div class="data text-st-90 bg-st-20 w-full grid grid-cols-2 p-6 gap-6">
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Póliza</span>
-            <span class="t-body-b">203679036694</span>
+        <div class="credential-data">
+          <div class="attribute">
+            <span>Póliza</span>
+            <span>203679036694</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Carnet</span>
-            <span class="t-body-b">372420</span>
+          <div class="attribute">
+            <span>Carnet</span>
+            <span>372420</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Agencia</span>
-            <span class="t-body-b">UNAS</span>
+          <div class="attribute">
+            <span>Agencia</span>
+            <span>UNAS</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Tomador</span>
-            <span class="t-body-b">UNMSM</span>
+          <div class="attribute">
+            <span>Tomador</span>
+            <span>UNMSM</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Asegurador</span>
-            <span class="t-body-b">Carlos Abraham Cárdenas Paredes</span>
+          <div class="attribute">
+            <span>Asegurador</span>
+            <span>Carlos Abraham Cárdenas Paredes</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Identificación</span>
-            <span class="t-body-b">76136183</span>
+          <div class="attribute">
+            <span>Identificación</span>
+            <span>76136183</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Fecha de emición</span>
-            <span class="t-body-b">2022-06-01T14:34:56:722Z</span>
+          <div class="attribute">
+            <span>Fecha de emición</span>
+            <span>2022-06-01T14:34:56:722Z</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label">Fecha de vencimiento</span>
-            <span class="t-body-b">2023-6-1</span>
+          <div class="attribute">
+            <span>Fecha de vencimiento</span>
+            <span>2023-6-1</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="w-full lg:w-auto lg:flex-1 lg:border-l border-t border-st-20"></div>
-    <div class="w-full lg:w-1/3 space-y-4">
-      <div class="title flex flex-col space-y-2 w-full">
-        <span class="text-st-90 t-subtitle">Anexos</span>
+    <div class="bj-divider"></div>
+    <div class="section-b">
+      <div class="title">
+        <span>Anexos</span>
         <select class="bj-input">
           <option checked>Nombre del anexo</option>
         </select>
       </div>
-      <div class="visor rounded overflow-hidden h-full w-full bg-st-20"></div>
+      <div class="visor"></div>
     </div>
   </div>
 </div>

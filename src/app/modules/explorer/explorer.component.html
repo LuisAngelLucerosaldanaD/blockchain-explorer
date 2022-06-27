@@ -1,7 +1,7 @@
-<div class="flex flex-col w-full pt-16">
+<div class="explorer-container">
 
   <div class="bj-header">
-    <div class="left ">
+    <div class="left">
       <div class="btn-menu-burger md:hidden">
         <button (click)="isMenuBurger = !isMenuBurger" class="b-menu-burger">
           <div>
@@ -44,34 +44,34 @@
   </div>
 
   <div *ngIf="isMenuBurger" class="bj-menu-burger">
-    <div class="flex space-x-4 p-6">
-      <button class="b-outline h-8 flex-1">Register</button>
-      <button class="b-solid h-8 flex-1">Sign in</button>
+    <div>
+      <button class="b-outline">Register</button>
+      <button class="b-solid">Sign in</button>
     </div>
-    <a class="flex-1 py-4 bj-container hover:bg-slate-200 dark:hover:bg-slate-800" href="">Home</a>
-    <a class="flex-1 py-4 bj-container hover:bg-slate-200 dark:hover:bg-slate-800" href="">Explorer</a>
-    <a class="flex-1 py-4 bj-container hover:bg-slate-200 dark:hover:bg-slate-800" href="">App</a>
-    <a class="flex-1 py-4 bj-container hover:bg-slate-200 dark:hover:bg-slate-800" href="">Oferts</a>
-    <a class="flex-1 py-4 bj-container hover:bg-slate-200 dark:hover:bg-slate-800" href="">Contact</a>
+    <a href="">Home</a>
+    <a href="">Explorer</a>
+    <a href="">App</a>
+    <a href="">Oferts</a>
+    <a href="">Contact</a>
   </div>
 
-  <div class="body bj-container flex flex-col w-full py-12 space-y-12">
+  <div class="body">
     <h1 class="t-title text-st-90">BLion Blockchain Explorer</h1>
-    <div class="flex flex-col w-full space-y-12 lg:space-y-0 lg:space-x-12 lg:flex-row">
-      <div class="flex flex-col space-y-12 section-1 lg:w-1/2">
-        <div class="space-y-12 section-1-1">
-          <div class="space-y-2 buscador lg:w-2/3">
-            <h1 class="t-subtitle text-st-90">Code Blockchain</h1>
-            <form class="flex flex-row items-center w-full space-x-2">
+    <div class="sections">
+      <div class="section">
+        <div class="section-search">
+          <div class="buscador">
+            <span class="t-subtitle text-st-90">Code Blockchain</span>
+            <form class="parameters">
               <input class="flex-1 bj-input" type="text" placeholder="79228162514264337593543950335">
               <button class="b-solid">
                 Search
               </button>
             </form>
           </div>
-          <div class="grid gap-8 break-all indicadores md:grid-cols-2">
-            <div class="flex flex-row items-center w-full space-x-2 indicative">
-              <div class="rounded-full icon w-12 h-12 flex items-center justify-center bg-c">
+          <div class="indicadores">
+            <div class="indicative">
+              <div class="icon">
                 <div>
                   <svg width="32" height="32" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M68.2843 68.284C52.6633 83.905 27.3367 83.905 11.7157 68.284C-3.90524 52.6631 -3.90524 27.3365 11.7157 11.7155C27.3367 -3.90549 52.6633 -3.90549 68.2843 11.7155C83.9052 27.3365 83.9052 52.6631 68.2843 68.284Z" fill="#382032"/>
@@ -80,87 +80,120 @@
                   </svg>
                 </div>
               </div>
-              <div class="flex-1 info">
-                <div class="flex justify-between t-label text-st-60 title">
+              <div class="info">
+                <div class="left">
                   <span>Açai Price</span>
-                  <span class="text-right"></span>
-                </div>
-                <div class="flex justify-between space-x-4 t-body text-st-90">
-                  <div class="space-x-2 data">
-                    <span>USD $0.20</span>
-                    <span>@ 0.07524 BTC</span>
-                    <span class="text-alert-success">(+0.34%)</span>
-                  </div>
-                  <span class="text-right"></span>
+                  <span class="t-body text-alert-success">(+0.34%)</span>
+                  <span>USD $0.20 @0.07524 BTC</span>
                 </div>
               </div>
             </div>
-            <div class="flex flex-row items-center w-full space-x-2 indicative">
-              <div class="rounded-full flex items-center justify-center text-white-fx icon w-12 h-12 bg-c">
-                <div class="text-white-fx">
+            <div class="indicative">
+              <div class="icon">
+                <div>
                   <svg width="32" height="32" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.5 2C5.22386 2 5 2.22386 5 2.5V3.03544C3.30385 3.27806 2 4.73676 2 6.5V6.62872C2 8.05854 2.83964 9.35508 4.14436 9.93996L5 10.3235V15.9358C3.85948 15.7043 3 14.6959 3 13.4858V12.5014C3 12.2252 2.77614 12.0014 2.5 12.0014C2.22386 12.0014 2 12.2252 2 12.5014V13.4858C2 15.25 3.30483 16.708 5 16.9504V17.4964C5 17.7725 5.22386 17.9964 5.5 17.9964C5.77614 17.9964 6 17.7725 6 17.4964V16.9503C7.69712 16.7076 9 15.2481 8.99999 13.4858L8.99999 13.3656C8.99998 11.9389 8.16216 10.6452 6.86027 10.0616L6 9.67592V4.05001C7.14111 4.28165 7.99999 5.29052 8 6.49999L8 7.50041C8 7.77655 8.22386 8.00041 8.5 8.00041C8.77614 8.00041 9 7.77655 9 7.50041L9 6.49998C8.99999 4.73676 7.69614 3.27806 6 3.03544V2.5C6 2.22386 5.77614 2 5.5 2ZM3 6.5C3 5.29052 3.85888 4.28164 5 4.05001V9.22764L4.55342 9.02745C3.60825 8.60375 3 7.66451 3 6.62872V6.5ZM6 15.9358V10.7718L6.45121 10.9741C7.39355 11.3965 7.99999 12.3329 7.99999 13.3656L7.99999 13.4858C7.99999 14.6947 7.14172 15.704 6 15.9358ZM11.9997 9.99998C11.9997 9.65864 12.0193 9.32462 12.0569 8.99999L13.4996 8.99998C13.7758 8.99998 13.9996 8.77612 13.9996 8.49998C13.9996 8.22383 13.7758 7.99998 13.4996 7.99998L12.2352 7.99999C12.4511 7.1142 12.8052 6.32776 13.2545 5.69254C14.0209 4.60897 15.0333 4 16.0973 4C16.4886 4 16.9141 4.11191 17.2243 4.3133C17.4559 4.46368 17.7656 4.39783 17.9159 4.16622C18.0663 3.93461 18.0005 3.62495 17.7689 3.47458C17.2732 3.15277 16.652 3 16.0973 3C14.6221 3 13.3357 3.84611 12.4381 5.11507C11.8697 5.91864 11.4448 6.9057 11.2093 8L10.4997 8.00001C10.2235 8.00001 9.99968 8.22387 9.99968 8.50001C9.99968 8.77615 10.2235 9.00001 10.4997 9.00001L11.051 9C11.0171 9.32708 10.9997 9.66099 10.9997 9.99998H10.4953C10.2192 9.99998 9.99535 10.2238 9.99535 10.5C9.99535 10.7761 10.2192 11 10.4953 11H11.051C11.2054 12.4927 11.7011 13.843 12.4381 14.8849C13.3357 16.1539 14.6221 17 16.0973 17C16.6382 17 17.2727 16.871 17.7824 16.5216C18.0102 16.3654 18.0682 16.0542 17.9121 15.8264C17.756 15.5987 17.4448 15.5406 17.217 15.6967C16.9209 15.8997 16.5024 16 16.0973 16C15.0333 16 14.0209 15.391 13.2545 14.3075C12.6423 13.442 12.2068 12.2957 12.0569 11H13.4953C13.7714 11 13.9953 10.7761 13.9953 10.5C13.9953 10.2238 13.7714 9.99998 13.4953 9.99998H11.9997Z" fill="white"/>
+                    <path d="M5.5 2C5.22386 2 5 2.22386 5 2.5V3.03544C3.30385 3.27806 2 4.73676 2 6.5V6.62872C2 8.05854 2.83964 9.35508 4.14436 9.93996L5 10.3235V15.9358C3.85948 15.7043 3 14.6959 3 13.4858V12.5014C3 12.2252 2.77614 12.0014 2.5 12.0014C2.22386 12.0014 2 12.2252 2 12.5014V13.4858C2 15.25 3.30483 16.708 5 16.9504V17.4964C5 17.7725 5.22386 17.9964 5.5 17.9964C5.77614 17.9964 6 17.7725 6 17.4964V16.9503C7.69712 16.7076 9 15.2481 8.99999 13.4858L8.99999 13.3656C8.99998 11.9389 8.16216 10.6452 6.86027 10.0616L6 9.67592V4.05001C7.14111 4.28165 7.99999 5.29052 8 6.49999L8 7.50041C8 7.77655 8.22386 8.00041 8.5 8.00041C8.77614 8.00041 9 7.77655 9 7.50041L9 6.49998C8.99999 4.73676 7.69614 3.27806 6 3.03544V2.5C6 2.22386 5.77614 2 5.5 2ZM3 6.5C3 5.29052 3.85888 4.28164 5 4.05001V9.22764L4.55342 9.02745C3.60825 8.60375 3 7.66451 3 6.62872V6.5ZM6 15.9358V10.7718L6.45121 10.9741C7.39355 11.3965 7.99999 12.3329 7.99999 13.3656L7.99999 13.4858C7.99999 14.6947 7.14172 15.704 6 15.9358ZM11.9997 9.99998C11.9997 9.65864 12.0193 9.32462 12.0569 8.99999L13.4996 8.99998C13.7758 8.99998 13.9996 8.77612 13.9996 8.49998C13.9996 8.22383 13.7758 7.99998 13.4996 7.99998L12.2352 7.99999C12.4511 7.1142 12.8052 6.32776 13.2545 5.69254C14.0209 4.60897 15.0333 4 16.0973 4C16.4886 4 16.9141 4.11191 17.2243 4.3133C17.4559 4.46368 17.7656 4.39783 17.9159 4.16622C18.0663 3.93461 18.0005 3.62495 17.7689 3.47458C17.2732 3.15277 16.652 3 16.0973 3C14.6221 3 13.3357 3.84611 12.4381 5.11507C11.8697 5.91864 11.4448 6.9057 11.2093 8L10.4997 8.00001C10.2235 8.00001 9.99968 8.22387 9.99968 8.50001C9.99968 8.77615 10.2235 9.00001 10.4997 9.00001L11.051 9C11.0171 9.32708 10.9997 9.66099 10.9997 9.99998H10.4953C10.2192 9.99998 9.99535 10.2238 9.99535 10.5C9.99535 10.7761 10.2192 11 10.4953 11H11.051C11.2054 12.4927 11.7011 13.843 12.4381 14.8849C13.3357 16.1539 14.6221 17 16.0973 17C16.6382 17 17.2727 16.871 17.7824 16.5216C18.0102 16.3654 18.0682 16.0542 17.9121 15.8264C17.756 15.5987 17.4448 15.5406 17.217 15.6967C16.9209 15.8997 16.5024 16 16.0973 16C15.0333 16 14.0209 15.391 13.2545 14.3075C12.6423 13.442 12.2068 12.2957 12.0569 11H13.4953C13.7714 11 13.9953 10.7761 13.9953 10.5C13.9953 10.2238 13.7714 9.99998 13.4953 9.99998H11.9997Z"/>
                   </svg>
                 </div>
               </div>
-              <div class="flex-1 info">
-                <div class="flex t-label text-st-60 justify-between title">
+              <div class="info">
+                <div class="left">
                   <span>Market Cap</span>
-                  <span class="text-right"></span>
-                </div>
-                <div class="flex justify-between space-x-4 t-body text-st-90">
                   <span>$476,678,935,648.00</span>
-                  <span class="text-right"></span>
                 </div>
               </div>
             </div>
-            <div class="flex flex-row items-center w-full space-x-2 indicative">
-              <div class="rounded-full flex items-center justify-center text-white-fx icon w-12 h-12 bg-c">
-                <div class="text-white-fx">
+            <div class="indicative">
+              <div class="icon">
+                <div>
                   <svg width="32" height="32" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.75001 4.00001C5.51478 4.00001 5.30484 4.1083 5.16733 4.27775L2.22162 7.22346C1.92873 7.51636 1.92873 7.99123 2.22162 8.28412C2.51452 8.57702 2.98939 8.57702 3.28228 8.28412L5.00001 6.5664V15.25C5.00001 15.6642 5.3358 16 5.75001 16C6.16422 16 6.50001 15.6642 6.50001 15.25V6.5559L8.23275 8.28864C8.52564 8.58153 9.00052 8.58153 9.29341 8.28864C9.5863 7.99575 9.5863 7.52087 9.29341 7.22798L6.2851 4.21967C6.1377 4.07227 5.9432 3.99905 5.75001 4.00001ZM5.75001 4.00001C5.74968 4.00001 5.75034 4.00001 5.75001 4.00001ZM14.252 16C14.4872 16 14.6971 15.8917 14.8346 15.7223L17.7803 12.7765C18.0732 12.4837 18.0732 12.0088 17.7803 11.7159C17.4874 11.423 17.0126 11.423 16.7197 11.7159L15.002 13.4336L15.002 4.75C15.002 4.33579 14.6662 4 14.252 4C13.8377 4 13.502 4.33579 13.502 4.75L13.502 13.4441L11.7692 11.7114C11.4763 11.4185 11.0014 11.4185 10.7086 11.7114C10.4157 12.0043 10.4157 12.4791 10.7086 12.772L13.7169 15.7803C13.8643 15.9277 14.0588 16.001 14.252 16ZM14.252 16C14.2523 16 14.2516 16 14.252 16Z"/>
                   </svg>
                 </div>
               </div>
-              <div class="flex-1 info">
-                <div class="flex justify-between text-st-60 t-label title">
+              <div class="info">
+                <div class="left">
                   <span>Transactions</span>
-                  <span class="text-right">Med Gas Price</span>
-                </div>
-                <div class="flex justify-between space-x-4 t-body text-st-90">
                   <span>$4,114.69</span>
-                  <span class="text-right">(18.2 TPS)162 Gwei ($14.00)</span>
+                </div>
+                <div class="right">
+                  <span>Med Gas Price</span>
+                  <span>(18.2 TPS)162 Gwei ($14.00)</span>
                 </div>
               </div>
             </div>
-            <div class="flex flex-row items-center w-full space-x-2 indicative">
-              <div class="rounded-full flex items-center justify-center icon w-12 h-12 bg-c">
-                <div class="text-white-fx">
+            <div class="indicative">
+              <div class="icon">
+                <div>
                   <svg width="32" height="32" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 4.5C4 3.11929 5.11929 2 6.5 2H13.5C14.8807 2 16 3.11929 16 4.5V17.5C16 17.6881 15.8945 17.8602 15.7269 17.9456C15.5593 18.0309 15.358 18.015 15.2059 17.9044L10 14.1183L4.79409 17.9044C4.64199 18.015 4.4407 18.0309 4.27311 17.9456C4.10553 17.8602 4 17.6881 4 17.5V4.5Z"/>
                   </svg>
                 </div>
               </div>
-              <div class="flex-1 info">
-                <div class="flex justify-between t-label text-st-60 title">
-                  <span >Difficulty</span>
-                  <span class="text-right">7,750.02 </span>
+              <div class="info">
+                <div class="left">
+                  <span>Difficulty</span>
+                  <span>7,750.02 TH</span>
                 </div>
-                <div class="flex justify-between space-x-4 t-body text-st-90">
+                <div class="right">
                   <span>Hash Rate</span>
-                  <span>TH592,930.92 GH/s</span>
+                  <span>592,930.92 GH/s</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="space-y-2 section-1-2">
-          <div class="flex flex-col space-y-2 tabs">
+        <div class="section-operations">
+          <div class="header">
             <h1 class="t-subtitle text-st-90">Last Operations</h1>
-            <div class="flex flex-row items-center justify-between">
-              <div class="p-2 space-x-2 rounded type-operation bg-slate-200 dark:bg-slate-800">
-                <button (click)="tab = 'blocks'" class="{{tab === 'blocks' ? 'b-solid':'b-ghost'}}">Blocks</button>
-                <button (click)="tab = 'transactions'" class="{{tab === 'transactions' ? 'b-solid':'b-ghost'}}">Transactions</button>
+            <div class="type-operation">
+              <div class="flex items-center space-x-4">
+                <div class="tabs">
+                  <button (click)="tab = 'blocks'" class="{{tab === 'blocks' ? 'b-solid':'b-ghost'}}">Blocks</button>
+                  <button (click)="tab = 'transactions'" class="{{tab === 'transactions' ? 'b-solid':'b-ghost'}}">Transactions</button>
+                </div>
+                <div *ngIf="tab === 'blocks' && blocks.length > 0" class="pagination">
+                  <div>
+                    <button class="b-ghost">
+                      <div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.2676 15.793C11.9677 16.0787 11.493 16.0672 11.2073 15.7672L6.20597 10.5168C5.93004 10.2271 5.93004 9.77187 6.20597 9.4822L11.2073 4.23173C11.493 3.93181 11.9677 3.92028 12.2676 4.20597C12.5676 4.49166 12.5791 4.96639 12.2934 5.26631L7.78483 9.99949L12.2934 14.7327C12.5791 15.0326 12.5676 15.5073 12.2676 15.793Z"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                  <span>1 / 10</span>
+                  <div>
+                    <button class="b-ghost">
+                      <div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7.73271 4.20694C8.03263 3.92125 8.50737 3.93279 8.79306 4.23271L13.7944 9.48318C14.0703 9.77285 14.0703 10.2281 13.7944 10.5178L8.79306 15.7682C8.50737 16.0681 8.03263 16.0797 7.73271 15.794C7.43279 15.5083 7.42125 15.0336 7.70694 14.7336L12.2155 10.0005L7.70694 5.26729C7.42125 4.96737 7.43279 4.49264 7.73271 4.20694Z"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                <div *ngIf="tab === 'transactions' && transactions.length > 0" class="pagination">
+                  <div>
+                    <button class="b-ghost">
+                      <div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12.2676 15.793C11.9677 16.0787 11.493 16.0672 11.2073 15.7672L6.20597 10.5168C5.93004 10.2271 5.93004 9.77187 6.20597 9.4822L11.2073 4.23173C11.493 3.93181 11.9677 3.92028 12.2676 4.20597C12.5676 4.49166 12.5791 4.96639 12.2934 5.26631L7.78483 9.99949L12.2934 14.7327C12.5791 15.0326 12.5676 15.5073 12.2676 15.793Z"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                  <span>1 / 6</span>
+                  <div>
+                    <button class="b-ghost">
+                      <div>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7.73271 4.20694C8.03263 3.92125 8.50737 3.93279 8.79306 4.23271L13.7944 9.48318C14.0703 9.77285 14.0703 10.2281 13.7944 10.5178L8.79306 15.7682C8.50737 16.0681 8.03263 16.0797 7.73271 15.794C7.43279 15.5083 7.42125 15.0336 7.70694 14.7336L12.2155 10.0005L7.70694 5.26729C7.42125 4.96737 7.43279 4.49264 7.73271 4.20694Z"/>
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
               <div>
                 <button class="b-ghost">View All</button>
@@ -168,7 +201,15 @@
             </div>
           </div>
           <div *ngIf="tab === 'blocks'" class="list-operations">
-            <div *ngFor="let block of blocks" class="item-operation">
+            <div *ngIf="blocks.length === 0" class="notify-null">
+              <div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.686 2.85207L2.12727 14.777C1.57744 15.7767 2.30069 16.9999 3.44159 16.9999H16.559C17.7 16.9999 18.4232 15.7767 17.8734 14.777L11.3146 2.85207C10.7448 1.81591 9.25588 1.81591 8.686 2.85207ZM10.0003 6.74992C10.4145 6.74992 10.7503 7.0857 10.7503 7.49992V11.4999C10.7503 11.9141 10.4145 12.2499 10.0003 12.2499C9.58609 12.2499 9.25031 11.9141 9.25031 11.4999V7.49992C9.25031 7.0857 9.58609 6.74992 10.0003 6.74992ZM10.7503 13.7499C10.7503 14.1641 10.4145 14.4999 10.0003 14.4999C9.58609 14.4999 9.25031 14.1641 9.25031 13.7499C9.25031 13.3357 9.58609 12.9999 10.0003 12.9999C10.4145 12.9999 10.7503 13.3357 10.7503 13.7499Z"/>
+                </svg>
+              </div>
+              <span>No hay bloques registrados</span>
+            </div>
+            <div *ngFor="let block of blocks" (click)="modalBlock = true" class="item-operation">
               <div class="cuadrado">
                 <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M47.966 92.9168C47.5977 92.9168 47.2444 92.7695 46.9839 92.5073L44.2346 89.7394C43.8696 89.3719 44.0163 88.7462 44.506 88.5819L49.5608 86.8856C49.8459 86.7899 50.1541 86.7899 50.4392 86.8856L55.494 88.5819C55.9837 88.7462 56.1304 89.3719 55.7654 89.7394L53.0161 92.5073C52.7556 92.7695 52.4023 92.9168 52.034 92.9168H47.966Z"/>
@@ -183,23 +224,28 @@
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5947 38.9596C57.0666 39.4912 56.1912 38.9238 56.4535 38.2198L57.2654 36.0402C57.401 35.6762 57.3799 35.2717 57.2071 34.9239L55.454 31.394C55.2946 31.0731 55.5264 30.6954 55.8829 30.6954C56.01 30.6954 56.132 30.7463 56.2219 30.8368L59.9605 34.6005C60.5029 35.1466 60.5029 36.0319 59.9605 36.5779L57.5947 38.9596ZM44.1171 30.6954C43.9899 30.6954 43.868 30.7463 43.7781 30.8368L40.0395 34.6005C39.4971 35.1466 39.4971 36.0319 40.0395 36.5779L42.4052 38.9596C42.9333 39.4912 43.8087 38.9238 43.5465 38.2198L42.7346 36.0402C42.599 35.6762 42.6201 35.2717 42.7928 34.9239L44.546 31.394C44.7054 31.0731 44.4736 30.6954 44.1171 30.6954ZM50.0194 30.6954C50.2824 30.6954 50.5228 30.845 50.6405 31.0819L52.6678 35.1638C52.8405 35.5115 52.8616 35.916 52.726 36.28L50.6502 41.8527C50.4249 42.4575 49.5751 42.4575 49.3498 41.8527L47.274 36.28C47.1384 35.916 47.1595 35.5115 47.3322 35.1638L49.3595 31.0819C49.4771 30.845 49.7176 30.6954 49.9806 30.6954H50.0194Z"/>
                 </svg>
               </div>
-              <div class="flex-1 items-center flex space-x-2">
-                <div class="flex flex-col w-2/5 texto">
-                  <span class="select-all">{{block.id}}</span>
-                  <span class="t-label text-st-60">{{block.created_at}}</span>
+              <div class="body-item">
+                <div class="text-a">
+                  <span>{{block.id}}</span>
+                  <span>{{block.created_at}}</span>
                 </div>
-                <div class="flex flex-col w-3/5 texto">
-                  <div>
-                    <span>Miner </span>
-                    <span class="select-all">{{block.mined_by}}</span>
-                  </div>
-                  <span class="t-label text-st-60">267 txns in 3 secs</span>
+                <div class="text-b">
+                  <span>Miner {{block.mined_by}}</span>
+                  <span>267 txns in 3 secs</span>
                 </div>
               </div>
             </div>
           </div>
           <div *ngIf="tab === 'transactions'" class="list-operations">
-            <div *ngFor="let block of transactions" class="item-operation">
+            <div *ngIf="transactions.length === 0" class="notify-null">
+              <div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.686 2.85207L2.12727 14.777C1.57744 15.7767 2.30069 16.9999 3.44159 16.9999H16.559C17.7 16.9999 18.4232 15.7767 17.8734 14.777L11.3146 2.85207C10.7448 1.81591 9.25588 1.81591 8.686 2.85207ZM10.0003 6.74992C10.4145 6.74992 10.7503 7.0857 10.7503 7.49992V11.4999C10.7503 11.9141 10.4145 12.2499 10.0003 12.2499C9.58609 12.2499 9.25031 11.9141 9.25031 11.4999V7.49992C9.25031 7.0857 9.58609 6.74992 10.0003 6.74992ZM10.7503 13.7499C10.7503 14.1641 10.4145 14.4999 10.0003 14.4999C9.58609 14.4999 9.25031 14.1641 9.25031 13.7499C9.25031 13.3357 9.58609 12.9999 10.0003 12.9999C10.4145 12.9999 10.7503 13.3357 10.7503 13.7499Z"/>
+                </svg>
+              </div>
+              <span>No hay transacciones registradas</span>
+            </div>
+            <div *ngFor="let block of transactions" (click)="modalTransaction = true" class="item-operation">
               <div class="circulo">
                 <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M47.966 92.9168C47.5977 92.9168 47.2444 92.7695 46.9839 92.5073L44.2346 89.7394C43.8696 89.3719 44.0163 88.7462 44.506 88.5819L49.5608 86.8856C49.8459 86.7899 50.1541 86.7899 50.4392 86.8856L55.494 88.5819C55.9837 88.7462 56.1304 89.3719 55.7654 89.7394L53.0161 92.5073C52.7556 92.7695 52.4023 92.9168 52.034 92.9168H47.966Z"/>
@@ -214,58 +260,55 @@
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M57.5947 38.9596C57.0666 39.4912 56.1912 38.9238 56.4535 38.2198L57.2654 36.0402C57.401 35.6762 57.3799 35.2717 57.2071 34.9239L55.454 31.394C55.2946 31.0731 55.5264 30.6954 55.8829 30.6954C56.01 30.6954 56.132 30.7463 56.2219 30.8368L59.9605 34.6005C60.5029 35.1466 60.5029 36.0319 59.9605 36.5779L57.5947 38.9596ZM44.1171 30.6954C43.9899 30.6954 43.868 30.7463 43.7781 30.8368L40.0395 34.6005C39.4971 35.1466 39.4971 36.0319 40.0395 36.5779L42.4052 38.9596C42.9333 39.4912 43.8087 38.9238 43.5465 38.2198L42.7346 36.0402C42.599 35.6762 42.6201 35.2717 42.7928 34.9239L44.546 31.394C44.7054 31.0731 44.4736 30.6954 44.1171 30.6954ZM50.0194 30.6954C50.2824 30.6954 50.5228 30.845 50.6405 31.0819L52.6678 35.1638C52.8405 35.5115 52.8616 35.916 52.726 36.28L50.6502 41.8527C50.4249 42.4575 49.5751 42.4575 49.3498 41.8527L47.274 36.28C47.1384 35.916 47.1595 35.5115 47.3322 35.1638L49.3595 31.0819C49.4771 30.845 49.7176 30.6954 49.9806 30.6954H50.0194Z"/>
                 </svg>
               </div>
-              <div class="flex-1 items-center flex space-x-2">
-                <div class="flex flex-col w-2/5 texto">
-                  <span class="select-all">{{block.id}}</span>
-                  <span class="t-label text-st-60">{{block.created_at}}</span>
+              <div class="body-item">
+                <div class="text-a">
+                  <span>{{block.id}}</span>
+                  <span>{{block.created_at}}</span>
                 </div>
-                <div class="flex flex-col w-3/5 texto">
-                  <div>
-                    <span>Miner </span>
-                    <span class="select-all">{{block.mined_by}}</span>
-                  </div>
-                  <span class="t-label text-st-60">267 txns in 3 secs</span>
+                <div class="text-b">
+                  <span>Miner {{block.mined_by}}</span>
+                  <span>267 txns in 3 secs</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="flex flex-col space-y-12 section-2 lg:w-1/2">
-        <div class="space-y-2 section-2-1">
-          <div class="flex flex-row items-center justify-between">
-            <h1 class="t-subtitle text-st-90">Nodes on the World</h1>
+      <div class="section">
+        <div class="section-nodes">
+          <div class="header">
+            <span class="t-subtitle text-st-90">Nodes on the World</span>
             <div>
-              <button class="flex flex-row items-center space-x-1 hover:font-bold text-slate-900 dark:text-slate-50">
-                <span class="text-sm">Full Screen</span>
+              <button class="b-full-screen">
+                <span class="t-body">Full Screen</span>
                 <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4.16667 5C4.16667 4.53976 4.53976 4.16667 5 4.16667H6.66667C7.1269 4.16667 7.5 3.79357 7.5 3.33333C7.5 2.8731 7.1269 2.5 6.66667 2.5H5C3.61929 2.5 2.5 3.61929 2.5 5V6.66667C2.5 7.1269 2.8731 7.5 3.33333 7.5C3.79357 7.5 4.16667 7.1269 4.16667 6.66667V5ZM4.16667 15C4.16667 15.4602 4.53976 15.8333 5 15.8333H6.66667C7.1269 15.8333 7.5 16.2064 7.5 16.6667C7.5 17.1269 7.1269 17.5 6.66667 17.5H5C3.61929 17.5 2.5 16.3807 2.5 15V13.3333C2.5 12.8731 2.8731 12.5 3.33333 12.5C3.79357 12.5 4.16667 12.8731 4.16667 13.3333V15ZM15 4.16667C15.4602 4.16667 15.8333 4.53976 15.8333 5V6.66667C15.8333 7.1269 16.2064 7.5 16.6667 7.5C17.1269 7.5 17.5 7.1269 17.5 6.66667V5C17.5 3.61929 16.3807 2.5 15 2.5H13.3333C12.8731 2.5 12.5 2.8731 12.5 3.33333C12.5 3.79357 12.8731 4.16667 13.3333 4.16667H15ZM15.8333 15C15.8333 15.4602 15.4602 15.8333 15 15.8333H13.3333C12.8731 15.8333 12.5 16.2064 12.5 16.6667C12.5 17.1269 12.8731 17.5 13.3333 17.5H15C16.3807 17.5 17.5 16.3807 17.5 15V13.3333C17.5 12.8731 17.1269 12.5 16.6667 12.5C16.2064 12.5 15.8333 12.8731 15.8333 13.3333V15Z"/>
                 </svg></div>
               </button>
             </div>
           </div>
-          <div class="flex flex-row w-full space-x-2 text-sm text-slate-900 dark:text-slate-50">
-            <div class="flex flex-col flex-1 p-2 rounded bg-slate-200 dark:bg-slate-800">
-              <span class="text-xs text-slate-600 dark:text-slate-400">Number of Nodes</span>
-              <span class="">21</span>
+          <div class="number-nodes">
+            <div class="nodes">
+              <span>Number of Nodes</span>
+              <span>21</span>
             </div>
-            <div class="flex flex-col flex-1 p-2 rounded bg-slate-200 dark:bg-slate-800">
-              <span class="text-xs text-slate-600 dark:text-slate-400">Number of Nodes</span>
-              <span class="">21</span>
+            <div class="nodes">
+              <span>Number of Nodes</span>
+              <span>21</span>
             </div>
-            <div class="flex flex-col flex-1 p-2 rounded bg-slate-200 dark:bg-slate-800">
-              <span class="text-xs text-slate-600 dark:text-slate-400">Number of Nodes</span>
-              <span class="">21</span>
+            <div class="nodes">
+              <span>Number of Nodes</span>
+              <span>21</span>
             </div>
           </div>
-          <div class="w-full overflow-hidden rounded dark:w-full dark:rounded dark:overflow-hidden "><img src="./assets/img/mapamundi.png"></div>
+          <div class="map"><img src="./assets/img/mapamundi.png"></div>
         </div>
-        <div class="section-2-2 spate-y-2">
-          <div class="flex flex-row items-center justify-between">
-            <h1 class="t-subtitle text-st-90">History</h1>
+        <div class="section-history">
+          <div class="header">
+            <span class="t-subtitle text-st-90">History</span>
             <div>
-              <button class="flex flex-row items-center space-x-1 hover:font-bold text-slate-900 dark:text-slate-50">
-                <span class="text-sm">More</span>
+              <button class="b-more">
+                <span class="t-body">More</span>
                 <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 6C9.30964 6 8.75 5.44036 8.75 4.75C8.75 4.05964 9.30964 3.5 10 3.5C10.6904 3.5 11.25 4.05964 11.25 4.75C11.25 5.44036 10.6904 6 10 6ZM10 11.25C9.30964 11.25 8.75 10.6904 8.75 10C8.75 9.30964 9.30964 8.75 10 8.75C10.6904 8.75 11.25 9.30964 11.25 10C11.25 10.6904 10.6904 11.25 10 11.25ZM8.75 15.25C8.75 15.9404 9.30964 16.5 10 16.5C10.6904 16.5 11.25 15.9404 11.25 15.25C11.25 14.5596 10.6904 14 10 14C9.30964 14 8.75 14.5596 8.75 15.25Z"/>
                 </svg>
@@ -273,8 +316,8 @@
               </button>
             </div>
           </div>
-          <span class="text-sm text-slate-900 dark:text-slate-50">Acai Transactions in 14 days</span>
-          <div class="w-full mt-2 overflow-hidden rounded">
+          <span class="t-body text-st-90">Acai Transactions in 14 days</span>
+          <div class="chart">
             <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
                               style="width: 100%; height: 340px; display: block;"></highcharts-chart>
           </div>
@@ -284,12 +327,12 @@
   </div>
 </div>
 
-<div *ngIf="false" class="modal-block h-screen fixed top-0 left-0 w-full backdrop-blur-xl bg-white/50 dark:bg-black/50">
-  <div class="modal-container flex flex-col lg:w-1/2 bg-st-5 h-full ml-auto mt-16 lg:border-l lg:border-st-40" style="height: calc(100vh - 64px)">
-    <div class="header px-6 py-4 flex items-center justify-between border-b border-st-40">
-      <span class="t-title text-st-90">Bloque</span>
+<div *ngIf="modalBlock" class="modal-block modal-container">
+  <div class="modal">
+    <div class="header">
+      <span>Bloque</span>
       <div>
-        <button class="b-ghost w-10 h-10 flex justify-center items-center">
+        <button class="b-ghost" (click)="modalBlock = false">
           <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.89705 4.05379L3.96967 3.96967C4.23594 3.7034 4.6526 3.6792 4.94621 3.89705L5.03033 3.96967L10 8.939L14.9697 3.96967C15.2359 3.7034 15.6526 3.6792 15.9462 3.89705L16.0303 3.96967C16.2966 4.23594 16.3208 4.6526 16.1029 4.94621L16.0303 5.03033L11.061 10L16.0303 14.9697C16.2966 15.2359 16.3208 15.6526 16.1029 15.9462L16.0303 16.0303C15.7641 16.2966 15.3474 16.3208 15.0538 16.1029L14.9697 16.0303L10 11.061L5.03033 16.0303C4.76406 16.2966 4.3474 16.3208 4.05379 16.1029L3.96967 16.0303C3.7034 15.7641 3.6792 15.3474 3.89705 15.0538L3.96967 14.9697L8.939 10L3.96967 5.03033C3.7034 4.76406 3.6792 4.3474 3.89705 4.05379L3.96967 3.96967L3.89705 4.05379Z"/>
@@ -298,119 +341,119 @@
         </button>
       </div>
     </div>
-    <div class="body p-6 md:p-12 flex-1 w-full space-y-6 overflow-y-auto">
-      <div class="section flex flex-col space-y-4">
+    <div class="body">
+      <div class="section-abstract section">
         <span class="t-subtitle text-st-90">Resumen</span>
-        <div class="info flex flex-col md:flex-row gap-4">
-          <div class="abstract text-st-90 t-body flex flex-col space-y-4 flex-1">
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Fecha de transmición</span>
+        <div class="info">
+          <div class="abstract">
+            <div class="data">
+              <span>Fecha de transmición</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Confirmaciones de red</span>
+            <div class="data">
+              <span>Confirmaciones de red</span>
               <span>0</span>
             </div>
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Cantidad Açai</span>
+            <div class="data">
+              <span>Cantidad Açai</span>
               <span>1.01</span>
             </div>
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Cantidad USD</span>
+            <div class="data">
+              <span>Cantidad USD</span>
               <span>$0.20</span>
             </div>
           </div>
-          <div class="qr-code flex flex-col space-y-2 md:items-end">
-            <div class="bg-st-40 rounded overflow-hidden" style="width: 200px; height: 200px">
-              <img width="100%" height="100%" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALoAAAC6CAMAAAAu0KfDAAAABlBMVEX///8AAABVwtN+AAABxklEQVR4nO3QUZKDQAwD0eT+l94DgJQeCAXOtr4oGKzneb2MMebivHHSX31mbzljkC5d+hT6tj6dIcuQ+vRMDNKlS59I5zX9ZKKQ98QgXbr0X6X3f9P5NEG6dOnSSTGnk6/SpUv/PXrHEXpHHLsa6dKlT6cfq/nuMzdIly59Cv18SMGF9Wci/Y5IvyM301N9quxEshJZAy0sXbr0x9NJWRqXWH2NnnQR0qVLn0XvUL79KqVfFmmULl36FHpC9xBoByFi+ipduvQh9D4ivUllqwvwq5EuXfpEOjoK6NsJxy6iLyxduvRZ9M4lX8mSx7rieenSpQ+hry6z/TdVrl5E/1e6dOmz6H2B/kyI6TmtmhaLy0iXLv3B9FXWauXq5NSyE+nSpT+enupTyEoESto/oKVLl/54emKREemvPqf/tWCQLl36EHpfKYWc54vxLunSpU+hr2Zbn3Dkfb+yPkG6dOnPp79xTtWErmPXIV269Fn0nQ/hTHomK5FeflK6dOmz6O9N+Lgz6/XsoKVLl/6j9PS1V/LFert06dL/A31nUM13J0iXLn0inRfz9JnbM/3ipEuXPpF+DEGInN5bpEuXPpFujDEX5A/WVTvF1c+o+gAAAABJRU5ErkJggg==">
+          <div class="qr-code">
+            <div>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALoAAAC6CAMAAAAu0KfDAAAABlBMVEX///8AAABVwtN+AAABxklEQVR4nO3QUZKDQAwD0eT+l94DgJQeCAXOtr4oGKzneb2MMebivHHSX31mbzljkC5d+hT6tj6dIcuQ+vRMDNKlS59I5zX9ZKKQ98QgXbr0X6X3f9P5NEG6dOnSSTGnk6/SpUv/PXrHEXpHHLsa6dKlT6cfq/nuMzdIly59Cv18SMGF9Wci/Y5IvyM301N9quxEshJZAy0sXbr0x9NJWRqXWH2NnnQR0qVLn0XvUL79KqVfFmmULl36FHpC9xBoByFi+ipduvQh9D4ivUllqwvwq5EuXfpEOjoK6NsJxy6iLyxduvRZ9M4lX8mSx7rieenSpQ+hry6z/TdVrl5E/1e6dOmz6H2B/kyI6TmtmhaLy0iXLv3B9FXWauXq5NSyE+nSpT+enupTyEoESto/oKVLl/54emKREemvPqf/tWCQLl36EHpfKYWc54vxLunSpU+hr2Zbn3Dkfb+yPkG6dOnPp79xTtWErmPXIV269Fn0nQ/hTHomK5FeflK6dOmz6O9N+Lgz6/XsoKVLl/6j9PS1V/LFert06dL/A31nUM13J0iXLn0inRfz9JnbM/3ipEuXPpF+DEGInN5bpEuXPpFujDEX5A/WVTvF1c+o+gAAAABJRU5ErkJggg==">
             </div>
-            <a class="t-label text-st-90 underline">Click aquí, si no puede leer el QR</a>
+            <a href="#/explorer">Click aquí, si no puede leer el QR</a>
           </div>
         </div>
       </div>
-      <div class="section flex flex-col space-y-4">
+      <div class="section-details section">
         <span class="t-subtitle text-st-90">Detalles</span>
-        <div class="details break-all text-st-90 t-body rounded bg-st-20 p-4 space-y-4">
-          <div class="rounded flex-col md:flex-row flex border border-st-40 p-4 gap-4">
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Monto</span>
+        <div class="details">
+          <div class="primary-data">
+            <div class="data">
+              <span>Monto</span>
               <span>USD $1.01</span>
             </div>
-            <div class="data flex-1 flex flex-col space-y-1">
-              <span class="text-c t-label-b">Block Hash</span>
+            <div class="data">
+              <span>Block Hash</span>
               <span>203679036694203679036694203679036694203679036694</span>
             </div>
           </div>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">From</span>
+          <div class="data-group">
+            <div class="data">
+              <span>From</span>
               <span>028d475d-c8e6-443a-8054-bce7ebbe0cd5</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">To</span>
+            <div class="data">
+              <span>To</span>
               <span>6f8544f5-fb30-41e6-9282-139d9a6a583a</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Miner</span>
+            <div class="data">
+              <span>Miner</span>
               <span>8c4d23ce-dfba-436d-b4ee-3de8e38e0e9d</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Created At</span>
+            <div class="data">
+              <span>Created At</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Last Validation</span>
+            <div class="data">
+              <span>Last Validation</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Mined At</span>
+            <div class="data">
+              <span>Mined At</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="section flex flex-col space-y-4">
+      <div class="section-data section">
         <span class="t-subtitle text-st-90">Data</span>
-        <div *ngIf="false" class="flex items-center space-x-4">
-          <div class="text-alert-warning">
+        <div *ngIf="false" class="notify-null">
+          <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.686 2.85207L2.12727 14.777C1.57744 15.7767 2.30069 16.9999 3.44159 16.9999H16.559C17.7 16.9999 18.4232 15.7767 17.8734 14.777L11.3146 2.85207C10.7448 1.81591 9.25588 1.81591 8.686 2.85207ZM10.0003 6.74992C10.4145 6.74992 10.7503 7.0857 10.7503 7.49992V11.4999C10.7503 11.9141 10.4145 12.2499 10.0003 12.2499C9.58609 12.2499 9.25031 11.9141 9.25031 11.4999V7.49992C9.25031 7.0857 9.58609 6.74992 10.0003 6.74992ZM10.7503 13.7499C10.7503 14.1641 10.4145 14.4999 10.0003 14.4999C9.58609 14.4999 9.25031 14.1641 9.25031 13.7499C9.25031 13.3357 9.58609 12.9999 10.0003 12.9999C10.4145 12.9999 10.7503 13.3357 10.7503 13.7499Z"/>
             </svg>
           </div>
-          <span class="t-body text-st-90">Información disponible solo para los involucrados en la transacción.</span>
+          <span>Información disponible solo para los involucrados en la transacción.</span>
         </div>
-        <div *ngIf="true" class="data text-st-90 bg-st-20 w-full grid md:grid-cols-2 p-4 gap-4">
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Póliza</span>
-            <span class="t-body">203679036694</span>
+        <div *ngIf="true" class="data-container">
+          <div class="attribute">
+            <span>Póliza</span>
+            <span>203679036694</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Carnet</span>
-            <span class="t-body">372420</span>
+          <div class="attribute">
+            <span>Carnet</span>
+            <span>372420</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Agencia</span>
-            <span class="t-body">UNAS</span>
+          <div class="attribute">
+            <span>Agencia</span>
+            <span>UNAS</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Tomador</span>
-            <span class="t-body">UNMSM</span>
+          <div class="attribute">
+            <span>Tomador</span>
+            <span>UNMSM</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Asegurador</span>
-            <span class="t-body">Carlos Abraham Cárdenas Paredes</span>
+          <div class="attribute">
+            <span>Asegurador</span>
+            <span>Carlos Abraham Cárdenas Paredes</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Identificación</span>
-            <span class="t-body">76136183</span>
+          <div class="attribute">
+            <span>Identificación</span>
+            <span>76136183</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Fecha de emición</span>
-            <span class="t-body">2022-06-01T14:34:56:722Z</span>
+          <div class="attribute">
+            <span>Fecha de emición</span>
+            <span>2022-06-01T14:34:56:722Z</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Fecha de vencimiento</span>
-            <span class="t-body">2023-6-1</span>
+          <div class="attribute">
+            <span>Fecha de vencimiento</span>
+            <span>2023-6-1</span>
           </div>
         </div>
       </div>
@@ -418,12 +461,12 @@
   </div>
 </div>
 
-<div *ngIf="false" class="modal-transaction h-screen fixed top-0 left-0 w-full backdrop-blur-xl bg-white/50 dark:bg-black/50">
-  <div class="modal-container flex flex-col lg:w-1/2 bg-st-5 h-full ml-auto mt-16 lg:border-l lg:border-st-40" style="height: calc(100vh - 64px)">
-    <div class="header px-6 py-4 flex items-center justify-between border-b border-st-40">
+<div *ngIf="modalTransaction" class="modal-transaction modal-container">
+  <div class="modal">
+    <div class="header">
       <span class="t-title text-st-90">Transacción</span>
       <div>
-        <button class="b-ghost w-10 h-10 flex justify-center items-center">
+        <button (click)="modalTransaction = false" class="b-ghost">
           <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.89705 4.05379L3.96967 3.96967C4.23594 3.7034 4.6526 3.6792 4.94621 3.89705L5.03033 3.96967L10 8.939L14.9697 3.96967C15.2359 3.7034 15.6526 3.6792 15.9462 3.89705L16.0303 3.96967C16.2966 4.23594 16.3208 4.6526 16.1029 4.94621L16.0303 5.03033L11.061 10L16.0303 14.9697C16.2966 15.2359 16.3208 15.6526 16.1029 15.9462L16.0303 16.0303C15.7641 16.2966 15.3474 16.3208 15.0538 16.1029L14.9697 16.0303L10 11.061L5.03033 16.0303C4.76406 16.2966 4.3474 16.3208 4.05379 16.1029L3.96967 16.0303C3.7034 15.7641 3.6792 15.3474 3.89705 15.0538L3.96967 14.9697L8.939 10L3.96967 5.03033C3.7034 4.76406 3.6792 4.3474 3.89705 4.05379L3.96967 3.96967L3.89705 4.05379Z"/>
@@ -432,113 +475,113 @@
         </button>
       </div>
     </div>
-    <div class="body p-6 md:p-12 flex-1 w-full space-y-6 overflow-y-auto">
-      <div class="section flex flex-col space-y-4">
+    <div class="body">
+      <div class="section-abstract section">
         <span class="t-subtitle text-st-90">Resumen</span>
-        <div class="info flex flex-col md:flex-row gap-4">
-          <div class="abstract text-st-90 t-body grid md:grid-cols-2 lg:grid-cols-4 gap-4 flex-1">
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Fecha de transmición</span>
+        <div class="info">
+          <div class="abstract-noqr">
+            <div class="data">
+              <span>Fecha de transmición</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Confirmaciones de red</span>
+            <div class="data">
+              <span>Confirmaciones de red</span>
               <span>0</span>
             </div>
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Cantidad Açai</span>
+            <div class="data">
+              <span>Cantidad Açai</span>
               <span>1.01</span>
             </div>
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Cantidad USD</span>
+            <div class="data">
+              <span>Cantidad USD</span>
               <span>$0.20</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="section flex flex-col space-y-4">
+      <div class="section-details section flex flex-col space-y-4">
         <span class="t-subtitle text-st-90">Detalles</span>
-        <div class="details break-all text-st-90 t-body rounded bg-st-20 p-4 space-y-4">
-          <div class="rounded flex-col md:flex-row flex border border-st-40 p-4 gap-4">
-            <div class="data flex flex-col space-y-1">
-              <span class="text-c t-label-b">Monto</span>
+        <div class="details">
+          <div class="primary-data">
+            <div class="data">
+              <span>Monto</span>
               <span>USD $1.01</span>
             </div>
-            <div class="data flex-1 flex flex-col space-y-1">
-              <span class="text-c t-label-b">Block Hash</span>
+            <div class="data">
+              <span>Block Hash</span>
               <span>203679036694203679036694203679036694203679036694</span>
             </div>
           </div>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">From</span>
+          <div class="data-group">
+            <div class="data">
+              <span>From</span>
               <span>028d475d-c8e6-443a-8054-bce7ebbe0cd5</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">To</span>
+            <div class="data">
+              <span>To</span>
               <span>6f8544f5-fb30-41e6-9282-139d9a6a583a</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Miner</span>
+            <div class="data">
+              <span>Miner</span>
               <span>8c4d23ce-dfba-436d-b4ee-3de8e38e0e9d</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Created At</span>
+            <div class="data">
+              <span>Created At</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Last Validation</span>
+            <div class="data">
+              <span>Last Validation</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
-            <div class="data w-full flex flex-col space-y-1">
-              <span class="text-c t-label-b">Mined At</span>
+            <div class="data">
+              <span>Mined At</span>
               <span>Apr 22, 2022, 12:44:06 AM</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="section flex flex-col space-y-4">
+      <div class="section-data section flex flex-col space-y-4">
         <span class="t-subtitle text-st-90">Data</span>
-        <div *ngIf="true" class="flex items-center space-x-4">
-          <div class="text-alert-warning">
+        <div *ngIf="true" class="notify-null">
+          <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.686 2.85207L2.12727 14.777C1.57744 15.7767 2.30069 16.9999 3.44159 16.9999H16.559C17.7 16.9999 18.4232 15.7767 17.8734 14.777L11.3146 2.85207C10.7448 1.81591 9.25588 1.81591 8.686 2.85207ZM10.0003 6.74992C10.4145 6.74992 10.7503 7.0857 10.7503 7.49992V11.4999C10.7503 11.9141 10.4145 12.2499 10.0003 12.2499C9.58609 12.2499 9.25031 11.9141 9.25031 11.4999V7.49992C9.25031 7.0857 9.58609 6.74992 10.0003 6.74992ZM10.7503 13.7499C10.7503 14.1641 10.4145 14.4999 10.0003 14.4999C9.58609 14.4999 9.25031 14.1641 9.25031 13.7499C9.25031 13.3357 9.58609 12.9999 10.0003 12.9999C10.4145 12.9999 10.7503 13.3357 10.7503 13.7499Z"/>
             </svg>
           </div>
-          <span class="t-body text-st-90">Información disponible solo para los involucrados en la transacción.</span>
+          <span>Información disponible solo para los involucrados en la transacción.</span>
         </div>
-        <div *ngIf="false" class="data text-st-90 bg-st-20 w-full grid md:grid-cols-2 p-4 gap-4">
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Póliza</span>
-            <span class="t-body">203679036694</span>
+        <div *ngIf="false" class="data-container">
+          <div class="attribute">
+            <span>Póliza</span>
+            <span>203679036694</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Carnet</span>
-            <span class="t-body">372420</span>
+          <div class="attribute">
+            <span>Carnet</span>
+            <span>372420</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Agencia</span>
-            <span class="t-body">UNAS</span>
+          <div class="attribute">
+            <span>Agencia</span>
+            <span>UNAS</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Tomador</span>
-            <span class="t-body">UNMSM</span>
+          <div class="attribute">
+            <span>Tomador</span>
+            <span>UNMSM</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Asegurador</span>
-            <span class="t-body">Carlos Abraham Cárdenas Paredes</span>
+          <div class="attribute">
+            <span>Asegurador</span>
+            <span>Carlos Abraham Cárdenas Paredes</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Identificación</span>
-            <span class="t-body">76136183</span>
+          <div class="attribute">
+            <span>Identificación</span>
+            <span>76136183</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Fecha de emición</span>
-            <span class="t-body">2022-06-01T14:34:56:722Z</span>
+          <div class="attribute">
+            <span>Fecha de emición</span>
+            <span>2022-06-01T14:34:56:722Z</span>
           </div>
-          <div class="attribute flex flex-col space-y-1">
-            <span class="t-label-b text-c">Fecha de vencimiento</span>
-            <span class="t-body">2023-6-1</span>
+          <div class="attribute">
+            <span>Fecha de vencimiento</span>
+            <span>2023-6-1</span>
           </div>
         </div>
       </div>

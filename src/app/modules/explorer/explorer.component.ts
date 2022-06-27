@@ -12,6 +12,9 @@ export class ExplorerComponent implements OnInit {
   private time: any;
   public  chartOptions: any;
 
+  public modalBlock: boolean = false;
+  public modalTransaction: boolean = false;
+
   public isMenuBurger: boolean = false;
   public blocks: Block[]=[];
   public transactions: Block[]=[]
