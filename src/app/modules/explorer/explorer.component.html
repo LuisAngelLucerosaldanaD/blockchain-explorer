@@ -1,5 +1,4 @@
 <div class="explorer-container">
-
   <div class="bj-header">
     <div class="left">
       <div class="btn-menu-burger md:hidden">
@@ -64,7 +63,7 @@
             <span class="t-subtitle text-st-90">Code Blockchain</span>
             <form class="parameters">
               <input class="flex-1 bj-input" type="text" placeholder="79228162514264337593543950335">
-              <button class="b-solid">
+              <button class="b-solid" type="button">
                 Search
               </button>
             </form>
@@ -154,7 +153,7 @@
                 </div>
                 <div *ngIf="tab === 'blocks' && blocks.length > 0" class="pagination">
                   <div>
-                    <button class="b-ghost">
+                    <button class="b-ghost" (click)="beforePageBlock()">
                       <div>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12.2676 15.793C11.9677 16.0787 11.493 16.0672 11.2073 15.7672L6.20597 10.5168C5.93004 10.2271 5.93004 9.77187 6.20597 9.4822L11.2073 4.23173C11.493 3.93181 11.9677 3.92028 12.2676 4.20597C12.5676 4.49166 12.5791 4.96639 12.2934 5.26631L7.78483 9.99949L12.2934 14.7327C12.5791 15.0326 12.5676 15.5073 12.2676 15.793Z"/>
@@ -162,9 +161,9 @@
                       </div>
                     </button>
                   </div>
-                  <span>1 / 10</span>
+                  <span>{{currentPgBlock}} / {{blocksPaginationLength}}</span>
                   <div>
-                    <button class="b-ghost">
+                    <button class="b-ghost" (click)="nextPageBlock()">
                       <div>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M7.73271 4.20694C8.03263 3.92125 8.50737 3.93279 8.79306 4.23271L13.7944 9.48318C14.0703 9.77285 14.0703 10.2281 13.7944 10.5178L8.79306 15.7682C8.50737 16.0681 8.03263 16.0797 7.73271 15.794C7.43279 15.5083 7.42125 15.0336 7.70694 14.7336L12.2155 10.0005L7.70694 5.26729C7.42125 4.96737 7.43279 4.49264 7.73271 4.20694Z"/>
@@ -175,7 +174,7 @@
                 </div>
                 <div *ngIf="tab === 'transactions' && transactions.length > 0" class="pagination">
                   <div>
-                    <button class="b-ghost">
+                    <button class="b-ghost" (click)="beforePageTrx()">
                       <div>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12.2676 15.793C11.9677 16.0787 11.493 16.0672 11.2073 15.7672L6.20597 10.5168C5.93004 10.2271 5.93004 9.77187 6.20597 9.4822L11.2073 4.23173C11.493 3.93181 11.9677 3.92028 12.2676 4.20597C12.5676 4.49166 12.5791 4.96639 12.2934 5.26631L7.78483 9.99949L12.2934 14.7327C12.5791 15.0326 12.5676 15.5073 12.2676 15.793Z"/>
@@ -183,9 +182,9 @@
                       </div>
                     </button>
                   </div>
-                  <span>1 / 6</span>
+                  <span>{{currentPgTrx}} / {{trxPaginationLength}}</span>
                   <div>
-                    <button class="b-ghost">
+                    <button class="b-ghost" (click)="nextPageTrx()">
                       <div>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M7.73271 4.20694C8.03263 3.92125 8.50737 3.93279 8.79306 4.23271L13.7944 9.48318C14.0703 9.77285 14.0703 10.2281 13.7944 10.5178L8.79306 15.7682C8.50737 16.0681 8.03263 16.0797 7.73271 15.794C7.43279 15.5083 7.42125 15.0336 7.70694 14.7336L12.2155 10.0005L7.70694 5.26729C7.42125 4.96737 7.43279 4.49264 7.73271 4.20694Z"/>
@@ -209,7 +208,7 @@
               </div>
               <span>No hay bloques registrados</span>
             </div>
-            <div *ngFor="let block of blocks" (click)="modalBlock = true" class="item-operation">
+            <div *ngFor="let block of blocksDisplay" (click)="selectedBlock(block)" class="item-operation">
               <div class="cuadrado">
                 <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M47.966 92.9168C47.5977 92.9168 47.2444 92.7695 46.9839 92.5073L44.2346 89.7394C43.8696 89.3719 44.0163 88.7462 44.506 88.5819L49.5608 86.8856C49.8459 86.7899 50.1541 86.7899 50.4392 86.8856L55.494 88.5819C55.9837 88.7462 56.1304 89.3719 55.7654 89.7394L53.0161 92.5073C52.7556 92.7695 52.4023 92.9168 52.034 92.9168H47.966Z"/>
@@ -227,11 +226,11 @@
               <div class="body-item">
                 <div class="text-a">
                   <span>{{block.id}}</span>
-                  <span>{{block.created_at}}</span>
+                  <span>{{block.created_at | date: 'medium' : 'UTC'}}</span>
                 </div>
                 <div class="text-b">
                   <span>Miner {{block.mined_by}}</span>
-                  <span>267 txns in 3 secs</span>
+                  <span>{{block.totalTrx}} txns in {{block.timeTrx}} secs</span>
                 </div>
               </div>
             </div>
@@ -245,7 +244,7 @@
               </div>
               <span>No hay transacciones registradas</span>
             </div>
-            <div *ngFor="let block of transactions" (click)="modalTransaction = true" class="item-operation">
+            <div *ngFor="let transaction of transactionsDisplay" (click)="selectedTrx(transaction)" class="item-operation">
               <div class="circulo">
                 <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M47.966 92.9168C47.5977 92.9168 47.2444 92.7695 46.9839 92.5073L44.2346 89.7394C43.8696 89.3719 44.0163 88.7462 44.506 88.5819L49.5608 86.8856C49.8459 86.7899 50.1541 86.7899 50.4392 86.8856L55.494 88.5819C55.9837 88.7462 56.1304 89.3719 55.7654 89.7394L53.0161 92.5073C52.7556 92.7695 52.4023 92.9168 52.034 92.9168H47.966Z"/>
@@ -261,13 +260,13 @@
                 </svg>
               </div>
               <div class="body-item">
-                <div class="text-a">
-                  <span>{{block.id}}</span>
-                  <span>{{block.created_at}}</span>
-                </div>
                 <div class="text-b">
-                  <span>Miner {{block.mined_by}}</span>
-                  <span>267 txns in 3 secs</span>
+                  <span>{{transaction.id}}</span>
+                  <span>{{transaction.created_at | date: 'medium' : 'UTC'}}</span>
+                </div>
+                <div class="text-a">
+                  <span>Açais {{transaction.amount}}</span>
+                  <span>Bloque {{transaction.block}}</span>
                 </div>
               </div>
             </div>
@@ -348,26 +347,26 @@
           <div class="abstract">
             <div class="data">
               <span>Fecha de transmición</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
+              <span>{{blocksSelected.created_at | date: 'medium':'UTC'}}</span>
             </div>
             <div class="data">
               <span>Confirmaciones de red</span>
-              <span>0</span>
+              <span>51%</span>
             </div>
             <div class="data">
               <span>Cantidad Açai</span>
-              <span>1.01</span>
+              <span>{{blocksSelected.acais}}</span>
             </div>
             <div class="data">
               <span>Cantidad USD</span>
-              <span>$0.20</span>
+              <span>${{blocksSelected.acais * 0.20}}</span>
             </div>
           </div>
           <div class="qr-code">
-            <div>
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALoAAAC6CAMAAAAu0KfDAAAABlBMVEX///8AAABVwtN+AAABxklEQVR4nO3QUZKDQAwD0eT+l94DgJQeCAXOtr4oGKzneb2MMebivHHSX31mbzljkC5d+hT6tj6dIcuQ+vRMDNKlS59I5zX9ZKKQ98QgXbr0X6X3f9P5NEG6dOnSSTGnk6/SpUv/PXrHEXpHHLsa6dKlT6cfq/nuMzdIly59Cv18SMGF9Wci/Y5IvyM301N9quxEshJZAy0sXbr0x9NJWRqXWH2NnnQR0qVLn0XvUL79KqVfFmmULl36FHpC9xBoByFi+ipduvQh9D4ivUllqwvwq5EuXfpEOjoK6NsJxy6iLyxduvRZ9M4lX8mSx7rieenSpQ+hry6z/TdVrl5E/1e6dOmz6H2B/kyI6TmtmhaLy0iXLv3B9FXWauXq5NSyE+nSpT+enupTyEoESto/oKVLl/54emKREemvPqf/tWCQLl36EHpfKYWc54vxLunSpU+hr2Zbn3Dkfb+yPkG6dOnPp79xTtWErmPXIV269Fn0nQ/hTHomK5FeflK6dOmz6O9N+Lgz6/XsoKVLl/6j9PS1V/LFert06dL/A31nUM13J0iXLn0inRfz9JnbM/3ipEuXPpF+DEGInN5bpEuXPpFujDEX5A/WVTvF1c+o+gAAAABJRU5ErkJggg==">
+            <div class="p-1" style="background: white">
+              <qr-code [value]="urlBlock" [size]="200"></qr-code>
             </div>
-            <a href="#/explorer">Click aquí, si no puede leer el QR</a>
+            <a [href]="urlBlock" target="_blank">Click aquí, si no puede leer el QR</a>
           </div>
         </div>
       </div>
@@ -377,44 +376,36 @@
           <div class="primary-data">
             <div class="data">
               <span>Monto</span>
-              <span>USD $1.01</span>
+              <span>USD ${{blocksSelected.acais * 0.20}}</span>
             </div>
             <div class="data">
               <span>Block Hash</span>
-              <span>203679036694203679036694203679036694203679036694</span>
+              <span>{{blocksSelected.hash}}</span>
             </div>
           </div>
           <div class="data-group">
             <div class="data">
-              <span>From</span>
-              <span>028d475d-c8e6-443a-8054-bce7ebbe0cd5</span>
+              <span>Minero</span>
+              <span>{{blocksSelected.mined_by}}</span>
             </div>
             <div class="data">
-              <span>To</span>
-              <span>6f8544f5-fb30-41e6-9282-139d9a6a583a</span>
+              <span>Fecha de Creación</span>
+              <span>{{blocksSelected.created_at | date: 'medium': 'UTC'}}</span>
             </div>
             <div class="data">
-              <span>Miner</span>
-              <span>8c4d23ce-dfba-436d-b4ee-3de8e38e0e9d</span>
+              <span>Ultima Validación</span>
+              <span>{{blocksSelected.last_validation_date || blocksSelected.timestamp | date : 'medium' : 'UTC'}}</span>
             </div>
             <div class="data">
-              <span>Created At</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
-            </div>
-            <div class="data">
-              <span>Last Validation</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
-            </div>
-            <div class="data">
-              <span>Mined At</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
+              <span>Fecha de Minado</span>
+              <span>{{blocksSelected.mined_at | date:'medium': 'UTC'}}</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="section-data section">
+      <div *ngIf="false" class="section-data section">
         <span class="t-subtitle text-st-90">Data</span>
-        <div *ngIf="false" class="notify-null">
+        <div class="notify-null">
           <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.686 2.85207L2.12727 14.777C1.57744 15.7767 2.30069 16.9999 3.44159 16.9999H16.559C17.7 16.9999 18.4232 15.7767 17.8734 14.777L11.3146 2.85207C10.7448 1.81591 9.25588 1.81591 8.686 2.85207ZM10.0003 6.74992C10.4145 6.74992 10.7503 7.0857 10.7503 7.49992V11.4999C10.7503 11.9141 10.4145 12.2499 10.0003 12.2499C9.58609 12.2499 9.25031 11.9141 9.25031 11.4999V7.49992C9.25031 7.0857 9.58609 6.74992 10.0003 6.74992ZM10.7503 13.7499C10.7503 14.1641 10.4145 14.4999 10.0003 14.4999C9.58609 14.4999 9.25031 14.1641 9.25031 13.7499C9.25031 13.3357 9.58609 12.9999 10.0003 12.9999C10.4145 12.9999 10.7503 13.3357 10.7503 13.7499Z"/>
@@ -422,7 +413,7 @@
           </div>
           <span>Información disponible solo para los involucrados en la transacción.</span>
         </div>
-        <div *ngIf="true" class="data-container">
+        <div class="data-container">
           <div class="attribute">
             <span>Póliza</span>
             <span>203679036694</span>
@@ -479,23 +470,29 @@
       <div class="section-abstract section">
         <span class="t-subtitle text-st-90">Resumen</span>
         <div class="info">
-          <div class="abstract-noqr">
+          <div class="abstract">
             <div class="data">
               <span>Fecha de transmición</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
+              <span>{{trxSelected.created_at | date: 'medium': 'UTC'}}</span>
             </div>
             <div class="data">
               <span>Confirmaciones de red</span>
-              <span>0</span>
+              <span>51%</span>
             </div>
             <div class="data">
               <span>Cantidad Açai</span>
-              <span>1.01</span>
+              <span>{{trxSelected.amount}}</span>
             </div>
             <div class="data">
               <span>Cantidad USD</span>
-              <span>$0.20</span>
+              <span>${{trxSelected.amount * 0.20}}</span>
             </div>
+          </div>
+          <div class="qr-code">
+            <div class="p-1" style="background: white">
+              <qr-code [value]="urlBlock" [size]="200"></qr-code>
+            </div>
+            <a [href]="urlTrx" target="_blank">Click aquí, si no puede leer el QR</a>
           </div>
         </div>
       </div>
@@ -505,44 +502,44 @@
           <div class="primary-data">
             <div class="data">
               <span>Monto</span>
-              <span>USD $1.01</span>
+              <span>USD ${{trxSelected.amount * 0.20}}</span>
             </div>
             <div class="data">
               <span>Block Hash</span>
-              <span>203679036694203679036694203679036694203679036694</span>
+              <span>{{blocksSelected.hash}}</span>
             </div>
           </div>
           <div class="data-group">
             <div class="data">
-              <span>From</span>
-              <span>028d475d-c8e6-443a-8054-bce7ebbe0cd5</span>
+              <span>De</span>
+              <span>{{trxSelected.from}}</span>
             </div>
             <div class="data">
-              <span>To</span>
-              <span>6f8544f5-fb30-41e6-9282-139d9a6a583a</span>
+              <span>Para</span>
+              <span>{{trxSelected.to}}</span>
             </div>
             <div class="data">
-              <span>Miner</span>
-              <span>8c4d23ce-dfba-436d-b4ee-3de8e38e0e9d</span>
+              <span>Minero</span>
+              <span>{{blocksSelected.mined_by}}</span>
             </div>
             <div class="data">
-              <span>Created At</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
+              <span>Fecha de Creación</span>
+              <span>{{trxSelected.created_at | date: 'medium': 'UTC'}}</span>
             </div>
             <div class="data">
-              <span>Last Validation</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
+              <span>Ultima Validación</span>
+              <span>{{blocksSelected.last_validation_date || blocksSelected.timestamp | date: 'medium': 'UTC'}}</span>
             </div>
             <div class="data">
-              <span>Mined At</span>
-              <span>Apr 22, 2022, 12:44:06 AM</span>
+              <span>Fecha de Minado</span>
+              <span>{{blocksSelected.created_at | date: 'medium': 'UTC'}}</span>
             </div>
           </div>
         </div>
       </div>
       <div class="section-data section flex flex-col space-y-4">
         <span class="t-subtitle text-st-90">Data</span>
-        <div *ngIf="true" class="notify-null">
+        <div *ngIf="false" class="notify-null">
           <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.686 2.85207L2.12727 14.777C1.57744 15.7767 2.30069 16.9999 3.44159 16.9999H16.559C17.7 16.9999 18.4232 15.7767 17.8734 14.777L11.3146 2.85207C10.7448 1.81591 9.25588 1.81591 8.686 2.85207ZM10.0003 6.74992C10.4145 6.74992 10.7503 7.0857 10.7503 7.49992V11.4999C10.7503 11.9141 10.4145 12.2499 10.0003 12.2499C9.58609 12.2499 9.25031 11.9141 9.25031 11.4999V7.49992C9.25031 7.0857 9.58609 6.74992 10.0003 6.74992ZM10.7503 13.7499C10.7503 14.1641 10.4145 14.4999 10.0003 14.4999C9.58609 14.4999 9.25031 14.1641 9.25031 13.7499C9.25031 13.3357 9.58609 12.9999 10.0003 12.9999C10.4145 12.9999 10.7503 13.3357 10.7503 13.7499Z"/>
@@ -550,41 +547,17 @@
           </div>
           <span>Información disponible solo para los involucrados en la transacción.</span>
         </div>
-        <div *ngIf="false" class="data-container">
-          <div class="attribute">
-            <span>Póliza</span>
-            <span>203679036694</span>
-          </div>
-          <div class="attribute">
-            <span>Carnet</span>
-            <span>372420</span>
-          </div>
-          <div class="attribute">
-            <span>Agencia</span>
-            <span>UNAS</span>
-          </div>
-          <div class="attribute">
-            <span>Tomador</span>
-            <span>UNMSM</span>
-          </div>
-          <div class="attribute">
-            <span>Asegurador</span>
-            <span>Carlos Abraham Cárdenas Paredes</span>
-          </div>
-          <div class="attribute">
-            <span>Identificación</span>
-            <span>76136183</span>
-          </div>
-          <div class="attribute">
-            <span>Fecha de emición</span>
-            <span>2022-06-01T14:34:56:722Z</span>
-          </div>
-          <div class="attribute">
-            <span>Fecha de vencimiento</span>
-            <span>2023-6-1</span>
+        <div *ngIf="true" class="data-container">
+          <div *ngFor="let identifier of dataTrx.identifiers">
+            <div class="attribute" *ngFor="let attribute of identifier.attributes">
+              <span>{{attribute.name}}</span>
+              <span>{{attribute.value}}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<app-block-page [isBlock]="isBlockPage"></app-block-page>

@@ -6,6 +6,8 @@ import {HighchartsChartModule} from "highcharts-angular";
 import { DataViewerComponent } from './pages/data-viewer/data-viewer.component';
 import { ExplorerService } from './services/explorer.service';
 import { HttpClientModule } from '@angular/common/http';
+import {QRCodeModule} from "angular2-qrcode";
+import {UiModule} from "../../ui/ui.module";
 
 
 
@@ -19,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     ExplorerRoutingModule,
     HighchartsChartModule,
     HttpClientModule,
+    QRCodeModule,
+    UiModule,
   ],
   providers: [
     ExplorerService
