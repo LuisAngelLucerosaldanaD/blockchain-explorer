@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import * as Highcharts from 'highcharts';
 import HC_exporting from 'highcharts/modules/exporting';
 import {Block, Data, Transaction} from './models/data-viewer';
@@ -13,6 +13,9 @@ import {decryptText} from "../../helpers/crypto";
   styleUrls: ['./explorer.component.scss']
 })
 export class ExplorerComponent implements OnInit, OnDestroy {
+
+  @ViewChild('map') mapNode!: ElementRef<HTMLElement>
+
   private time: any;
   public chartOptions: any;
   private _subscriptions: Subscription = new Subscription();
@@ -223,6 +226,11 @@ export class ExplorerComponent implements OnInit, OnDestroy {
 
     this.dataTrx = JSON.parse(decryptText(trx.data, '204812730425442A472D2F423F452847'));
   }
+
+  public goToFullScreen(): void {
+    this.mapNode.nativeElement.requestFullscreen().then((res) => {}).catch((err) => {})
+  }
+
 }
 
 

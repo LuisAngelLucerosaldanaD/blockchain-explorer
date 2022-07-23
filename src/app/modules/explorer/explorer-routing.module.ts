@@ -7,7 +7,7 @@ const routes:Routes=[
   {
     path:"",
     component:ExplorerComponent
-  }, 
+  },
   {
     path:"data-viewer",
     component:DataViewerComponent
@@ -16,7 +16,6 @@ const routes:Routes=[
 @NgModule({
   imports:[
     RouterModule.forChild(routes)
-
   ],
   exports:[
     RouterModule

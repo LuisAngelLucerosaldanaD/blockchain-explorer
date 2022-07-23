@@ -9,6 +9,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {UiModule} from "../../ui/ui.module";
+import {QuicklinkModule} from "ngx-quicklink";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {UiModule} from "../../ui/ui.module";
     CommonModule,
     HttpClientModule,
     FormsModule,
-    UiModule
+    UiModule,
+    QuicklinkModule
   ],
   providers: [ExplorerService]
 })

@@ -141,6 +141,80 @@
   line-height: 16px;
 }
 
+
+.t-subtitle-1 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.t-subtitle-2 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.t-body-1 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.t-body-2 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.t-button-1 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.t-button-2 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.t-caption-1 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1rem;
+}
+
+.t-caption-2 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1rem;
+  flex-wrap: wrap;
+}
+
+.t-caption-3 {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 8px;
+}
+
+.t-overline {
+  font-family: Roboto, Arial, "PT Sans";
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  line-height: 1rem;
+  letter-spacing: 0.05rem;
+}
+
 .bj-header {
   @apply fixed top-0 z-50 backdrop-blur-xl flex flex-row items-center justify-between w-full h-16 space-x-4 bj-container bg-white/50 dark:bg-black/50 border-b border-st-20;
   .brand {
@@ -543,6 +617,22 @@ svg {
 }
 
 /* END MODAL */
+
+.form-login {
+  @apply flex flex-col p-6 lg:p-32 flex-none lg:items-center lg:justify-center lg:w-1/2 space-y-12
+}
+
+label {
+  @apply t-caption-2 text-st-40
+}
+
+.input-style {
+  @apply px-2 h-10 t-body-1 text-black bg-st-40 rounded
+}
+
+.footer-login {
+  @apply flex flex-row justify-between items-center px-6 w-full h-12
+}
 
 .gutter {
   @apply bg-st-40 bg-no-repeat;

@@ -8,8 +8,7 @@ import { ExplorerService } from './services/explorer.service';
 import { HttpClientModule } from '@angular/common/http';
 import {QRCodeModule} from "angular2-qrcode";
 import {UiModule} from "../../ui/ui.module";
-
-
+import {QuicklinkModule} from "ngx-quicklink";
 
 @NgModule({
   declarations: [
@@ -23,6 +22,7 @@ import {UiModule} from "../../ui/ui.module";
     HttpClientModule,
     QRCodeModule,
     UiModule,
+    QuicklinkModule
   ],
   providers: [
     ExplorerService

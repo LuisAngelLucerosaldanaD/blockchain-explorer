@@ -30,15 +30,15 @@
       </div>
       <div class="navbar">
         <a href="">Home</a>
-        <a href="">Explorer</a>
+        <a routerLink="/explorer">Explorer</a>
         <a href="">App</a>
-        <a href="">Oferts</a>
+        <a routerLink="/auth/login">Oferts</a>
         <a href="">Contact</a>
       </div>
     </div>
     <div class="right">
-      <button class="b-outline h-8">Register</button>
-      <button class="b-solid h-8">Sign in</button>
+      <button routerLink="/auth/register" class="b-outline h-8">Register</button>
+      <button routerLink="/auth/login" class="b-solid h-8">Sign in</button>
     </div>
   </div>
 
@@ -278,29 +278,34 @@
           <div class="header">
             <span class="t-subtitle text-st-90">Nodes on the World</span>
             <div>
-              <button class="b-full-screen">
+              <button class="b-full-screen" (click)="goToFullScreen()">
                 <span class="t-body">Full Screen</span>
-                <div><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4.16667 5C4.16667 4.53976 4.53976 4.16667 5 4.16667H6.66667C7.1269 4.16667 7.5 3.79357 7.5 3.33333C7.5 2.8731 7.1269 2.5 6.66667 2.5H5C3.61929 2.5 2.5 3.61929 2.5 5V6.66667C2.5 7.1269 2.8731 7.5 3.33333 7.5C3.79357 7.5 4.16667 7.1269 4.16667 6.66667V5ZM4.16667 15C4.16667 15.4602 4.53976 15.8333 5 15.8333H6.66667C7.1269 15.8333 7.5 16.2064 7.5 16.6667C7.5 17.1269 7.1269 17.5 6.66667 17.5H5C3.61929 17.5 2.5 16.3807 2.5 15V13.3333C2.5 12.8731 2.8731 12.5 3.33333 12.5C3.79357 12.5 4.16667 12.8731 4.16667 13.3333V15ZM15 4.16667C15.4602 4.16667 15.8333 4.53976 15.8333 5V6.66667C15.8333 7.1269 16.2064 7.5 16.6667 7.5C17.1269 7.5 17.5 7.1269 17.5 6.66667V5C17.5 3.61929 16.3807 2.5 15 2.5H13.3333C12.8731 2.5 12.5 2.8731 12.5 3.33333C12.5 3.79357 12.8731 4.16667 13.3333 4.16667H15ZM15.8333 15C15.8333 15.4602 15.4602 15.8333 15 15.8333H13.3333C12.8731 15.8333 12.5 16.2064 12.5 16.6667C12.5 17.1269 12.8731 17.5 13.3333 17.5H15C16.3807 17.5 17.5 16.3807 17.5 15V13.3333C17.5 12.8731 17.1269 12.5 16.6667 12.5C16.2064 12.5 15.8333 12.8731 15.8333 13.3333V15Z"/>
-                </svg></div>
+                <div>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.16667 5C4.16667 4.53976 4.53976 4.16667 5 4.16667H6.66667C7.1269 4.16667 7.5 3.79357 7.5 3.33333C7.5 2.8731 7.1269 2.5 6.66667 2.5H5C3.61929 2.5 2.5 3.61929 2.5 5V6.66667C2.5 7.1269 2.8731 7.5 3.33333 7.5C3.79357 7.5 4.16667 7.1269 4.16667 6.66667V5ZM4.16667 15C4.16667 15.4602 4.53976 15.8333 5 15.8333H6.66667C7.1269 15.8333 7.5 16.2064 7.5 16.6667C7.5 17.1269 7.1269 17.5 6.66667 17.5H5C3.61929 17.5 2.5 16.3807 2.5 15V13.3333C2.5 12.8731 2.8731 12.5 3.33333 12.5C3.79357 12.5 4.16667 12.8731 4.16667 13.3333V15ZM15 4.16667C15.4602 4.16667 15.8333 4.53976 15.8333 5V6.66667C15.8333 7.1269 16.2064 7.5 16.6667 7.5C17.1269 7.5 17.5 7.1269 17.5 6.66667V5C17.5 3.61929 16.3807 2.5 15 2.5H13.3333C12.8731 2.5 12.5 2.8731 12.5 3.33333C12.5 3.79357 12.8731 4.16667 13.3333 4.16667H15ZM15.8333 15C15.8333 15.4602 15.4602 15.8333 15 15.8333H13.3333C12.8731 15.8333 12.5 16.2064 12.5 16.6667C12.5 17.1269 12.8731 17.5 13.3333 17.5H15C16.3807 17.5 17.5 16.3807 17.5 15V13.3333C17.5 12.8731 17.1269 12.5 16.6667 12.5C16.2064 12.5 15.8333 12.8731 15.8333 13.3333V15Z"/>
+                  </svg>
+                </div>
               </button>
             </div>
           </div>
           <div class="number-nodes">
             <div class="nodes">
-              <span>Number of Nodes</span>
-              <span>21</span>
+              <span>Número de nodos</span>
+              <span>100</span>
             </div>
             <div class="nodes">
-              <span>Number of Nodes</span>
-              <span>21</span>
+              <span>Número de Mineros</span>
+              <span>500</span>
             </div>
             <div class="nodes">
-              <span>Number of Nodes</span>
-              <span>21</span>
+              <span>Número de validadores</span>
+              <span>50</span>
             </div>
           </div>
-          <div class="map"><img src="./assets/img/mapamundi.png"></div>
+          <div class="map" #map>
+            <!--<img src="./assets/img/mapamundi.png">-->
+            <app-map-nodes></app-map-nodes>
+          </div>
         </div>
         <div class="section-history">
           <div class="header">

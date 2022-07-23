@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthComponent } from "./auth.component";
 import { CredentialViewerComponent } from "./pages/credential-viewer/credential-viewer.component";
+import {LoginComponent} from "./pages/login/login.component";
 
 const routes:Routes=[
   {
@@ -11,6 +12,10 @@ const routes:Routes=[
   {
     path:"credential",
     component:CredentialViewerComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ]
 
