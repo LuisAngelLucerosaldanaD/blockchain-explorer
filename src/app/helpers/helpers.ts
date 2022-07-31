@@ -4,6 +4,22 @@ export const onlyNumbers = (value: any) => {
   return key >= 48 && key <= 57;
 };
 
+export const onlyLetters = (value: KeyboardEvent): boolean => {
+  const key = value.keyCode || value.which;
+  let tecla = String.fromCharCode(key).toLowerCase();
+  let letters = " áéíóúabcdefghijklmnñopqrstuvwxyzñ";
+  let specials = [8, 37, 39];
+  let tecla_especial = false;
+  for (let i in specials) {
+    if (key == specials[i]) {
+      tecla_especial = true;
+      break;
+    }
+  }
+
+  return !(letters.indexOf(tecla) == -1 && !tecla_especial);
+}
+
 const helper = new JwtHelperService();
 
 export const getTokenUser = (token: string) => {

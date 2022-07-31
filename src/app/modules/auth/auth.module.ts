@@ -7,16 +7,20 @@ import {CredentialViewerComponent} from './pages/credential-viewer/credential-vi
 import {ExplorerService} from "../explorer/services/explorer.service";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
-import {UiModule} from "../../ui/ui.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {UiModule} from "@app/ui/ui.module";
 import {QuicklinkModule} from "ngx-quicklink";
+import {DropdownModule, IconsModule, ToastModule, ToggleModule} from "ecapture-ng-ui";
+import {AuthService} from "@app/modules/auth/services/auth.service";
+import { TermsConditionsComponent } from './pages/terms-conditions/terms-conditions.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    CredentialViewerComponent
+    CredentialViewerComponent,
+    TermsConditionsComponent
   ],
   imports: [
     AuthRoutingModule,
@@ -24,9 +28,14 @@ import {QuicklinkModule} from "ngx-quicklink";
     HttpClientModule,
     FormsModule,
     UiModule,
-    QuicklinkModule
+    QuicklinkModule,
+    ReactiveFormsModule,
+    ToastModule,
+    IconsModule,
+    DropdownModule,
+    ToggleModule
   ],
-  providers: [ExplorerService]
+  providers: [ExplorerService, AuthService]
 })
 
 export class AuthModule {

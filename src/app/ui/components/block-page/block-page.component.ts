@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class BlockPageComponent implements OnInit {
 
-  @Input() isBlock: boolean = false;
+  @Input() show: boolean = false;
 
   constructor() {
   }

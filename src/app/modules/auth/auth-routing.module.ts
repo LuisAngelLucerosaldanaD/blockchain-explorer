@@ -1,17 +1,27 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { AuthComponent } from "./auth.component";
-import { CredentialViewerComponent } from "./pages/credential-viewer/credential-viewer.component";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {CredentialViewerComponent} from "./pages/credential-viewer/credential-viewer.component";
 import {LoginComponent} from "./pages/login/login.component";
+import {TermsConditionsComponent} from "@app/modules/auth/pages/terms-conditions/terms-conditions.component";
+import {RegisterComponent} from "@app/modules/auth/pages/register/register.component";
 
-const routes:Routes=[
+const routes: Routes = [
   {
-    path:"",
-    component:AuthComponent
+    path: "",
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path:"credential",
-    component:CredentialViewerComponent
+    path: "credential",
+    component: CredentialViewerComponent
+  },
+  {
+    path: "terms-and-conditions",
+    component: TermsConditionsComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
   },
   {
     path: 'login',
@@ -20,12 +30,13 @@ const routes:Routes=[
 ]
 
 @NgModule({
-  imports:[
+  imports: [
     RouterModule.forChild(routes)
   ],
-  exports:[
+  exports: [
     RouterModule
   ],
 })
 
-export class AuthRoutingModule{}
+export class AuthRoutingModule {
+}
