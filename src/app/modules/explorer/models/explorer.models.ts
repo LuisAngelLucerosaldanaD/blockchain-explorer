@@ -22,3 +22,10 @@ export interface Files {
   name_document: string;
 }
 
+export interface ResponseGetBlockById{
+  code:number;
+  data: Block;
+  error: boolean;
+  msg: string;
+  type: number;
+}

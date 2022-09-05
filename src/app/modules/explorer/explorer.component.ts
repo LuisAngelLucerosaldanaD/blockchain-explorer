@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, ReactiveFormsModule} from "@angular/forms";
 import * as Highcharts from 'highcharts';
 import HC_exporting from 'highcharts/modules/exporting';
 import {Block, Data, Transaction} from './models/data-viewer';
@@ -26,12 +27,14 @@ export class ExplorerComponent implements OnInit, OnDestroy {
   public isMenuBurger: boolean = false;
   // her
   public blocks: Block[] = [];
+  public blockById!: Block;
   public blocksSelected!: Block;
   public trxSelected!: Transaction;
   public blocksDisplay: Block[] = [];
   public transactions: Transaction[] = [];
   public transactionsDisplay: Transaction[] = [];
   public tab: string = 'blocks';
+  public difficultyTotal: number = 0;
 
   public Highcharts: any = Highcharts;
 
@@ -58,16 +61,25 @@ export class ExplorerComponent implements OnInit, OnDestroy {
   private localURl: URL;
 
   public dataTrx!: Data;
-
+  public isLogged: boolean = false;
+  public searchBlockForm: FormGroup;
+  
+  public selectedSesstings = '';
   constructor(
-    private _explorerService: ExplorerService
+    private _explorerService: ExplorerService,
+    private _fb: FormBuilder,
   ) {
     this.getAllBlocks();
     this.dateNowChart = new Date();
     this.dateNowChart.setDate(this.dateNowChart.getDate() - 14);
     this.localURl = new URL(document.location.href);
-  }
+    this.searchBlockForm = _fb.group({
+      blockid: ['', Validators.required]
+    });
+    if(sessionStorage.getItem("access-token")) this.isLogged == true; 
 
+  }
+  blockid: string = '';
   ngOnDestroy(): void {
     this._subscriptions.unsubscribe();
   }
@@ -114,16 +126,15 @@ export class ExplorerComponent implements OnInit, OnDestroy {
       );
     }, 300);
   }
-
-  private getAllBlocks(): void {
-    this.isBlockPage = true;
+  public getBlockById(): void {
+    const blockid: number = this.searchBlockForm.get('blockid')?.value;
     this._subscriptions.add(
-      this._explorerService.getBlocks(this.limit, this.offset).subscribe({
+      this._explorerService.getBlockById(blockid).subscribe({
         next: (res) => {
           if (res.error) {
             console.log(res.msg)
           } else {
-            this.blocks = res.data;
+            this.blocks.push(res.data);
             this.getTransactions();
             this.initPaginationBlocks();
           }
@@ -135,6 +146,283 @@ export class ExplorerComponent implements OnInit, OnDestroy {
         }
       })
     );
+    this.blockById =  {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    };
+    this.getTransactionsByBlock();
+    this.blocks.push(this.blockById);
+    this.isBlockPage = false;
+  }
+  private getAllBlocks(): void {
+    this.isBlockPage = true;
+    this._subscriptions.add(
+      this._explorerService.getBlocks(this.limit, this.offset).subscribe({
+        next: (res) => {
+          if (res.error) {
+            console.log(res.msg)
+          } else {
+            this.blocks = res.data;
+
+            this.getTransactions();
+            this.initPaginationBlocks();
+          }
+          this.isBlockPage = false;
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error(err);
+          this.isBlockPage = false;
+        }
+      })
+    );
+    /* this.blocks =  [{
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },{
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    },
+    {
+      created_at: "25/08/2022",
+      data: '[{"id":"1","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}},{"id":"2","from":"a357398b-8fb3-48c7-bc70-85c5a6c6a116","to":"f5243645-04fd-4758-84d2-531d308c36c6","amount":500,"type_id":18,"data":{"category":"2e59a864-b7ff-45d9-be8c-7d1b9513f7c5","type":1,"files":[],"name":"DNI","description":"Documento Nacional de Identidad","identifiers":[{"name":"Carnet","identity_number":"75840236","attributes":[{"id":1,"name":"Nombre","value":"Juan Miguel"},{"id":2,"name":"Apellido Paterno","value":"Campos"},{"id":3,"name":"Apellido Materno","value":"Marchan"},{"id":4,"name":"Nacimiento","value":"21 08 2001"},{"id":5,"name":"Sexo","value":"M"}]}]}}]',
+      difficulty: 12,
+      hash: "string",
+      id: 123,
+      id_user: "user_1",
+      acais: 123456,
+      totalTrx: 2,
+      timeTrx: 12345467,
+      last_validation_date: "25/08/2022",
+      mined_at: "25/08/2022",
+      mined_by: "25/08/2022",
+      nonce: 1235,
+      prev_hash: "25/08/2022",
+      status_id: 1,
+      timestamp: "1234567",
+      updated_at: "25/08/2022",
+    }] ;
+    //this.blocks = [];
+    this.getTransactions();
+    this.initPaginationBlocks();
+    this.isBlockPage = false;
+    this.calculateDifficulty();
+ */
   }
 
   private getTransactions(): void {
@@ -146,11 +434,29 @@ export class ExplorerComponent implements OnInit, OnDestroy {
       this.blocks[i].timeTrx = Math.ceil(((new Date(this.blocks[i].created_at).getTime()) - (new Date(this.blocks[i].timestamp).getTime())) / 1000);
       transactions = transactions.map((trx) => {
         trx.block = this.blocks[i].id;
-        return trx
+        return trx;
       });
       this.transactions = [...this.transactions, ...transactions];
     });
 
+    if (this.transactions.length) {
+      this.initPaginationTrx();
+    }
+  }
+
+  private getTransactionsByBlock(){
+    let transactions = JSON.parse(this.blockById.data) as Transaction[];
+    this.getTrxOfDate(transactions);
+    this.blockById.acais = transactions.reduce((amount, trxB) => amount + trxB.amount, 0);
+    this.blockById.totalTrx = transactions.length;
+    this.blockById.timeTrx = Math.ceil(((new Date(this.blockById.created_at).getTime()) - (new Date(this.blockById.timestamp).getTime())) / 1000);
+    transactions = transactions.map((trx) => {
+      trx.block = this.blockById.id;
+      return trx
+    });
+    console.log("Transactions block",transactions);
+    
+    this.transactions = [...this.transactions, ...transactions];
     if (this.transactions.length) {
       this.initPaginationTrx();
     }
@@ -231,6 +537,19 @@ export class ExplorerComponent implements OnInit, OnDestroy {
     this.mapNode.nativeElement.requestFullscreen().then((res) => {}).catch((err) => {})
   }
 
+  private calculateDifficulty(){
+    let self = this;
+    this.blocks.forEach(function(element){
+      self.difficultyTotal += element.difficulty;
+    });
+  }
+  public getTransactionsAmount() {
+    let totalTrxAmount = 0; 
+    this.transactions.forEach(function(element){
+        totalTrxAmount += element.amount;
+    });
+    return totalTrxAmount;
+  }
 }
 
 

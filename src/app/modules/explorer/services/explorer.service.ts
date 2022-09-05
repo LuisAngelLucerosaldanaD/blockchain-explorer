@@ -1,15 +1,17 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http"
 import {map, Observable} from "rxjs";
-import {ResponseGetAllBlocks, ResponseGetFiles} from "../models/explorer.models";
+import {ResponseGetAllBlocks, ResponseGetFiles, ResponseGetBlockById} from "../models/explorer.models";
 import {ResponseGetTransactionByID} from "../models/data-viewer";
+import {EnvServiceProvider} from "@app/services/env/env.service.provider";
 
 @Injectable()
 
 export class ExplorerService {
-  private urlGetBlocks: string = "https://simbaengine.nexumsign.com:60060/api/v1/blocks";
+  private urlGetBlocks: string = EnvServiceProvider.useFactory().REST_API + "/api/v1/blocks";
   private urlTransactionById: string = 'https://simbaengine.nexumsign.com:60060/api/v1/transaction';
   private urlGetFilesByTransactionID = 'https://simbaengine.nexumsign.com:60060/api/v1/transaction/files';
+  private urlGetBockById: string = EnvServiceProvider.useFactory().REST_API + "/api/v1/blocks"
 
   constructor(private _httpClient: HttpClient) {
 
@@ -17,6 +19,9 @@ export class ExplorerService {
 
   public getBlocks(limit: number, offset: number): Observable<ResponseGetAllBlocks> {
     return this._httpClient.get<ResponseGetAllBlocks>(this.urlGetBlocks + `/${limit}/${offset}`).pipe(map(res => res))
+  }
+  public getBlockById(blockId: number): Observable<ResponseGetBlockById> {
+    return this._httpClient.get<ResponseGetBlockById>(this.urlGetBockById + `/${blockId}`).pipe(map((res) => res));
   }
 
   public getTransactionById(id: string, blockId: number): Observable<ResponseGetTransactionByID> {

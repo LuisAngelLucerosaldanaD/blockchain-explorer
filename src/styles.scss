@@ -643,3 +643,32 @@ label {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
   cursor: col-resize;
 }
+
+/* DOWNLOAD DATA */
+
+.info-table {
+  @apply flex flex-row;
+}
+.info-table-column {
+  @apply flex flex-col pt-4;      
+}
+.info-table-row { 
+  @apply flex p-2 h-10 gap-x-16;
+  .info-table-row-name {
+    @apply h-6 w-24;
+  }
+  .info-table-row-value {
+    
+  }
+}
+
+.download-platforms-tabs {
+  @apply h-16 flex flex-row text-base text-gray-50 font-normal box-border gap-x-4 ;
+  .download-platforms-tabs-platform {
+    @apply w-16 bg-red-50 flex flex-col p-2;
+  }
+}
+
+.download-platforms-pane {
+
+}

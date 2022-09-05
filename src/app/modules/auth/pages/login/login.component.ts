@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   public requestLogin(): void {
     if (this.loginForm.valid) {
       const data: Login = {
-        password: this.loginForm.get('userName')?.value.toString().trim(),
-        nickname: this.loginForm.get('password')?.value.toString().trim(),
+        password: this.loginForm.get('password')?.value.toString().trim(),
+        nickname: this.loginForm.get('userName')?.value.toString().trim(),
       }
       this._subscriptions.add(
         this._authService.login(data).subscribe({
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               this._messageService.add({type: 'error', message: resp.msg, life: 5000});
             } else {
               this._authService.saveToken(resp.data);
-              await this._router.navigate(['dashboard']);
+              await this._router.navigate(['explorer']);
             }
             this.isBlockPage = false;
           },
