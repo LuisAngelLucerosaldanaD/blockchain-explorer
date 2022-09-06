@@ -19,6 +19,7 @@ import { ActivateUserComponent } from './pages/activate-user/activate-user.compo
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { DeleteAccountComponent } from './pages/delete-account/delete-account.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { RecoveryAccountComponent } from './pages/recovery-account/recovery-account.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
     ActivateUserComponent,
     ResetPasswordComponent,
     DeleteAccountComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    RecoveryAccountComponent
   ],
   imports: [
     AuthRoutingModule,

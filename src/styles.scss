@@ -272,6 +272,25 @@ button {
   @apply text-st-90
 }
 
+.bj-input-group {
+  @apply flex flex-col space-y-1;
+  label {
+    @apply t-label text-st-80 flex-1;
+  }
+  div {
+    @apply flex items-center space-x-2;
+    span {
+      @apply t-overline text-st-60;
+    }
+  }
+  input, select, textarea {
+    @apply p-2 border border-st-60 bg-st-5 rounded text-st-90 placeholder-st-50 t-body w-full;
+  }
+  span {
+    @apply text-alert-error t-label;
+  }
+}
+
 .bj-input {
   @apply h-10 border rounded px-2 t-body border-st-50 text-st-90 bg-st-5 placeholder-st-50;
 }

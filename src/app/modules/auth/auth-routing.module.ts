@@ -8,6 +8,8 @@ import { RecoveryPasswordComponent } from "@app/modules/auth/pages/recovery-pass
 import { ResetPasswordComponent } from "@app/modules/auth/pages/reset-password/reset-password.component";
 import { DeleteAccountComponent } from "@app/modules/auth/pages/delete-account/delete-account.component";
 import { ChangePasswordComponent } from "@app/modules/auth/pages/change-password/change-password.component";
+import {RecoveryAccountComponent} from "@app/modules/auth/pages/recovery-account/recovery-account.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -17,6 +19,10 @@ const routes: Routes = [
   {
     path: "credential",
     component: CredentialViewerComponent
+  },
+  {
+    path: "recovery",
+    component: RecoveryAccountComponent
   },
   {
     path: "terms-and-conditions",
