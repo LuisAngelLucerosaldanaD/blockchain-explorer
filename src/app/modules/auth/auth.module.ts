@@ -13,6 +13,7 @@ import {QuicklinkModule} from "ngx-quicklink";
 import {DropdownModule, IconsModule, ToastModule, ToggleModule} from "ecapture-ng-ui";
 import {AuthService} from "@app/modules/auth/services/auth.service";
 import { TermsConditionsComponent } from './pages/terms-conditions/terms-conditions.component';
+import { RecoveryAccountComponent } from './pages/recovery-account/recovery-account.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TermsConditionsComponent } from './pages/terms-conditions/terms-conditi
     LoginComponent,
     RegisterComponent,
     CredentialViewerComponent,
-    TermsConditionsComponent
+    TermsConditionsComponent,
+    RecoveryAccountComponent
   ],
   imports: [
     AuthRoutingModule,

@@ -4,6 +4,7 @@ import {CredentialViewerComponent} from "./pages/credential-viewer/credential-vi
 import {LoginComponent} from "./pages/login/login.component";
 import {TermsConditionsComponent} from "@app/modules/auth/pages/terms-conditions/terms-conditions.component";
 import {RegisterComponent} from "@app/modules/auth/pages/register/register.component";
+import {RecoveryAccountComponent} from "@app/modules/auth/pages/recovery-account/recovery-account.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: "credential",
     component: CredentialViewerComponent
+  },
+  {
+    path: "recovery",
+    component: RecoveryAccountComponent
   },
   {
     path: "terms-and-conditions",
