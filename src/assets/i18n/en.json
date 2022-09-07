@@ -102,6 +102,13 @@
     "LOGIN":"Login",
     "CELLHONE_COUNTRY_CODE":"Cellphone country code",
     "ENTER_ALL_THE_FIELDS_TO_CHANGE_YOUR_PASSWORD":"Enter all the fields to change your password:",
-    "CONFIRM_PASSWORD_IS_REQUIRED": "Confirm password is required"
+    "CONFIRM_PASSWORD_IS_REQUIRED": "Confirm password is required",
+    "ENTER_YOUR_EMAIL_OR_USERNAME": "Enter your email or username",
+    "ENTER_YOUR PASSWORD":"Enter your password",
+    "THE_FIELD_IS_REQUIRED":"The field is required",
+    "RECOVERY_PASSWORD":"Recovery password",
+    "ENTER_YOUR_USERNAME":"Enter your username",
+    "ENTER_YOUR_EMAIL":"Enter your email",
+    "ENTER_YOUR_EMAIL_CONFIRMATION":"Enter your email confirmation"
   }
   

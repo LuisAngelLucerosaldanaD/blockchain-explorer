@@ -6,7 +6,7 @@
     "SIGN_OUT": "Cerrar Sesión",
     "CANCEL": "Cancelar",
     "CELLPHONE":"Celular",
-    "CONFIRM_EMAIL": "Confirmar Correo Electrónico",
+    "CONFIRM_EMAIL": "Confirmar Correo",
     "DATE_OF_BIRTH": "Fecha de Nacimiento",
     "NAMES": "Nombres",
     "LASTNAMES": "Apellidos",
@@ -101,6 +101,13 @@
     "LOGIN":"Inicio de sesión",
     "CELLHONE_COUNTRY_CODE":"Codigo de télefono de país",
     "ENTER_ALL_THE_FIELDS_TO_CHANGE_YOUR_PASSWORD":"Ingresa los campos requeridos para cambiar tu contraseña: ",
-    "CONFIRM_PASSWORD_IS_REQUIRED":"Confirmar contraseña es requerido"
+    "CONFIRM_PASSWORD_IS_REQUIRED":"Confirmar contraseña es requerido",
+    "ENTER_YOUR_EMAIL_OR_USERNAME":"Ingrese su correo o usuario",
+    "ENTER_YOUR PASSWORD":"Ingrese su contraseña",
+    "THE_FIELD_IS_REQUIRED":"El campo es requerido",
+    "RECOVERY_PASSWORD":"Recuperar contraseña",
+    "ENTER_YOUR_USERNAME":"Ingrese su username",
+    "ENTER_YOUR_EMAIL":"Ingrese su correo",
+    "ENTER_YOUR_EMAIL_CONFIRMATION":"Ingrese de nuevo su correo"
   }
   

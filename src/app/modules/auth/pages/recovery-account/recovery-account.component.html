@@ -31,21 +31,21 @@
       </div>
       <div class="flex flex-col items-end space-y-4 w-full">
         <div class="bj-input-group w-full">
-          <label for="userName">Username</label>
-          <input id="userName" formControlName="userName" type="text" placeholder="Ingrese su username">
+          <label for="userName">{{'USERNAME'|translate}}</label>
+          <input id="userName" formControlName="userName" type="text" placeholder="{{'ENTER_YOUR_USERNAME'|translate}}">
         </div>
         <div class="bj-input-group w-full">
-          <label for="email">Correo</label>
-          <input id="email" formControlName="email" type="email" placeholder="Ingrese su correo">
+          <label for="email">{{'EMAIL'|translate}}</label>
+          <input id="email" formControlName="email" type="email" placeholder="{{'ENTER_YOUR_EMAIL'|translate}}">
         </div>
         <div class="bj-input-group w-full">
-          <label for="c_email">Confirmar Correo</label>
-          <input id="c_email" formControlName="c_email" type="email" placeholder="Ingrese su correo de nuevo">
+          <label for="c_email">{{'CONFIRM_EMAIL'|translate}}</label>
+          <input id="c_email" formControlName="c_email" type="email" placeholder="{{'ENTER_YOUR_EMAIL_CONFIRMATION'|translate}}">
         </div>
       </div>
       <div class="w-full space-x-4 flex">
-        <button type="submit" class="w-full md:w-fit b-solid">Enviar</button>
-        <button routerLink="/auth/login" class="w-full md:w-fit b-outline">Cancelar</button>
+        <button type="submit" class="w-full md:w-fit b-solid">{{'SEND'|translate}}</button>
+        <button routerLink="/auth/login" class="w-full md:w-fit b-outline">{{'CANCEL'|translate}}</button>
       </div>
       <div class="w-full flex items-center justify-between">
         <div class="flex flex-row items-center">

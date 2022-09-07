@@ -25,7 +25,7 @@
   <img class="md:absolute top-0 left-0 w-full h-full object-center object-cover" src="/assets/img/banner-auth.jpg" alt="banner" loading="lazy">
   <div class="hidden md:block w-1/2 h-full"></div>
   <div class="w-full md:w-1/2 h-full p-6">
-    <form [formGroup]="createUserFrm" class="bg-st-5 border border-st-40 w-full md:h-full rounded-lg drop-shadow-lg flex flex-col items-center justify-center py-6 px-6 md:px-12 lg:px-24 xl:px-32 space-y-12">
+    <form [formGroup]="createUserFrm" class="bg-st-5 border border-st-40 w-full md:h-full rounded-lg drop-shadow-lg flex flex-col items-center justify-center py-6 px-6 md:px-12 lg:px-24 xl:px-32 space-y-8">
       <div class="w-full text-left">
         <span class="t-title text-st-90">Registrar Cuenta</span>
       </div>
@@ -33,54 +33,68 @@
         <div class="bj-input-group w-full">
           <label for="userName">Usuario</label>
           <input id="userName" formControlName="userName" type="text" placeholder="Ingrese un username" (ngModelChange)="this.usernameValidatorsValue.next($event)">
-          <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('maxlength')">{{'MAXIMUM_LENGTH_EXCEEDED_50'}}</span>
-          <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED_5'}}</span>
-          <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('required')">{{'USERNAME_REQUIRED'}}</span>
+          <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('maxlength')">{{'MAXIMUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('required')">{{'USERNAME_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label for="email_notifications">Correo</label>
+          <label for="email_notifications">{{'CORREO'|translate}}</label>
           <input id="email_notifications" formControlName="email_notifications" type="email" placeholder="Ingrese un username" (ngModelChange)="this.emailValidatorsValue.next($event)">
-          <span *ngIf="createUserFrm.get('email_notifications')?.touched && createUserFrm.get('email_notifications')?.hasError('email')">{{'THE_VALUE_ENTERED_IS_NOT_A_VALID'}}</span>
-          <span *ngIf="createUserFrm.get('email_notifications')?.touched && createUserFrm.get('email_notifications')?.hasError('required')">{{'EMAIL_IS_REQUIRED'}}</span>
+          <span *ngIf="createUserFrm.get('email_notifications')?.touched && createUserFrm.get('email_notifications')?.hasError('email')">{{'THE_VALUE_ENTERED_IS_NOT_A_VALID'|translate}}</span>
+          <span *ngIf="createUserFrm.get('email_notifications')?.touched && createUserFrm.get('email_notifications')?.hasError('required')">{{'EMAIL_IS_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label for="identification_type">Tipo de Identificación</label>
+          <label for="identification_type">{{'IDENTIFICATION_TYPE'|translate}}</label>
           <select id="identification_type" formControlName="identification_type" type="email" placeholder="Ingrese su correo">
             <option *ngFor="let type of typeIdentification" value="{{type.value}}">{{type.label}}</option>
           </select>
-          <span *ngIf="createUserFrm.get('identification_type')?.touched && createUserFrm.get('identification_type')?.hasError('required')">{{'THE_TYPE_OF_IDENTIFICATION_IS_REQUIRED'}}</span>
+          <span *ngIf="createUserFrm.get('identification_type')?.touched && createUserFrm.get('identification_type')?.hasError('required')">{{'THE_TYPE_OF_IDENTIFICATION_IS_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label for="identification_number">Número de Identificación</label>
+          <label for="identification_number">{{"IDENTIFICATION_NUMBER"|translate}}</label>
           <input id="identification_number" formControlName="identification_number" type="text" placeholder="Ingrese un username">
-          <span *ngIf="createUserFrm.get('identification_number')?.touched && createUserFrm.get('identification_number')?.hasError('maxlength')">{{'MAXIMUM_LENGTH_EXCEEDED'}}</span>
-          <span *ngIf="createUserFrm.get('identification_number')?.touched && createUserFrm.get('identification_number')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED_5'}}</span>
-          <span *ngIf="createUserFrm.get('identification_number')?.touched && createUserFrm.get('identification_number')?.hasError('required')">{{'IDENTIFICATION_NUMBER_IS_REQUIRED'}}</span>
+          <span *ngIf="createUserFrm.get('identification_number')?.touched && createUserFrm.get('identification_number')?.hasError('maxlength')">{{'MAXIMUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('identification_number')?.touched && createUserFrm.get('identification_number')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED_5'|translate}}</span>
+          <span *ngIf="createUserFrm.get('identification_number')?.touched && createUserFrm.get('identification_number')?.hasError('required')">{{'IDENTIFICATION_NUMBER_IS_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label>Nombres</label>
+          <label>{{'NAMES'|translate}}</label>
           <input type="text" formControlName="name" (keypress)="onlyLetters($event)" placeholder="Ingrese sus nombres">
-          <span *ngIf="createUserFrm.get('name')?.touched && createUserFrm.get('name')?.hasError('maxlength')">{{'MINIUM_LENGTH_EXCEEDED_'}}</span>
-          <span *ngIf="createUserFrm.get('name')?.touched && createUserFrm.get('name')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED'}}</span>
-          <span *ngIf="createUserFrm.get('name')?.touched && createUserFrm.get('name')?.hasError('required')">{{'NAME_IS_REQUIRED'}}</span>
+          <span *ngIf="createUserFrm.get('name')?.touched && createUserFrm.get('name')?.hasError('maxlength')">{{'MINIUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('name')?.touched && createUserFrm.get('name')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('name')?.touched && createUserFrm.get('name')?.hasError('required')">{{'NAME_IS_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label>Apellidos</label>
+          <label>{{'LASTNAMES'|translate}}</label>
           <input type="text" formControlName="last_name" (keypress)="onlyLetters($event)" placeholder="Ingrese sus apellidos">
-          <span *ngIf="createUserFrm.get('last_name')?.touched && createUserFrm.get('last_name')?.hasError('maxlength')">{{'MINIUM_LENGTH_EXCEEDED_'}}</span>
-          <span *ngIf="createUserFrm.get('last_name')?.touched && createUserFrm.get('last_name')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED'}}</span>
-          <span *ngIf="createUserFrm.get('last_name')?.touched && createUserFrm.get('last_name')?.hasError('required')">{{'SURNAMES_ARE_REQUIRED'}}</span>
+          <span *ngIf="createUserFrm.get('last_name')?.touched && createUserFrm.get('last_name')?.hasError('maxlength')">{{'MINIUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('last_name')?.touched && createUserFrm.get('last_name')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('last_name')?.touched && createUserFrm.get('last_name')?.hasError('required')">{{'SURNAMES_ARE_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label>Contraseña</label>
+          <label for="country_code">{{'CELLHONE_COUNTRY_CODE'|translate}}</label>
+          <select id="country_code" formControlName="country_code" type="email" placeholder="">
+            <option *ngFor="let type of phoneCode" value="{{type.value}}">{{type.label}}</option>
+          </select>
+          <span *ngIf="createUserFrm.get('country_code')?.touched && createUserFrm.get('country_code')?.hasError('required')">{{'THE_TYPE_OF_IDENTIFICATION_IS_REQUIRED'}}</span>
+        </div>
+        <div class="bj-input-group w-full">
+          <label for="cellphone">{{'CELLPHONE'|translate}}</label>
+          <input id="cellphone" formControlName="cellphone" type="text" placeholder="">
+          <span *ngIf="createUserFrm.get('cellphone')?.touched && createUserFrm.get('cellphone')?.hasError('maxlength')">{{'MAXIMUM_LENGTH_EXCEEDED'|translate}}</span>
+          <span *ngIf="createUserFrm.get('cellphone')?.touched && createUserFrm.get('cellphone')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED_5'|translate}}</span>
+          <span *ngIf="createUserFrm.get('cellphone')?.touched && createUserFrm.get('cellphone')?.hasError('required')">{{'IDENTIFICATION_NUMBER_IS_REQUIRED'|translate}}</span>
+        </div>
+        <div class="bj-input-group w-full">
+          <label>{{'PASSWORD'|translate}}</label>
           <input type="password" formControlName="password" (ngModelChange)="this.passwordValidatorsValue.next($event)" placeholder="Ingrese su contraseña">
-          <span *ngIf="createUserFrm.get('password')?.touched && createUserFrm.get('password')?.hasError('required')">{{'PASSWORD_IS_REQUIRED'}}</span>
+          <span *ngIf="createUserFrm.get('password')?.touched && createUserFrm.get('password')?.hasError('required')">{{'PASSWORD_IS_REQUIRED'|translate}}</span>
           <span *ngIf="createUserFrm.get('password')?.touched && invalidPassword">{{messageInvalidPassword}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label>Confirmar Contraseña</label>
+          <label>{{'CONFIRM_PASSWORD'|translate}}</label>
           <input type="password" formControlName="password_confirm" placeholder="Ingrese su contraseña">
-          <span *ngIf="password_confirm?.invalid && password_confirm?.touched && password_confirm?.hasError('required')">{{'CONFIRMATION_PASSWORD_IS_REQUIRED!'}}</span>
+          <span *ngIf="password_confirm?.invalid && password_confirm?.touched && password_confirm?.hasError('required')">{{'CONFIRMATION_PASSWORD_IS_REQUIRED'|translate}}</span>
         </div>
         <div class="flex items-center mt-4 w-full col-span-2">
           <div>
@@ -93,8 +107,8 @@
         </div>
       </div>
       <div class="w-full space-x-4 flex">
-        <button (click)="save()" type="submit" class="w-full md:w-fit b-solid">Enviar</button>
-        <button routerLink="/auth/login" class="w-full md:w-fit b-outline">Cancelar</button>
+        <button (click)="save()" type="submit" class="w-full md:w-fit b-solid">{{'SEND'|translate}}</button>
+        <button routerLink="/auth/login" class="w-full md:w-fit b-outline">{{'CANCEL'|translate}}</button>
       </div>
     </form>
   </div>

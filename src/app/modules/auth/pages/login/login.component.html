@@ -31,20 +31,20 @@
       </div>
       <div class="flex flex-col items-end space-y-4 w-full">
         <div class="bj-input-group w-full">
-          <label for="userName">Usuario</label>
-          <input id="userName" formControlName="userName" type="text" placeholder="Ingrese su correo o username">
-          <span *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched && loginForm.get('userName')?.hasError('required')">El campo es requerido</span>
+          <label for="userName">{{'USER'|translate}}</label>
+          <input id="userName" formControlName="userName" type="text" placeholder="{{'ENTER_YOUR_EMAIL_OR_USERNAME'|translate}}">
+          <span *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched && loginForm.get('userName')?.hasError('required')">{{'THE_FIELD_IS_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label for="password">Contraseña</label>
-          <input id="password" formControlName="password" type="text" placeholder="Ingrese su contraseña">
-          <span *ngIf="loginForm.get('userName')?.invalid && loginForm.get('userName')?.touched && loginForm.get('userName')?.hasError('required')">El campo es requerido</span>
+          <label for="password">{{'PASSWORD'|translate}}</label>
+          <input id="password" formControlName="password" type="text" placeholder="{{'ENTER_YOUR PASSWORD'|translate}}">
+          <span *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">{{'THE_FIELD_IS_REQUIRED'|translate}}</span>
         </div>
-        <a class="text-st-80 t-body underline underline-offset-4" routerLink="/auth/recovery">Recuperar contraseña</a>
+        <a class="text-st-80 t-body underline underline-offset-4" routerLink="/auth/recovery">{{'RECOVERY_PASSWORD'|translate}}</a>
       </div>
       <div class="w-full space-x-4 flex">
-        <button (click)="requestLogin()" type="submit" class="w-full md:w-fit b-solid">Ingresar</button>
-        <button routerLink="/auth/register" class="w-full md:w-fit b-outline">Registrar</button>
+        <button (click)="requestLogin()" type="submit" class="w-full md:w-fit b-solid">{{'LOGIN'|translate}}</button>
+        <button routerLink="/auth/register" class="w-full md:w-fit b-outline">{{'REGISTER'|translate}}</button>
       </div>
       <div class="w-full flex items-center justify-between">
         <div class="flex flex-row items-center">

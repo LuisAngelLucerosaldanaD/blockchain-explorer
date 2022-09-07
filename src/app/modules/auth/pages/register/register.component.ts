@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public isBlockPage: boolean = false;
   public ecPhoneCode: DropdownModel;
   public dataPhoneCode = phoneCode;
-
+  public phoneCode = phoneCode;
   constructor(
     private formBuilder: FormBuilder,
     private _messageService: ToastService,
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       {label: 'RNC', value: 'A'},
       {label: 'Otros', value: 'O'}
     ];
-
+    
     this.passwordValidatorsValue.pipe(
       debounceTime(1000),
       distinctUntilChanged(),
