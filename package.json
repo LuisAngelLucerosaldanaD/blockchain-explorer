@@ -27,10 +27,11 @@
     "highcharts": "^7.2.0",
     "highcharts-angular": "^2.4.0",
     "ngx-extended-pdf-viewer": "^14.0.4",
+    "ngx-paypal": "^9.0.0",
     "ngx-quicklink": "^0.2.7",
     "rxjs": "~7.5.0",
     "split.js": "^1.6.5",
-    "tslib": "^2.3.0",
+    "tslib": "^2.4.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

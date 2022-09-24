@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import("./modules/auth/auth.module").then((m) => m.AuthModule)
   },
   {
+    path: "payment",
+    loadChildren: () => import("./modules/payment-gateway/payment-gateway.module").then((m) => m.PaymentGatewayModule)
+  },
+  {
     path: '**',
     redirectTo: 'explorer'
   }
