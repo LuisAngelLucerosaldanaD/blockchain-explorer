@@ -1,5 +1,18 @@
-<div class="w-screen h-screen grid place-items-center">
-    <ngx-paypal class="w-1/3" [config]="payPalConfig"></ngx-paypal>
+<div class="h-screen w-full flex flex-row">
+    <div class="w-1/2 border p-12 bg-slate-200 space-y-12 flex flex-col">
+        <form action="" [formGroup]="paymentForm">
+            <label for="" class="t-body-b">Acai value: {{acaiValue}}</label>
+            <div>
+                <label for="">Cuantos acais desea comprar: </label>
+                <input id="input-quantity-acais" formControlName="quantityAcais" (change)="calculateValue()" type="number" class="border rounded-lg">
+            </div>
+            <label for="" formControlName="valueAcais">Costo total: {{paymentForm.get("quantityAcais")?.value * acaiValue}}</label>
+
+        </form>
+    </div>
+    <div class="border border-black h-full grid place-items-center">
+        <ngx-paypal class="w-1/3" [config]="payPalConfig"></ngx-paypal>
+    </div>
 </div>
 
 

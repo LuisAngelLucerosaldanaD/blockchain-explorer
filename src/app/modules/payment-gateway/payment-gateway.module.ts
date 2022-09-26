@@ -4,7 +4,7 @@ import { PaymentGatewayRoutingModule } from './payment-gateway-routing.module';
 import { PaymentGatewayComponent } from './payment-gateway.component';
 import { PaypalComponent } from './pages/paypal/paypal.component';
 import { NgxPayPalModule } from 'ngx-paypal';
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,7 +14,9 @@ import { NgxPayPalModule } from 'ngx-paypal';
   imports: [
     CommonModule,
     PaymentGatewayRoutingModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PaymentGatewayModule { }
