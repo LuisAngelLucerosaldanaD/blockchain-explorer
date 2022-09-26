@@ -27,18 +27,18 @@
   <div class="w-full md:w-1/2 h-full p-6">
     <form [formGroup]="createUserFrm" class="bg-st-5 border border-st-40 w-full md:h-full rounded-lg drop-shadow-lg flex flex-col items-center justify-center py-6 px-6 md:px-12 lg:px-24 xl:px-32 space-y-8">
       <div class="w-full text-left">
-        <span class="t-title text-st-90">Registrar Cuenta</span>
+        <span class="t-title text-st-90">Register Account</span>
       </div>
       <div class="grid grid-cols-2 gap-4 w-full">
         <div class="bj-input-group w-full">
-          <label for="userName">Usuario</label>
+          <label for="userName">Username</label>
           <input id="userName" formControlName="userName" type="text" placeholder="Ingrese un username" (ngModelChange)="this.usernameValidatorsValue.next($event)">
           <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('maxlength')">{{'MAXIMUM_LENGTH_EXCEEDED'|translate}}</span>
           <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('minlength')">{{'MINIUM_LENGTH_EXCEEDED'|translate}}</span>
           <span *ngIf="createUserFrm.get('username')?.touched && createUserFrm.get('username')?.hasError('required')">{{'USERNAME_REQUIRED'|translate}}</span>
         </div>
         <div class="bj-input-group w-full">
-          <label for="email_notifications">{{'CORREO'|translate}}</label>
+          <label for="email_notifications">{{'EMAIL'|translate}}</label>
           <input id="email_notifications" formControlName="email_notifications" type="email" placeholder="Ingrese un username" (ngModelChange)="this.emailValidatorsValue.next($event)">
           <span *ngIf="createUserFrm.get('email_notifications')?.touched && createUserFrm.get('email_notifications')?.hasError('email')">{{'THE_VALUE_ENTERED_IS_NOT_A_VALID'|translate}}</span>
           <span *ngIf="createUserFrm.get('email_notifications')?.touched && createUserFrm.get('email_notifications')?.hasError('required')">{{'EMAIL_IS_REQUIRED'|translate}}</span>

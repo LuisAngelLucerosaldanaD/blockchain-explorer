@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { NgxPayPalModule } from 'ngx-paypal';
 import {
   IPayPalConfig,
-  ICreateOrderRequest 
+  ICreateOrderRequest
 } from 'ngx-paypal';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 
@@ -12,6 +12,8 @@ import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
   styleUrls: ['./paypal.component.scss']
 })
 export class PaypalComponent implements OnInit {
+
+  @Input() isModalPayPal = false;
 
   public showSuccess: boolean = false;
   public showCancel: boolean = false;
