@@ -27,7 +27,7 @@
   <div class="w-full md:w-1/2 h-full p-6">
     <form class="bg-st-5 border border-st-40 w-full md:h-full rounded-lg drop-shadow-lg flex flex-col items-center justify-center py-6 px-6 md:px-12 lg:px-24 xl:px-32 space-y-12">
       <div class="w-full text-left">
-        <span class="t-title text-st-90">Recuperación de Cuenta</span>
+        <span class="t-title text-st-90">Recovery Account</span>
       </div>
       <div class="flex flex-col items-end space-y-4 w-full">
         <div class="bj-input-group w-full">
@@ -39,13 +39,13 @@
           <input id="email" formControlName="email" type="email" placeholder="{{'ENTER_YOUR_EMAIL'|translate}}">
         </div>
         <div class="bj-input-group w-full">
-          <label for="c_email">{{'CONFIRM_EMAIL'|translate}}</label>
-          <input id="c_email" formControlName="c_email" type="email" placeholder="{{'ENTER_YOUR_EMAIL_CONFIRMATION'|translate}}">
+          <label for="c_email">Confirm Email</label>
+          <input id="c_email" formControlName="c_email" type="email" placeholder="Enter your email confirmation">
         </div>
       </div>
       <div class="w-full space-x-4 flex">
-        <button type="submit" class="w-full md:w-fit b-solid">{{'SEND'|translate}}</button>
-        <button routerLink="/auth/login" class="w-full md:w-fit b-outline">{{'CANCEL'|translate}}</button>
+        <button type="submit" class="w-full md:w-fit b-solid">Send</button>
+        <button routerLink="/auth/login" class="w-full md:w-fit b-outline">Cancel</button>
       </div>
       <div class="w-full flex items-center justify-between">
         <div class="flex flex-row items-center">

@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentGatewayComponent implements OnInit {
 
+  public isMenuBurger: boolean = false;
+  public isModalPayPal: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

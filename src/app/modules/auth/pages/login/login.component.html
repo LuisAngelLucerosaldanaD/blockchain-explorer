@@ -27,7 +27,7 @@
   <div class="w-full md:w-1/2 h-full p-6">
     <form [formGroup]="loginForm" class="bg-st-5 border border-st-40 w-full md:h-full rounded-lg drop-shadow-lg flex flex-col items-center justify-center py-6 px-6 md:px-12 lg:px-24 xl:px-32 space-y-12">
       <div class="w-full text-left">
-        <span class="t-title text-st-90">Inicio de Sesión</span>
+        <span class="t-title text-st-90">Sign In</span>
       </div>
       <div class="flex flex-col items-end space-y-4 w-full">
         <div class="bj-input-group w-full">
@@ -43,7 +43,7 @@
         <a class="text-st-80 t-body underline underline-offset-4" routerLink="/auth/recovery">{{'RECOVERY_PASSWORD'|translate}}</a>
       </div>
       <div class="w-full space-x-4 flex">
-        <button (click)="requestLogin()" type="submit" class="w-full md:w-fit b-solid">{{'LOGIN'|translate}}</button>
+        <button (click)="requestLogin()" type="submit" class="w-full md:w-fit b-solid">{{'SEND'|translate}}</button>
         <button routerLink="/auth/register" class="w-full md:w-fit b-outline">{{'REGISTER'|translate}}</button>
       </div>
       <div class="w-full flex items-center justify-between">
