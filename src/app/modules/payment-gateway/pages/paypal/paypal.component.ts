@@ -5,6 +5,13 @@ import {
   ICreateOrderRequest
 } from 'ngx-paypal';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
+import { OrderBuyAcais, ItemOrder } from '../../models/paypal';
+import {Subscription} from "rxjs";
+import {ToastService} from "ecapture-ng-ui";
+import { PaymentService } from '../../services/payment.service';
+import { Router } from '@angular/router';
+import { PaymentData } from '../../models/paypal';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-paypal',
@@ -14,34 +21,34 @@ import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms'
 export class PaypalComponent implements OnInit {
 
   @Input() isModalPayPal = false;
+  @Input('order') order!: OrderBuyAcais;
 
   public showSuccess: boolean = false;
   public showCancel: boolean = false;
   public showError: boolean = false;
-  public paymentForm: FormGroup;
   public acaiValue: number = 1234.0;
   public acaisCanculatedValue:number = 0;
+  
+  public orderAcaisPaypal!: ItemOrder;
+  
+  private _subscriptions: Subscription = new Subscription();
 
-  constructor(private _fb: FormBuilder,) {
-    this.paymentForm = _fb.group({
-        quantityAcais  : ['', Validators.required],
-        valueAcais  : new FormControl(0,[Validators.required]) 
-    });
+  constructor(
+    private _fb: FormBuilder,
+    private _messageService: ToastService,
+    private _paymentService: PaymentService,
+    private _router: Router
+    ) {
   }
 
   public payPalConfig ? : IPayPalConfig;
 
   ngOnInit(): void {
+    console.log("Orden: ",this.order);
     this.initConfig();
   }
-  
-  private initConfig(): void {
-    this.payPalConfig = {
-        currency: 'USD',
-        clientId: 'AclpQoAOY_nZjk-C6jySxoJ89SdooNR6O-JHUpYX9VR76-IhG-as1Nsn8fi5z_QCYxtLO2tQ3iTXUXbv',
-        createOrderOnClient: (data) => < ICreateOrderRequest > {
-            intent: 'CAPTURE',
-            purchase_units: [{
+  /*
+  {
                 amount: {
                     currency_code: 'USD',
                     value: '9.99',
@@ -59,6 +66,34 @@ export class PaypalComponent implements OnInit {
                     unit_amount: {
                         currency_code: 'USD',
                         value: '9.99',
+                    },
+                }]
+            }
+  */
+  private initConfig(): void {
+    this.payPalConfig = {
+        currency: 'USD',
+        clientId: 'AclpQoAOY_nZjk-C6jySxoJ89SdooNR6O-JHUpYX9VR76-IhG-as1Nsn8fi5z_QCYxtLO2tQ3iTXUXbv',
+        createOrderOnClient: (data) => < ICreateOrderRequest > {
+            intent: 'CAPTURE',
+            purchase_units: [{
+                amount: {
+                    currency_code: 'USD',
+                    value: String(this.order.price),
+                    breakdown: {
+                        item_total: {
+                            currency_code: 'USD',
+                            value: String(this.order.price)
+                        }
+                    }
+                },
+                items: [{
+                    name: 'Acais Cryptocurrency',
+                    quantity: String(this.order.quantity),
+                    category: 'DIGITAL_GOODS',
+                    unit_amount: {
+                        currency_code: 'USD',
+                        value: String(this.order.unit_price),
                     },
                 }]
             }]
@@ -80,6 +115,9 @@ export class PaypalComponent implements OnInit {
         onClientAuthorization: (data) => {
             console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
             this.showSuccess = true;
+            //const dataPayment: PaymentData = this.formatRequestPayment(data,"success");
+            //this.paymentAcreditation(dataPayment);
+            this._router.navigate(['explorer']);
         },
         onCancel: (data, actions) => {
             console.log('OnCancel', data, actions);
@@ -101,8 +139,51 @@ export class PaypalComponent implements OnInit {
     this.showSuccess = false;
     this.showCancel = false;
   }
-  public calculateValue(): void {
-   console.log("Value acais: ",this.paymentForm.get('quantityAcais')?.value);
-   this.acaisCanculatedValue = this.paymentForm.get('quantityAcais')?.value * this.acaiValue;
+
+  public formatOrder(): void {
+    this.orderAcaisPaypal = {
+        amount: {
+            currency_code:"USD",
+            value: String(this.order.price)
+        },
+        items: [{
+            name:"BUY ACAYS",
+            quantity:String(this.order.quantity),
+            category:"DIGITAL_GOODS",
+            unit_amount:{
+                currency_code:"USD",
+                value:String(this.order.price)
+            }
+        }]
+
+    };
+  }
+
+  public paymentAcreditation(data: PaymentData): void {
+    this._subscriptions.add(
+        this._paymentService.paymentSuccess(data).subscribe({
+          next: async (resp) => {
+            if (resp.error) {
+              this._messageService.add({type: 'error', message: resp.msg, life: 5000});
+            } else {
+                this._messageService.add({type: 'success', message: 'Proceso exitoso', life: 5000});
+              await this._router.navigate(['explorer']);
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error(err);
+            this._messageService.add({type: 'error', message: "Error on process", life: 5000});
+          }
+        }));
+  }
+
+  public formatRequestPayment(data: any, status:string):  PaymentData{
+    return {
+        acais_quantity: this.order.quantity,
+        amount:this.order.price,
+        paypal_response:data,
+        status,
+        user_data:"1231245235"
+    };
   }
 }

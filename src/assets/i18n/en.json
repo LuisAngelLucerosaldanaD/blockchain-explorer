@@ -109,6 +109,8 @@
     "RECOVERY_PASSWORD":"Recovery password",
     "ENTER_YOUR_USERNAME":"Enter your username",
     "ENTER_YOUR_EMAIL":"Enter your email",
-    "ENTER_YOUR_EMAIL_CONFIRMATION":"Enter your email confirmation"
+    "ENTER_YOUR_EMAIL_CONFIRMATION":"Enter your email confirmation",
+    "CURRENT_PRICE":"Current Price",
+    "BUY":"Buy"
   }
   

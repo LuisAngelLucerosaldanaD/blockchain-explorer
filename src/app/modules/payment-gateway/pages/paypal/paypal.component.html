@@ -18,6 +18,14 @@
     </div>
     <div class="bg-white-fx p-12 overflow-y-auto">
       <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      <div class="bg-slate-50 flex flex-row gap-x-12 items-center justify-center text-white">
+        <div class="h-10 bg-slate-900 px-4 py-2 rounded">
+          <span>Acais a comprar: {{order.quantity}}</span>
+        </div>
+        <div class="h-10 bg-slate-900 px-4 py-2 rounded">
+          <span >Costo total: {{order.price}}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

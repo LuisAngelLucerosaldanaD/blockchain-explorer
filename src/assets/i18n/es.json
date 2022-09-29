@@ -108,6 +108,8 @@
     "RECOVERY_PASSWORD":"Recuperar contraseña",
     "ENTER_YOUR_USERNAME":"Ingrese su username",
     "ENTER_YOUR_EMAIL":"Ingrese su correo",
-    "ENTER_YOUR_EMAIL_CONFIRMATION":"Ingrese de nuevo su correo"
+    "ENTER_YOUR_EMAIL_CONFIRMATION":"Ingrese de nuevo su correo",
+    "CURRENT_PRICE":"Precio Actual",
+    "BUY":"Comprar"
   }
   

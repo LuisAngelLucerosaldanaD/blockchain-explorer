@@ -45,7 +45,7 @@
     <a href="">Home</a>
     <a routerLink="/explorer">Explorer</a>
     <a routerLink="/explorer/download-app">App</a>
-    <a routerLink="/payment">Buy Açai</a>
+    <a routerLink="/payment">{{"BUY" | translate}} Açai</a>
   </div>
 
   <div class="body">
@@ -57,7 +57,7 @@
           <path d="M19.4942 19.4936C17.5416 21.4462 17.2042 24.2746 15.2516 22.322C13.299 20.3694 13.299 17.2035 15.2516 15.2509C17.2042 13.2983 20.37 13.2983 22.3226 15.2509C24.2753 17.2035 21.4468 17.5409 19.4942 19.4936Z" fill="#B268A4"/>
         </svg>
       </div>
-      <h1 class="t-title text-st-90">Buy Açai's</h1>
+      <h1 class="t-title text-st-90">{{"BUY" | translate}} Açai's</h1>
     </div>
     <div class="section space-y-10">
       <div class="description space-y-4">
@@ -73,13 +73,13 @@
       </div>
       <div class="flex flex-col lg:flex-row gap-y-6 gap-x-12">
         <div class="price-acai flex flex-col space-y-2">
-          <span clasS="t-subtitle text-st-90">Precio Actual</span>
+          <span clasS="t-subtitle text-st-90">{{'CURRENT_PRICE' | translate}}</span>
           <div class="flex items-center space-x-2 py-2 pl-4 pr-2 rounded bg-st-20 border border-st-40 text-white-fx t-title text-center w-full justify-center md:w-fit">
             <div>
               <span>1 Açai =</span>
             </div>
             <div class="px-4 py-2 rounded bg-st-5 border border-st-40">
-              <span>USD $0.20</span>
+              <span>{{currency + ' '+ symbolCurrency + valueAcai}} </span>
             </div>
           </div>
         </div>
@@ -89,11 +89,18 @@
           <div class="flex flex-col items-center md:items-start md:flex-row gap-6 w-full">
             <div class="flex flex-col w-full lg:w-fit">
               <div class="flex space-x-2 pb-2 w-full">
-                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx">-</button>
+                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx" (click)="substraValue('value')">-</button>
                 <div class="flex-1 lg:w-48">
-                  <input type="number" placeholder="Açai's" class="text-center h-12 w-full rounded bg-st-20 border border-st-40 text-st-90 px-2 t-subtitle">
+                  <input 
+                    type="number" 
+                    placeholder="Açai's"
+                    [(ngModel)]="valueQuantityAcai"
+                    class="text-center h-12 w-full rounded bg-st-20 border border-st-40 text-st-90 px-2 t-subtitle"
+                    (input)="addAcaiValue($event)"
+                    min="1"
+                  >
                 </div>
-                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx">+</button>
+                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx" (click)="addValue('value')">+</button>
               </div>
               <span class="t-body text-st-90">Monto en Açai's</span>
             </div>
@@ -102,11 +109,18 @@
             </div>
             <div class="flex flex-col w-full lg:w-fit">
               <div class="flex space-x-2 pb-2 w-full">
-                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx">-</button>
+                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx" (click)="substraValue('currency')" >-</button>
                 <div class="flex-1 lg:w-48">
-                  <input type="number" placeholder="USD $" class="text-center h-12 rounded bg-st-5 w-full border border-st-40 text-st-90 px-2 t-subtitle">
+                  <input 
+                    type="number" 
+                    placeholder="USD $"
+                    [(ngModel)]="valueQuantityCurrency"
+                    class="text-center h-12 rounded bg-st-5 w-full border border-st-40 text-st-90 px-2 t-subtitle"
+                    (input)="addCurrencyValue($event)"
+                    min="1"
+                  >
                 </div>
-                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx">+</button>
+                <button class="hover:brightness-125 flex items-center justify-center bg-c rounded h-12 w-12 t-title text-white-fx" (click)="addValue('currency')">+</button>
               </div>
               <span class="t-body text-st-90">Monto en USD $</span>
             </div>
@@ -114,11 +128,11 @@
         </div>
       </div>
       <div>
-        <button (click)="isModalPayPal = true" class="w-full md:w-fit hover:brightness-125 t-title bg-alert-success text-st-5 py-2 px-4 h-fit rounded">Comprar</button>
+        <button (click)="isModalPayPal = true" class="w-full md:w-fit hover:brightness-125 t-title bg-alert-success text-st-5 py-2 px-4 h-fit rounded" (click)="buyAcais()">Comprar</button>
       </div>
     </div>
   </div>
 
 </div>
 
-<app-paypal [isModalPayPal]="isModalPayPal"></app-paypal>
+<app-paypal [isModalPayPal]="isModalPayPal" [order]="order"></app-paypal>

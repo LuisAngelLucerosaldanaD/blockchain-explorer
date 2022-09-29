@@ -5,6 +5,8 @@ import { PaymentGatewayComponent } from './payment-gateway.component';
 import { PaypalComponent } from './pages/paypal/paypal.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TranslateModule} from "@ngx-translate/core";
+import { PaymentService } from './services/payment.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     PaymentGatewayRoutingModule,
     NgxPayPalModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    TranslateModule
+  ],
+  providers:[PaymentService]
 })
 export class PaymentGatewayModule { }
