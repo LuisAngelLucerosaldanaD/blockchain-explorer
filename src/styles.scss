@@ -654,6 +654,104 @@ svg {
 
 /* END MODAL */
 
+/* BLOCK PAGE */
+
+.block-container {
+  @apply flex flex-col w-full bg-st-5 h-full;
+  height: calc(100vh - 64px);
+  .header {
+    @apply px-6 py-4 flex items-center justify-between border-b border-st-40 t-title text-st-90;
+    .b-ghost {
+      @apply w-10 h-10 flex justify-center items-center;
+    }
+  }
+  .body {
+    @apply p-6 md:p-12 flex-1 w-full space-y-6 overflow-y-auto;
+    .section {
+      @apply flex flex-col gap-4;
+    }
+    .section-abstract {
+      .info {
+        @apply flex flex-col md:flex-row gap-4 md:justify-between;
+        .abstract {
+          @apply text-st-90 t-body gap-4 grid grid-cols-2 h-fit w-full md:w-fit;
+          .data {
+            @apply flex flex-col gap-1;
+            span:first-child {
+              @apply text-c t-label-b;
+            }
+          }
+        }
+        .abstract-noqr {
+          @apply text-st-90 t-body grid grid-cols-2 lg:grid-cols-4 gap-4 flex-1;
+          .data {
+            @apply flex flex-col space-y-1;
+            span:first-child {
+              @apply text-c t-label-b;
+            }
+          }
+        }
+        .qr-code {
+          @apply flex flex-col space-y-2 md:items-end;
+          div {
+            @apply bg-st-40 rounded overflow-hidden;
+            width: 200px;
+            height: 200px;
+            img {
+              @apply w-full h-full;
+            }
+          }
+          a {
+            @apply t-label text-st-90 underline;
+          }
+        }
+      }
+    }
+    .section-details {
+      .details {
+        @apply break-all text-st-90 t-body rounded bg-st-20 p-4 space-y-4;
+        .primary-data {
+          @apply rounded flex-col md:flex-row flex border border-st-40 p-4 gap-4;
+        }
+        .data-group {
+          @apply grid md:grid-cols-2 gap-4;
+        }
+        .data {
+          @apply flex flex-col space-y-1;
+          span:first-child {
+            @apply text-c t-label-b;
+          }
+        }
+      }
+    }
+    .section-data {
+      .data-container {
+        @apply text-st-90 bg-st-20 w-full grid md:grid-cols-2 p-4 gap-4;
+        .attribute {
+          @apply flex flex-col space-y-1;
+          span:first-child {
+            @apply t-label-b text-c;
+          }
+          span:last-child {
+            @apply t-body;
+          }
+        }
+      }
+    }
+    .notify-null {
+      @apply flex items-center space-x-2;
+      svg {
+        @apply text-alert-warning;
+      }
+      span {
+        @apply t-body text-st-90;
+      }
+    }
+  }
+}
+
+/* END BLOCK PAGE */
+
 .form-login {
   @apply flex flex-col p-6 lg:p-32 flex-none lg:items-center lg:justify-center lg:w-1/2 space-y-12
 }

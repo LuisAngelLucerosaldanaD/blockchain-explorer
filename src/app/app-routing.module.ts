@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () => import("./modules/explorer/explorer.module").then((m) => m.ExplorerModule)
   },
   {
+    path: "view",
+    loadChildren: () => import("./modules/view-credentials/view-credentials.module").then((m) => m.ViewCredentialsModule)
+  },
+  {
     path: "auth",
     loadChildren: () => import("./modules/auth/auth.module").then((m) => m.AuthModule)
   },

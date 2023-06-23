@@ -8,6 +8,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {QuicklinkModule} from "ngx-quicklink";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { ViewCredentialsComponent } from './modules/view-credentials/view-credentials.component';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -16,6 +17,7 @@ export function createTranslateLoader(http: HttpClient): any {
 @NgModule({
   declarations: [
     AppComponent,
+    ViewCredentialsComponent,
   ],
   imports: [
     BrowserModule,
