@@ -331,7 +331,7 @@ svg {
     .sections {
       @apply flex flex-col w-full space-y-12 lg:space-y-0 lg:space-x-12 lg:flex-row;
       .section {
-        @apply flex flex-col space-y-12 lg:w-1/2;
+        @apply flex flex-col gap-4 lg:w-1/2;
         .section-search {
           @apply space-y-12;
           .buscador {
@@ -457,6 +457,40 @@ svg {
   }
 }
 
+.list-operations-transactions {
+  @apply p-2 space-y-2 overflow-hidden rounded t-body text-st-90 bg-st-20;
+  .item-operation {
+    @apply flex flex-row items-center space-x-2 rounded cursor-pointer hover:bg-st-5 p-2 active:bg-st-40;
+    .cuadrado {
+      @apply w-10 h-10 rounded bg-c text-white-fx flex items-center justify-center;
+    }
+    .circulo {
+      @apply w-10 h-10 rounded-full bg-c text-white-fx flex items-center justify-center;
+    }
+    .body-item {
+      @apply flex-1 items-center flex space-x-2;
+      .text-a {
+        @apply flex flex-col w-2/5;
+      }
+      .text-b {
+        @apply flex flex-col w-3/5;
+      }
+      span:last-child {
+        @apply t-label text-st-60;
+      }
+    }
+  }
+  .notify-null {
+    @apply flex items-center space-x-2;
+    svg {
+      @apply text-alert-warning;
+    }
+    span {
+      @apply t-body text-st-90;
+    }
+  }
+}
+
 /* END STYLES EXPLORER */
 
 /* STYLES PAYMENT */
@@ -468,7 +502,7 @@ svg {
     .sections {
       @apply flex flex-col w-full space-y-12 lg:space-y-0 lg:space-x-12 lg:flex-row;
       .section {
-        @apply flex flex-col space-y-12 lg:w-1/2;
+        @apply flex flex-col gap-4 lg:w-1/2;
       }
     }
   }
@@ -569,7 +603,104 @@ svg {
     .body {
       @apply p-6 md:p-12 flex-1 w-full space-y-6 overflow-y-auto;
       .section {
-        @apply flex flex-col space-y-4;
+        @apply flex flex-col gap-4;
+      }
+      .section-abstract {
+        .info {
+          @apply flex flex-col md:flex-row gap-4;
+          .abstract {
+            @apply text-st-90 t-body flex flex-col space-y-4 flex-1;
+            .data {
+              @apply flex flex-col space-y-1;
+              span:first-child {
+                @apply text-c t-label-b;
+              }
+            }
+          }
+          .abstract-noqr {
+            @apply text-st-90 t-body grid grid-cols-2 lg:grid-cols-4 gap-4 flex-1;
+            .data {
+              @apply flex flex-col space-y-1;
+              span:first-child {
+                @apply text-c t-label-b;
+              }
+            }
+          }
+          .qr-code {
+            @apply flex flex-col space-y-2 md:items-end;
+            div {
+              @apply bg-st-40 rounded overflow-hidden;
+              width: 200px;
+              height: 200px;
+              img {
+                @apply w-full h-full;
+              }
+            }
+            a {
+              @apply t-label text-st-90 underline;
+            }
+          }
+        }
+      }
+      .section-details {
+        .details {
+          @apply break-all text-st-90 t-body rounded bg-st-20 p-4 space-y-4;
+          .primary-data {
+            @apply rounded flex-col md:flex-row flex border border-st-40 p-4 gap-4;
+          }
+          .data-group {
+            @apply grid md:grid-cols-2 gap-4;
+          }
+          .data {
+            @apply flex flex-col space-y-1;
+            span:first-child {
+              @apply text-c t-label-b;
+            }
+          }
+        }
+      }
+      .section-data {
+        .data-container {
+          @apply text-st-90 bg-st-20 w-full grid md:grid-cols-2 p-4 gap-4;
+          .attribute {
+            @apply flex flex-col space-y-1;
+            span:first-child {
+              @apply t-label-b text-c;
+            }
+            span:last-child {
+              @apply t-body;
+            }
+          }
+        }
+      }
+      .notify-null {
+        @apply flex items-center space-x-2;
+        svg {
+          @apply text-alert-warning;
+        }
+        span {
+          @apply t-body text-st-90;
+        }
+      }
+    }
+  }
+}
+
+.modal-container-block-transaction {
+  @apply h-screen fixed top-0 left-0 w-full backdrop-blur-xl bg-white/50 dark:bg-black/50;
+  .modal {
+    @apply flex flex-col lg:w-1/2 bg-st-5 h-full ml-auto lg:border-l lg:border-st-40;
+    height: calc(100vh);
+    .header {
+      @apply px-6 py-4 flex items-center justify-between border-b border-st-40 t-title text-st-90;
+      .b-ghost {
+        @apply w-10 h-10 flex justify-center items-center;
+      }
+    }
+    .body {
+      @apply p-6 md:p-12 flex-1 w-full space-y-6 overflow-y-auto;
+      .section {
+        @apply flex flex-col gap-4;
       }
       .section-abstract {
         .info {
@@ -726,7 +857,7 @@ svg {
     }
     .section-data {
       .data-container {
-        @apply text-st-90 bg-st-20 w-full grid md:grid-cols-2 p-4 gap-4;
+        @apply text-st-90 bg-st-20 w-full grid md:grid-cols-2 p-4 gap-4 rounded;
         .attribute {
           @apply flex flex-col space-y-1;
           span:first-child {
