@@ -8,10 +8,10 @@ import {EnvServiceProvider} from "@app/services/env/env.service.provider";
 @Injectable()
 
 export class ExplorerService {
-  private urlGetBlocks: string = EnvServiceProvider.useFactory().REST_API + "/api/v1/blocks";
+  private urlGetBlocks: string = EnvServiceProvider.useFactory().REST_API + "/api/v1/block/get-all";
   private urlTransactionById: string = 'https://simbaengine.nexumsign.com:60060/api/v1/transaction';
   private urlGetFilesByTransactionID = 'https://simbaengine.nexumsign.com:60060/api/v1/transaction/files';
-  private urlGetBockById: string = EnvServiceProvider.useFactory().REST_API + "/api/v1/blocks"
+  private urlGetBockById: string = EnvServiceProvider.useFactory().REST_API + "/api/v1/block";
 
   constructor(private _httpClient: HttpClient) {
 

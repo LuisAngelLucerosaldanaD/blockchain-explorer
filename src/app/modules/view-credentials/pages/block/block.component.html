@@ -19,7 +19,7 @@
           <div class="abstract">
             <div class="data">
               <span>Fecha de transmición</span>
-              <span>15225521</span>
+              <span>{{blocksSelected.created_at | date: 'medium':'UTC'}}</span>
             </div>
             <div class="data">
               <span>Confirmaciones de red</span>
@@ -27,11 +27,11 @@
             </div>
             <div class="data">
               <span>Cantidad Açai</span>
-              <span>12123312</span>
+              <span>{{blocksSelected.acais}}</span>
             </div>
             <div class="data">
               <span>Cantidad USD</span>
-              <span>$123312312</span>
+              <span>${{blocksSelected.acais * 0.20}}</span>
             </div>
           </div>
           <div class="qr-code">
@@ -48,37 +48,37 @@
             <div class="primary-data">
               <div class="data">
                 <span>Monto</span>
-                <span>USD $21212312</span>
+                <span>USD ${{blocksSelected.acais * 0.20}}</span>
               </div>
               <div class="data">
                 <span>Block Hash</span>
-                <span>213132132312</span>
+                <span>{{blocksSelected.hash}}</span>
               </div>
             </div>
             <div class="data-group">
               <div class="data">
                 <span>De</span>
-                <span>3234234</span>
+                <span>DATO</span>
               </div>
               <div class="data">
                 <span>Para</span>
-                <span>3234234</span>
+                <span>DATO</span>
               </div>
               <div class="data">
                 <span>Minero</span>
-                <span>3234234</span>
+                <span>{{blocksSelected.mined_by}}</span>
               </div>
               <div class="data">
                 <span>Fecha de Creación</span>
-                <span>3234234</span>
+                <span>{{blocksSelected.created_at | date: 'medium': 'UTC'}}</span>
               </div>
               <div class="data">
                 <span>Ultima Validación</span>
-                <span>3234234</span>
+                <span>{{blocksSelected.last_validation_date || blocksSelected.timestamp | date : 'medium' : 'UTC'}}</span>
               </div>
               <div class="data">
                 <span>Fecha de Minado</span>
-                <span>3234234</span>
+                <span>{{blocksSelected.mined_at | date:'medium': 'UTC'}}</span>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
             <div>
               <div class="attribute">
                 <span>atributo name</span>
-                <span>atributo value</span>
+                <span>{{block.amount}}</span>
               </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
         <div class="section-transaction w-full flex flex-col gap-4">
           <span class="t-subtitle text-st-90">Transacciones</span>
           <div class="list-operations-transactions">
-            <div *ngIf="false" class="notify-null">
+            <div *ngIf="transactions.length === 0" class="notify-null">
               <div>
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M8.686 2.85207L2.12727 14.777C1.57744 15.7767 2.30069 16.9999 3.44159 16.9999H16.559C17.7 16.9999 18.4232 15.7767 17.8734 14.777L11.3146 2.85207C10.7448 1.81591 9.25588 1.81591 8.686 2.85207ZM10.0003 6.74992C10.4145 6.74992 10.7503 7.0857 10.7503 7.49992V11.4999C10.7503 11.9141 10.4145 12.2499 10.0003 12.2499C9.58609 12.2499 9.25031 11.9141 9.25031 11.4999V7.49992C9.25031 7.0857 9.58609 6.74992 10.0003 6.74992ZM10.7503 13.7499C10.7503 14.1641 10.4145 14.4999 10.0003 14.4999C9.58609 14.4999 9.25031 14.1641 9.25031 13.7499C9.25031 13.3357 9.58609 12.9999 10.0003 12.9999C10.4145 12.9999 10.7503 13.3357 10.7503 13.7499Z"/>
@@ -114,7 +114,7 @@
               </div>
               <span>No hay transacciones registradas</span>
             </div>
-            <div class="item-operation">
+            <div *ngFor="let transaction of transactionsDisplay" (click)="selectedTrx(transaction)" class="item-operation">
               <div class="circulo">
                 <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M47.966 92.9168C47.5977 92.9168 47.2444 92.7695 46.9839 92.5073L44.2346 89.7394C43.8696 89.3719 44.0163 88.7462 44.506 88.5819L49.5608 86.8856C49.8459 86.7899 50.1541 86.7899 50.4392 86.8856L55.494 88.5819C55.9837 88.7462 56.1304 89.3719 55.7654 89.7394L53.0161 92.5073C52.7556 92.7695 52.4023 92.9168 52.034 92.9168H47.966Z"/>
@@ -131,12 +131,12 @@
               </div>
               <div class="body-item">
                 <div class="text-b">
-                  <span>{{"transaction.id"}}</span>
-                  <span>{{"transaction.created_at | date: 'medium' : 'UTC'"}}</span>
+                  <span>{{transaction.id}}</span>
+                  <span>{{transaction.created_at | date: 'medium' : 'UTC'}}</span>
                 </div>
                 <div class="text-a">
-                  <span>Açais {{"transaction.amount"}}</span>
-                  <span>Bloque {{"transaction.block"}}</span>
+                  <span>Açais {{transaction.amount}}</span>
+                  <span>Bloque {{transaction.block}}</span>
                 </div>
               </div>
             </div>
@@ -149,12 +149,12 @@
 </div>
 
 
-<div *ngIf="false" class="modal-transaction modal-container-block-transaction">
+<div *ngIf="modalTransaction" class="modal-transaction modal-container-block-transaction">
   <div class="modal">
     <div class="header">
       <span class="t-title text-st-90">Transacción</span>
       <div>
-        <button class="b-ghost">
+        <button (click)="modalTransaction = false" class="b-ghost">
           <div>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.89705 4.05379L3.96967 3.96967C4.23594 3.7034 4.6526 3.6792 4.94621 3.89705L5.03033 3.96967L10 8.939L14.9697 3.96967C15.2359 3.7034 15.6526 3.6792 15.9462 3.89705L16.0303 3.96967C16.2966 4.23594 16.3208 4.6526 16.1029 4.94621L16.0303 5.03033L11.061 10L16.0303 14.9697C16.2966 15.2359 16.3208 15.6526 16.1029 15.9462L16.0303 16.0303C15.7641 16.2966 15.3474 16.3208 15.0538 16.1029L14.9697 16.0303L10 11.061L5.03033 16.0303C4.76406 16.2966 4.3474 16.3208 4.05379 16.1029L3.96967 16.0303C3.7034 15.7641 3.6792 15.3474 3.89705 15.0538L3.96967 14.9697L8.939 10L3.96967 5.03033C3.7034 4.76406 3.6792 4.3474 3.89705 4.05379L3.96967 3.96967L3.89705 4.05379Z"/>
@@ -170,7 +170,7 @@
           <div class="abstract">
             <div class="data">
               <span>Fecha de transmición</span>
-              <span>{{"trxSelected.created_at | date: 'medium': 'UTC'"}}</span>
+              <span>{{trxSelected.created_at | date: 'medium': 'UTC'}}</span>
             </div>
             <div class="data">
               <span>Confirmaciones de red</span>
@@ -178,11 +178,11 @@
             </div>
             <div class="data">
               <span>Cantidad Açai</span>
-              <span>{{"trxSelected.amount"}}</span>
+              <span>{{trxSelected.amount}}</span>
             </div>
             <div class="data">
               <span>Cantidad USD</span>
-              <span>${{"trxSelected.amount * 0.20"}}</span>
+              <span>${{trxSelected.amount * 0.20}}</span>
             </div>
           </div>
           <div class="qr-code">
@@ -199,37 +199,37 @@
           <div class="primary-data">
             <div class="data">
               <span>Monto</span>
-              <span>USD ${{"trxSelected.amount * 0.20"}}</span>
+              <span>USD ${{trxSelected.amount * 0.20}}</span>
             </div>
             <div class="data">
               <span>Block Hash</span>
-              <span>{{"blocksSelected.hash"}}</span>
+              <span>{{blocksSelected.hash}}</span>
             </div>
           </div>
           <div class="data-group">
             <div class="data">
               <span>De</span>
-              <span>{{"trxSelected.from"}}</span>
+              <span>{{trxSelected.from}}</span>
             </div>
             <div class="data">
               <span>Para</span>
-              <span>{{"trxSelected.to"}}</span>
+              <span>{{trxSelected.to}}</span>
             </div>
             <div class="data">
               <span>Minero</span>
-              <span>{{"blocksSelected.mined_by"}}</span>
+              <span>{{blocksSelected.mined_by}}</span>
             </div>
             <div class="data">
               <span>Fecha de Creación</span>
-              <span>{{"trxSelected.created_at | date: 'medium': 'UTC'"}}</span>
+              <span>{{trxSelected.created_at | date: 'medium': 'UTC'}}</span>
             </div>
             <div class="data">
               <span>Ultima Validación</span>
-              <span>{{"blocksSelected.last_validation_date || blocksSelected.timestamp | date: 'medium': 'UTC'"}}</span>
+              <span>{{blocksSelected.last_validation_date || blocksSelected.timestamp | date : 'medium' : 'UTC'}}</span>
             </div>
             <div class="data">
               <span>Fecha de Minado</span>
-              <span>{{"blocksSelected.created_at | date: 'medium': 'UTC'"}}</span>
+              <span>{{blocksSelected.mined_at | date:'medium': 'UTC'}}</span>
             </div>
           </div>
         </div>

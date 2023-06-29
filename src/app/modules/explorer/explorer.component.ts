@@ -8,6 +8,7 @@ import {Subscription} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 import {decryptText} from "../../helpers/crypto";
 
+
 @Component({
   selector: 'app-explorer',
   templateUrl: './explorer.component.html',
@@ -63,7 +64,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
   public dataTrx!: Data;
   public isLogged: boolean = false;
   public searchBlockForm: FormGroup;
-  
+
   public selectedSesstings = '';
   constructor(
     private _explorerService: ExplorerService,
@@ -76,7 +77,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
     this.searchBlockForm = _fb.group({
       blockid: ['', Validators.required]
     });
-    if(sessionStorage.getItem("access-token")) this.isLogged == true; 
+    if(sessionStorage.getItem("access-token")) this.isLogged == true;
 
   }
   blockid: string = '';
@@ -455,7 +456,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
       return trx
     });
     console.log("Transactions block",transactions);
-    
+
     this.transactions = [...this.transactions, ...transactions];
     if (this.transactions.length) {
       this.initPaginationTrx();
@@ -544,7 +545,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
     });
   }
   public getTransactionsAmount() {
-    let totalTrxAmount = 0; 
+    let totalTrxAmount = 0;
     this.transactions.forEach(function(element){
         totalTrxAmount += element.amount;
     });

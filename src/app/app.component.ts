@@ -10,8 +10,10 @@ import {FormGroup} from "@angular/forms";
 })
 export class AppComponent implements OnInit{
   title = 'blockchain-explorer';
+
+  data: any[] = [];
 constructor(
-  
+
 ){}
   ngOnInit(): void {
   }
