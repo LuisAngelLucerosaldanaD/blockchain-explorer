@@ -1,18 +1,26 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {BlockComponent} from "@app/modules/view-credentials/pages/block/block.component";
-const routes:Routes=[
+import {ViewerComponent} from "@app/modules/view-credentials/pages/viewer/viewer.component";
+
+const routes: Routes = [
   {
     path: "block",
     component: BlockComponent
+  },
+  {
+    path: 'credential',
+    component: ViewerComponent
   }
 ]
+
 @NgModule({
-  imports:[
+  imports: [
     RouterModule.forChild(routes)
   ],
-  exports:[
+  exports: [
     RouterModule
   ],
 })
-export class ViewCredentialsRoutingModule{}
+export class ViewCredentialsRoutingModule {
+}

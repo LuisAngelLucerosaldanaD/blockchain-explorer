@@ -1,0 +1,10 @@
+<div class="fixed z-50 top-0 right-0 w-full p-8" #container>
+  <ng-container *ngFor="let message of messages; let i = index">
+    <app-toast-item [message]="message" [hideTransformOptions]="hideTransformOptions"
+                    [hideTransitionOptions]="hideTransitionOptions" [showTransformOptions]="showTransformOptions"
+                    [showTransitionOptions]="hideTransitionOptions" [index]="i" (onClose)="onMessageClose($event)"
+    ></app-toast-item>
+  </ng-container>
+</div>
+
+
