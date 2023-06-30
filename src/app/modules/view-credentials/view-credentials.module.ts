@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {QuicklinkModule} from "ngx-quicklink";
+import {QRCodeModule} from "angular2-qrcode";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {QuicklinkModule} from "ngx-quicklink";
     HttpClientModule,
     ReactiveFormsModule,
     TranslateModule,
-    QuicklinkModule
+    QuicklinkModule,
+    QRCodeModule
   ],
   providers: [
     ExplorerService,

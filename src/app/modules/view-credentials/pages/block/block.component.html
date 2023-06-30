@@ -19,7 +19,7 @@
           <div class="abstract">
             <div class="data">
               <span>Fecha de transmición</span>
-              <span>{{blocksSelected.created_at | date: 'medium':'UTC'}}</span>
+              <span>{{blocksSelected.created_at | date: 'medium': 'UTC'}}</span>
             </div>
             <div class="data">
               <span>Confirmaciones de red</span>
@@ -36,8 +36,9 @@
           </div>
           <div class="qr-code">
             <div class="p-1" style="background: white">
+              <qr-code [value]="urlBlock" [size]="200"></qr-code>
             </div>
-            <a target="_blank">Click aquí, si no puede leer el QR</a>
+            <a [href]="urlBlock" target="_blank" >Click aquí, si no puede leer el QR</a>
           </div>
         </div>
       </div>
@@ -56,14 +57,6 @@
               </div>
             </div>
             <div class="data-group">
-              <div class="data">
-                <span>De</span>
-                <span>DATO</span>
-              </div>
-              <div class="data">
-                <span>Para</span>
-                <span>DATO</span>
-              </div>
               <div class="data">
                 <span>Minero</span>
                 <span>{{blocksSelected.mined_by}}</span>
@@ -97,7 +90,7 @@
             <div>
               <div class="attribute">
                 <span>atributo name</span>
-                <span>{{block.amount}}</span>
+                <span>DATO</span>
               </div>
             </div>
           </div>
@@ -184,12 +177,6 @@
               <span>Cantidad USD</span>
               <span>${{trxSelected.amount * 0.20}}</span>
             </div>
-          </div>
-          <div class="qr-code">
-            <div class="p-1" style="background: white">
-              <!--<qr-code [size]="200"></qr-code>-->
-            </div>
-            <a [href]="'urlTrx'" target="_blank">Click aquí, si no puede leer el QR</a>
           </div>
         </div>
       </div>

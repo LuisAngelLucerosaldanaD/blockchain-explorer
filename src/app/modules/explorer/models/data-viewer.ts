@@ -1,20 +1,20 @@
 export interface Block {
+  acais: number;
   created_at: string;
   data: string;
   difficulty: number;
   hash: string;
   id: number;
   id_user: string;
-  acais: number;
-  totalTrx: number;
-  timeTrx: number;
   last_validation_date: string;
   mined_at: string;
   mined_by: string;
   nonce: number;
   prev_hash: string;
   status_id: number;
+  timeTrx: number;
   timestamp: string;
+  totalTrx: number;
   updated_at: string;
 }
 
