@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, DoCheck, ElementRef, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ExplorerService} from '@app/modules/explorer/services/explorer.service';
 import {Block, Data, Transaction} from '@app/modules/explorer/models/data-viewer';
 import {Subscription} from "rxjs";
@@ -7,14 +7,14 @@ import {ExplorerComponent} from "@app/modules/explorer/explorer.component";
 import {HttpErrorResponse} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {decryptText} from "@app/helpers/crypto";
-import { ActivatedRoute } from '@angular/router';
+import {Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-block',
   templateUrl: './block.component.html',
   styleUrls: ['./block.component.scss']
 })
-export class BlockComponent implements OnInit {
+export class BlockComponent implements OnInit, OnDestroy{
 
   private time: any;
   public chartOptions: any;
@@ -25,8 +25,9 @@ export class BlockComponent implements OnInit {
 
   public isMenuBurger: boolean = false;
   // her
+  public blockId: string | null = '';
   public blocks: Block[] = [];
-  public block!: Transaction;
+  public block!: [];
   public blockById!: Block;
   public blocksSelected!: Block;
   public trxSelected!: Transaction;
@@ -66,6 +67,8 @@ export class BlockComponent implements OnInit {
   // public searchBlockForm: FormGroup;
 
   public selectedSesstings = '';
+
+
   constructor(
     private route: ActivatedRoute,
     private _explorerService: ExplorerService,
@@ -79,20 +82,14 @@ export class BlockComponent implements OnInit {
     // });
   }
 
-  ngOnDestroy(): void {
-    this._subscriptions.unsubscribe();
+  ngOnInit(): void {
+    this.blockId = this.route.snapshot.paramMap.get('id');
+    this.selectedRouteBlock();
+    this.getBlockById();
   }
 
-  ngOnInit(): void {
-    this.getBlockById();
-
-    this.route.queryParams.subscribe(params => {
-      const id = params['blockid'];
-      console.log(id); // Output: 2
-    });
-
-    // this.prueba();
-    // this.prueba2();
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
   }
 
 
@@ -106,13 +103,11 @@ export class BlockComponent implements OnInit {
           } else {
             this.blocks.push(res.data);
             this.blocksSelected = res.data;
+            this.blocksSelected.last_validation_date = this.blocksSelected.last_validation_date.substring(0,23);
             this.block = JSON.parse(this.blocksSelected.data);
-            // console.log(this.blocksSelected);
-            // console.log(this.block);
-            console.log(this.transactionsDisplay);
-            console.log(this.transactions);
+            console.log(this.blocksSelected);
+            console.log(this.block);
             this.getTransactions();
-            // this.initPaginationBlocks();
           }
           this.isBlockPage = false;
         },
@@ -125,7 +120,6 @@ export class BlockComponent implements OnInit {
   }
 
   private getAllBlocks(): void {
-    this.isBlockPage = true;
     this._subscriptions.add(
       this._explorerService.getBlocks(this.limit, this.offset).subscribe({
         next: (res) => {
@@ -241,19 +235,17 @@ export class BlockComponent implements OnInit {
     }
   }
   //
-  // public selectedBlock(block: Block): void {
-  //     this.blocksSelected = block;
-  //     this.modalBlock = true;
-  //     this.urlBlock = this.localURl.origin + '/#/' + 'explorer/data-viewer?info=block&id=' + block.id;
-  //   }
+  public selectedRouteBlock(): void {
+      this.urlBlock = this.localURl.origin + '/#/' + 'view/block/' + this.blockId;
+    console.log(this.urlBlock);
+  }
   //
   public selectedTrx(trx: Transaction): void {
       this.trxSelected = trx;
       this.modalTransaction = true;
       this.urlTrx = this.localURl.origin + '/#/' +  `explorer/data-viewer?info=transaction&id=${trx.id}&id-ex=${trx.block}`;
-      this.blocksSelected = this.blocks.find((block) => block.id === trx.block) || this.blocks[0];
 
-      this.dataTrx = JSON.parse(decryptText(trx.data, '204812730425442A472D2F423F452847'));
+      //this.dataTrx = JSON.parse(decryptText(trx.data, '204812730425442A472D2F423F452847'));
     }
   //
   // public goToFullScreen(): void {
@@ -274,42 +266,6 @@ export class BlockComponent implements OnInit {
   //     return totalTrxAmount;
   //   }
 
-
-
-
-
-
-  // public prueba(){
-  //
-  //   this._explorerService.getBlockById(1).subscribe({
-  //     next: (res) => {
-  //       if(res.error) {
-  //         console.log(res.msg);
-  //       } else{
-  //         this.blockById = res.data;
-  //         console.log('prueba 1', this.blockById);
-  //         console.log(JSON.parse(this.blockById.data));
-  //       }
-  //     }
-  //   })
-  //
-  // }
-
-  // public prueba2() {
-  //
-  //   this._explorerService.getBlocks(1,0).subscribe({
-  //     next: (res) => {
-  //       if(res.error) {
-  //         console.log(res.msg);
-  //       } else{
-  //         this.blocks = res.data;
-  //         console.log('prueba 2',this.blocks);
-  //       }
-  //     }
-  //   })
-  //
-  // }
-  //
   protected readonly JSON = JSON;
 }
 

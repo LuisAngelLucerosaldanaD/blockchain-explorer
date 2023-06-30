@@ -5,6 +5,7 @@ import { BlockComponent } from './pages/block/block.component';
 import {ViewCredentialsRoutingModule} from "@app/modules/view-credentials/view-credentials-routing.module";
 import {ExplorerService} from "@app/modules/explorer/services/explorer.service";
 import {ExplorerComponent} from "@app/modules/explorer/explorer.component";
+import {QRCodeModule} from "angular2-qrcode";
 
 
 
@@ -15,7 +16,8 @@ import {ExplorerComponent} from "@app/modules/explorer/explorer.component";
   ],
   imports: [
     CommonModule,
-    ViewCredentialsRoutingModule
+    ViewCredentialsRoutingModule,
+    QRCodeModule
   ],
   providers: [
     ExplorerService
